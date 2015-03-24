@@ -1,5 +1,4 @@
 import processing.core.PApplet;
-
 import java.util.ArrayList;
 
 public class Animation {
