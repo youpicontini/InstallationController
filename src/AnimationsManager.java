@@ -15,6 +15,7 @@ public class AnimationsManager {
     Textlabel labelNameAnimation;
     Textfield inputNewAnimName;
     Button buttonPlayAnim;
+    Button buttonStopAnim;
 
     int colorBG;
     int colorSelected;
@@ -28,6 +29,7 @@ public class AnimationsManager {
         // INTERFACE
         listAnimations = cp5.addListBox("listAnimations");
         buttonPlayAnim = cp5.addButton("buttonPlayAnim");
+        buttonStopAnim = cp5.addButton("buttonStopAnim");
         buttonNewAnim = cp5.addButton("buttonNewAnim");
         labelNameAnimation = cp5.addTextlabel("labelNameAnimation");
         inputNewAnimName = cp5.addTextfield("inputNewAnimName");
@@ -53,6 +55,13 @@ public class AnimationsManager {
                         .setPosition(1260, 770)
                         .setGroup("groupEditor")
                         .setSize(170, 40);
+
+        buttonStopAnim.setLabel("stop")
+                        .setValue(0)
+                        .setPosition(1260, 770)
+                        .setGroup("groupEditor")
+                        .setSize(170, 40)
+                        .hide();
 
         buttonNewAnim.setLabel("new animation")
                 .setValue(0)
@@ -103,7 +112,15 @@ public class AnimationsManager {
     }
 
     void playAnimation(){
+        buttonPlayAnim.hide();
+        buttonStopAnim.show();
         System.out.print("play");
+    }
+
+    void stopAnimation(){
+        buttonStopAnim.hide();
+        buttonPlayAnim.show();
+        System.out.print("stop");
     }
     public void draw(){
 
