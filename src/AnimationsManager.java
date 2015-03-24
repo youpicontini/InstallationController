@@ -1,6 +1,7 @@
 import controlP5.*;
 import processing.core.PApplet;
 import java.util.ArrayList;
+import java.io.File;
 
 public class AnimationsManager {
 
@@ -24,6 +25,8 @@ public class AnimationsManager {
     AnimationsManager(ControlP5 _cp5, PApplet _parent) {
         parent = _parent;
         cp5 = _cp5;
+
+        AnimationsArray = new ArrayList<Animation>();
 
         // INTERFACE
         listAnimations = cp5.addListBox("listAnimations");
@@ -69,6 +72,14 @@ public class AnimationsManager {
                 .setFocus(true)
                 .setGroup("groupEditor")
                 .hide();
+
+        File[] files = new File(System.getProperty("user.dir")).listFiles();
+        parent.println(System.getProperty("user.dir"));
+        showFiles(files);
+
+//        configjson = loadJSONObject("config.json");
+//        String nameAnim = json.getString("name");
+//        String name = json.getString("name");
     }
 
     public void toggleVisibilityInputNewAnimation() {
@@ -110,9 +121,17 @@ public class AnimationsManager {
     }
 
     public void newAnimation(String name){
-        parent.print(name);
+        Animation anim = new Animation(name,parent);
+        AnimationsArray.add(anim);
         newAnimNameinput(name);
         highlightSelectedAnim(indexAnim-1);
-
+    }
+    public static void showFiles(File[] files) {
+        for (File file : files) {
+            if (file.isDirectory()) {
+                if (file.getName().equals("animations"))System.out.println("Directory: " + file.getName());
+                showFiles(file.listFiles()); // Calls same method again.
+            }
+        }
     }
 }

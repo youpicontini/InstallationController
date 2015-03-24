@@ -1,5 +1,5 @@
 import processing.core.PApplet;
-
+import processing.data.JSONObject;
 import java.util.ArrayList;
 
 public class Animation {
@@ -9,6 +9,8 @@ public class Animation {
     String name;
     PApplet parent;
 
+    JSONObject jsonAnimation;
+
     ArrayList<Keyframe> keyframesArray;
 
     Animation (String _name, PApplet _parent) {
@@ -16,6 +18,11 @@ public class Animation {
         parent = _parent;
 
         keyframesArray = new ArrayList<Keyframe>();
+        jsonAnimation = new JSONObject();
+        jsonAnimation.setString("name", name);
+        jsonAnimation.setInt("fps", 5);
+
+        parent.saveJSONObject(jsonAnimation, "animations/"+name+"/config" + name + ".json");
     }
 
     void addKeyframe(){
