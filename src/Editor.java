@@ -24,9 +24,11 @@ public class Editor {
 
         animationsManager.setup();
         previewController.setup();
+        //timeline.setup();
     }
 
     public void draw(){
         previewController.draw();
+        //timeline.draw();
     }
 }

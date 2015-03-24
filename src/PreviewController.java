@@ -6,7 +6,7 @@ import controlP5.*;
 public class PreviewController {
 
     PGraphics of;
-    ArrayList<Ledstripe> LedStripesArray;
+    ArrayList<LedStripe> LedStripesArray;
     PApplet parent;
     ControlP5 cp5;
 
@@ -14,7 +14,7 @@ public class PreviewController {
         parent = _parent;
         cp5 = _cp5;
 
-        LedStripesArray = new ArrayList<Ledstripe>();
+        LedStripesArray = new ArrayList<LedStripe>();
 
     }
 

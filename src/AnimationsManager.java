@@ -26,11 +26,11 @@ public class AnimationsManager {
         cp5 = _cp5;
 
         // INTERFACE
-        listAnimations = new ListBox(cp5, "listAnimations");
-        buttonPlayAnim = new Button(cp5, "buttonPlayAnim");
-        buttonNewAnim = new Button(cp5, "buttonNewAnim");
-        labelNameAnimation = new Textlabel(cp5, "labelNameAnimation", 200, 40);
-        inputNewAnimName = new Textfield(cp5, "inputNewAnimName");
+        listAnimations = cp5.addListBox("listAnimations");
+        buttonPlayAnim = cp5.addButton("buttonPlayAnim");
+        buttonNewAnim = cp5.addButton("buttonNewAnim");
+        labelNameAnimation = cp5.addTextlabel("labelNameAnimation");
+        inputNewAnimName = cp5.addTextfield("inputNewAnimName");
     }
 
     public void setup(){
@@ -40,7 +40,7 @@ public class AnimationsManager {
         colorSelected = parent.color(150);
 
         listAnimations.setPosition(20, 80)
-                        .setSize(170, 740)
+                        .setSize(170, 710)
                         .setItemHeight(20)
                         .setBarHeight(20)
                         .setColorBackground(parent.color(50))
@@ -56,25 +56,63 @@ public class AnimationsManager {
 
         buttonNewAnim.setLabel("new animation")
                 .setValue(0)
-                .setPosition(20,830)
-                .setSize(170,20)
+                .setPosition(20,770)
+                .setSize(170,40)
                 .setGroup("groupEditor");
 
-        labelNameAnimation.setText("Choose Animation");
+        labelNameAnimation.setText("Choose Animation")
+                           .setPosition(200,40);
 
         inputNewAnimName.setLabel("new animation name")
-                .setPosition(200,20)
-                .setSize(170,20)
+                .setPosition(200, 20)
+                .setSize(170, 20)
                 .setFocus(true)
-                .setGroup("Animations")
+                .setGroup("groupEditor")
                 .hide();
     }
 
+    public void toggleVisibilityInputNewAnimation() {
+        if (labelNameAnimation.isVisible()){
+            labelNameAnimation.hide();
+            inputNewAnimName.show();
+            inputNewAnimName.setFocus(true);
+        }
+        else {
+            labelNameAnimation.show();
+            inputNewAnimName.hide();
+        }
+    }
+
+    public void newAnimNameinput(String animName) {
+        listAnimations.addItem(animName, indexAnim).setColorBackground(parent.color(0));
+        indexAnim++;
+        inputNewAnimName.hide();
+        labelNameAnimation.show();
+        if (indexAnim >= 32) listAnimations.scroll(1);
+    }
+
+    public void highlightSelectedAnim(int currentIndex){
+        ListBoxItem item = listAnimations.getItem(currentIndex);
+        labelNameAnimation.setText(item.getText());
+        if(selectedIndex >= 0){//if something was previously selected
+            ListBoxItem previousItem = listAnimations.getItem(selectedIndex);//get the item
+            previousItem.setColorBackground(colorBG);//and restore the original bg colours
+        }
+        selectedIndex = currentIndex;//update the selected index
+        listAnimations.getItem(selectedIndex).setColorBackground(colorSelected);//and set the bg colour to be the active/'selected one'...until a new selection is made and resets this, like above
+    }
+
+    void playAnimation(){
+        System.out.print("play");
+    }
     public void draw(){
 
     }
 
-    public void newAnimation(){
+    public void newAnimation(String name){
+        parent.print(name);
+        newAnimNameinput(name);
+        highlightSelectedAnim(indexAnim-1);
 
     }
 }

@@ -2,7 +2,7 @@ import controlP5.*;
 import processing.core.PApplet;
 import processing.core.PGraphics;
 
-public class Ledstripe {
+public class LedStripe {
     String id;
     PGraphics canvas;
     int x;
@@ -12,7 +12,7 @@ public class Ledstripe {
 
     Button ledButton;
 
-    Ledstripe(String _id, PGraphics _canvas, int _x, int _y, ControlP5 _cp5, PApplet _parent){
+    LedStripe(String _id, PGraphics _canvas, int _x, int _y, ControlP5 _cp5, PApplet _parent){
         id =_id;
         canvas = _canvas;
         x = _x;
