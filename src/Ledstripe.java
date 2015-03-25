@@ -7,6 +7,8 @@ public class LedStripe {
     PGraphics canvas;
     int x;
     int y;
+    int rectWidth =200;
+    int rectHeight =5;
     ControlP5 cp5;
     PApplet parent;
 
@@ -26,13 +28,13 @@ public class LedStripe {
         ledButton = cp5.addButton(id)
                 .setValue(0)
                 .setPosition(200+x,60+y)
-                .setSize(200,5)
+                .setSize(rectWidth,rectHeight)
                 .setColor(color)
                 .setSwitch(true)
-                .moveTo("editor");
+                .moveTo("default");
     }
 
     void draw(){
-        canvas.rect(x, y, 200, 5);
+        canvas.rect(x, y, rectWidth, rectHeight);
     }
 }

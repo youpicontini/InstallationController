@@ -1,5 +1,7 @@
 import controlP5.*;
 import processing.core.PApplet;
+import processing.data.JSONObject;
+
 import java.util.ArrayList;
 import java.io.File;
 
@@ -82,9 +84,8 @@ public class AnimationsManager {
                 .setGroup("groupEditor")
                 .hide();
 
-        File[] files = new File(System.getProperty("user.dir")).listFiles();
-        parent.println(System.getProperty("user.dir"));
-        showFiles(files);
+
+        loadAnimations();
 
 //        configjson = loadJSONObject("config.json");
 //        String nameAnim = json.getString("name");
@@ -138,17 +139,27 @@ public class AnimationsManager {
     }
 
     public void newAnimation(String name){
-        Animation anim = new Animation(name,parent);
+        Animation anim = new Animation(name,25,parent);
         AnimationsArray.add(anim);
         newAnimNameinput(name);
         highlightSelectedAnim(indexAnim-1);
     }
-    public static void showFiles(File[] files) {
+    public void showFiles(File[] files) {
         for (File file : files) {
             if (file.isDirectory()) {
-                if (file.getName().equals("animations"))System.out.println("Directory: " + file.getName());
-                showFiles(file.listFiles()); // Calls same method again.
+                System.out.println("Directory: " + file.getName());
+                String configFilePath= "animations\\"+file.getName()+"\\config.json";
+                JSONObject configjson = parent.loadJSONObject(configFilePath);
+                listAnimations.addItem(configjson.getString("name"),indexAnim);
+                parent.println(configFilePath, configjson);
             }
         }
+    }
+    public void loadAnimations(){
+        //TODO attention au chemin, peut etre different sur OSX,LINUX ...
+        String path= "animations";
+        File[] files = new File(path).listFiles();
+        parent.println(System.getProperty(path));
+        showFiles(files);
     }
 }
