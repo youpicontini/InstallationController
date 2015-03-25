@@ -21,7 +21,7 @@ public class PreviewController {
     void setup(){
         of = parent.createGraphics(1050, 750);
         for(int i = 0; i < 5; i++){
-            //LedStripesArray.add(new LedStripe(Integer.toString(i), of, i*20, i*10, cp5));
+            LedStripesArray.add(new LedStripe(Integer.toString(i), of, i*20, i*10, cp5, parent));
         }
     }
 

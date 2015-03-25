@@ -50,8 +50,6 @@ public class InstallationController extends PApplet {
         println(e);
         if(e.name().equals("inputNewAnimName")){
             appController.editor.animationsManager.newAnimation(appController.editor.animationsManager.inputNewAnimName.getText());
-            //if (appController.AM.indexAnim>35)
-            //appController.AM.scroll(1);
         }
         if(e.name().equals("listAnimations")){
             int currentIndex = (int)e.group().value();
@@ -73,9 +71,13 @@ public class InstallationController extends PApplet {
         }
         */
 
-        if(e.name().equals("play")){
+        if(e.name().equals("buttonPlayAnim")){
             if (appController instanceof AppController)
                 appController.editor.animationsManager.playAnimation();
+       }
+        if(e.name().equals("buttonStopAnim")){
+            if (appController instanceof AppController)
+                appController.editor.animationsManager.stopAnimation();
        }
     }
 
