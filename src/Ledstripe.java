@@ -7,23 +7,29 @@ public class LedStripe {
     PGraphics canvas;
     int x;
     int y;
-    int rectWidth =200;
-    int rectHeight =5;
     ControlP5 cp5;
     PApplet parent;
+
+    int rectWidth =200;
+    int rectHeight =5;
+    float opacity;
+    int transparent;
+    int white;
 
     Button ledButton;
 
     LedStripe(String _id, PGraphics _canvas, int _x, int _y, ControlP5 _cp5, PApplet _parent){
-        id =_id;
+        id = _id;
         canvas = _canvas;
         x = _x;
         y = _y;
         cp5 = _cp5;
         parent = _parent;
 
-        int c = parent.color(0, 0, 0, 1);
-        CColor color = new CColor(c, c, c, c, c);
+        transparent = parent.color(0, 0, 0, 1);
+        white = parent.color(255, 255, 255, 255);
+
+        CColor color = new CColor(transparent, transparent, transparent, transparent, transparent);
 
         ledButton = cp5.addButton(id)
                 .setValue(0)
@@ -34,7 +40,11 @@ public class LedStripe {
                 .moveTo("default");
     }
 
-    void draw(){
+    void display(float op){
+        opacity = parent.map(op,0,1,1,255);
+        canvas.pushStyle();
+        canvas.fill(255, 255, 255, opacity);
         canvas.rect(x, y, rectWidth, rectHeight);
+        canvas.popStyle();
     }
 }

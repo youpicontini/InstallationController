@@ -1,7 +1,9 @@
 import processing.core.PApplet;
 import processing.core.PGraphics;
 import java.util.ArrayList;
+import java.io.File;
 import controlP5.*;
+import processing.data.JSONArray;
 
 public class PreviewController {
 
@@ -9,27 +11,36 @@ public class PreviewController {
     ArrayList<LedStripe> LedStripesArray;
     PApplet parent;
     ControlP5 cp5;
+    float[] keyframe = new float[4];
 
     PreviewController (ControlP5 _cp5, PApplet _parent) {
         parent = _parent;
         cp5 = _cp5;
 
         LedStripesArray = new ArrayList<LedStripe>();
-
     }
 
     void setup(){
         of = parent.createGraphics(1050, 750);
-        for(int i = 0; i < 5; i++){
-            LedStripesArray.add(new LedStripe(Integer.toString(i), of, i*20, i*10, cp5, parent));
+        for(int i = 0; i < 4; i++){
+            LedStripesArray.add(new LedStripe(Integer.toString(i), of, i*40, i*40, cp5, parent));
         }
     }
 
-    void draw(){
+    void displayKeyframe(String path) {
+        JSONArray outputs = parent.loadJSONObject(new File(path)).getJSONArray("outputs").getJSONObject(0).getJSONArray("objects");
+        float[] out = new float[outputs.size()];
+        for (int i=0; i<outputs.size(); i++) {
+            out[i] = outputs.getJSONObject(i).getJSONObject("params").getFloat("opacity");
+        }
+        keyframe=out;
+    }
+
+    void draw() {
         of.beginDraw();
         of.background(parent.color(125));
-        for (int i = 0; i < LedStripesArray.size(); i++) {
-            LedStripesArray.get(i).draw();
+        for (int i = 0; i < keyframe.length; i++) {
+            LedStripesArray.get(i).display(keyframe[i]);
         }
         of.endDraw();
         parent.image(of, 200, 60);

@@ -1,7 +1,5 @@
 import processing.core.PApplet;
 import processing.data.JSONObject;
-
-import java.text.Normalizer;
 import java.util.ArrayList;
 
 public class Animation {
@@ -11,6 +9,7 @@ public class Animation {
     String name;
     String id;
     int fps;
+
     PApplet parent;
     JSONObject jsonAnimation;
 
@@ -29,7 +28,6 @@ public class Animation {
         jsonAnimation.setString("name", name);
         jsonAnimation.setInt("fps", fps);
         parent.saveJSONObject(jsonAnimation, "animations/"+id+"/config.json");
-
     }
 
     void addKeyframe(){
@@ -42,5 +40,4 @@ public class Animation {
         keyframesArray.remove(index);
         indexKeyframe--;
     }
-
 }

@@ -54,6 +54,7 @@ public class InstallationController extends PApplet {
         if(e.name().equals("listAnimations")){
             int currentIndex = (int)e.group().value();
             appController.editor.animationsManager.highlightSelectedAnim(currentIndex);
+            appController.editor.animationsManager.displayAnimation(currentIndex);
         }
         if (e.isTab() && e.getTab().getName()=="default" && appController.editor.animationsManager.inputNewAnimName.isVisible()) {
             appController.editor.animationsManager.labelNameAnimation.show();
@@ -63,6 +64,11 @@ public class InstallationController extends PApplet {
             if (appController.editor.animationsManager instanceof AnimationsManager)
                 appController.editor.animationsManager.toggleVisibilityInputNewAnimation();
         }
+        if(e.name().equals("buttonDeleteAnim")) {
+            if (appController.editor.animationsManager instanceof AnimationsManager)
+                appController.editor.animationsManager.deleteAnimation(appController.editor.animationsManager.selectedIndex);
+        }
+
 
         /*
         if(e.name().equals("keyframeDurationInput")){
@@ -72,13 +78,11 @@ public class InstallationController extends PApplet {
         */
 
         if(e.name().equals("buttonPlayAnim")){
-            if (appController instanceof AppController)
                 appController.editor.animationsManager.playAnimation();
-       }
+        }
         if(e.name().equals("buttonStopAnim")){
-            if (appController instanceof AppController)
                 appController.editor.animationsManager.stopAnimation();
-       }
+        }
     }
 
     public void mousePressed() {

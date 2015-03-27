@@ -1,95 +1,101 @@
 import controlP5.*;
 import processing.core.PApplet;
 import processing.data.JSONObject;
-
-import java.util.ArrayList;
 import java.io.File;
 
 public class AnimationsManager {
 
     PApplet parent;
     ControlP5 cp5;
+    PreviewController previewController;
+    Animation currentAnim;
 
-    ArrayList<Animation> AnimationsArray;
-    
     // INTERFACE
     ListBox listAnimations;
     Button buttonNewAnim;
+    Button buttonDeleteAnim;
     Textlabel labelNameAnimation;
     Textfield inputNewAnimName;
     Button buttonPlayAnim;
     Button buttonStopAnim;
+    Group groupAnimations;
 
     int colorBG;
     int colorSelected;
-    int indexAnim;
     int selectedIndex;//no selection initially
 
-    AnimationsManager(ControlP5 _cp5, PApplet _parent) {
+    AnimationsManager(ControlP5 _cp5, PApplet _parent, PreviewController _previewController) {
         parent = _parent;
         cp5 = _cp5;
-
-        AnimationsArray = new ArrayList<Animation>();
+        previewController = _previewController;
 
         // INTERFACE
         listAnimations = cp5.addListBox("listAnimations");
         buttonPlayAnim = cp5.addButton("buttonPlayAnim");
         buttonStopAnim = cp5.addButton("buttonStopAnim");
         buttonNewAnim = cp5.addButton("buttonNewAnim");
+        buttonDeleteAnim = cp5.addButton("buttonDeleteAnim");
         labelNameAnimation = cp5.addTextlabel("labelNameAnimation");
         inputNewAnimName = cp5.addTextfield("inputNewAnimName");
+
+        groupAnimations = cp5.addGroup("groupAnimations");
     }
 
     public void setup(){
-        indexAnim = 0;
         selectedIndex = -1;
         colorBG = parent.color(0);
         colorSelected = parent.color(150);
 
         listAnimations.setPosition(20, 80)
-                        .setSize(170, 710)
+                       .setSize(170, 710)
                         .setItemHeight(20)
-                        .setBarHeight(20)
-                        .setColorBackground(parent.color(50))
-                        .setColorActive(parent.color(150))
-                        .setColorForeground(parent.color(150));
-
+                         .setBarHeight(20)
+                          .moveTo("global")
+                           .setColorBackground(parent.color(50))
+                            .setColorActive(parent.color(150))
+                             .setColorForeground(parent.color(150));
 
         buttonPlayAnim.setLabel("play (p)")
-                        .setValue(0)
+                       .setValue(0)
                         .setPosition(1260, 770)
-                        .setGroup("groupEditor")
-                        .setSize(170, 40);
+                         .setGroup("groupEditor")
+                          .setSize(170, 40);
 
         buttonStopAnim.setLabel("stop")
-                        .setValue(0)
+                       .setValue(0)
                         .setPosition(1260, 770)
-                        .setGroup("groupEditor")
-                        .setSize(170, 40)
-                        .hide();
+                         .setGroup("groupEditor")
+                          .setSize(170, 40)
+                           .hide();
 
-        buttonNewAnim.setLabel("new animation")
-                .setValue(0)
-                .setPosition(20,770)
-                .setSize(170,40)
-                .setGroup("groupEditor");
+        buttonNewAnim.setLabel("       +")
+                      .setValue(0)
+                       .setPosition(150,770)
+                        .setSize(40,40)
+                         .setGroup("groupEditor");
+
+        buttonDeleteAnim.setLabel("       -")
+                         .setValue(0)
+                          .setPosition(100, 770)
+                           .setSize(40, 40)
+                            .setGroup("groupEditor");
 
         labelNameAnimation.setText("Choose Animation")
-                           .setPosition(200,40);
+                           .setPosition(200,40)
+                            .moveTo("global")
+                             .show();
 
         inputNewAnimName.setLabel("new animation name")
-                .setPosition(200, 20)
-                .setSize(170, 20)
-                .setFocus(true)
-                .setGroup("groupEditor")
-                .hide();
+                         .setPosition(200, 20)
+                          .setSize(170, 20)
+                           .setFocus(true)
+                            .setGroup("groupEditor")
+                             .hide();
 
+        listAnimations.getCaptionLabel()
+                       .hide();
 
         loadAnimations();
-
-//        configjson = loadJSONObject("config.json");
-//        String nameAnim = json.getString("name");
-//        String name = json.getString("name");
     }
 
     public void toggleVisibilityInputNewAnimation() {
@@ -105,16 +111,16 @@ public class AnimationsManager {
     }
 
     public void newAnimNameinput(String animName) {
-        listAnimations.addItem(animName, indexAnim).setColorBackground(parent.color(0));
-        indexAnim++;
+
+        listAnimations.addItem(animName, getLengthListbox(listAnimations)).setColorBackground(parent.color(0));
         inputNewAnimName.hide();
         labelNameAnimation.show();
-        if (indexAnim >= 32) listAnimations.scroll(1);
+        if (getLengthListbox(listAnimations) >= 32) listAnimations.scroll(1);
     }
 
     public void highlightSelectedAnim(int currentIndex){
-        ListBoxItem item = listAnimations.getItem(currentIndex);
-        labelNameAnimation.setText(item.getText());
+
+        parent.println("highlight");
         if(selectedIndex >= 0){//if something was previously selected
             ListBoxItem previousItem = listAnimations.getItem(selectedIndex);//get the item
             previousItem.setColorBackground(colorBG);//and restore the original bg colours
@@ -134,32 +140,79 @@ public class AnimationsManager {
         buttonPlayAnim.show();
         System.out.print("stop");
     }
-    public void draw(){
+    void displayAnimation(int index){
+        parent.println("display");
+        ListBoxItem item = listAnimations.getItem(index);
+        String animName = listAnimations.getItem(index).getName().replaceAll(" ", "_");
 
+        String configFilePath = "animations\\"+animName+"\\config.json";
+        JSONObject configjson = parent.loadJSONObject(new File(configFilePath));
+        labelNameAnimation.setText(item.getText()+"                 "+configjson.getInt("fps")+" FPS");
+        String path = "animations\\" + animName + "\\keyframes\\0.json";
+        previewController.displayKeyframe(path);
     }
 
     public void newAnimation(String name){
-        Animation anim = new Animation(name,25,parent);
-        AnimationsArray.add(anim);
+        currentAnim =new Animation(name,25,parent);
         newAnimNameinput(name);
-        highlightSelectedAnim(indexAnim-1);
+        highlightSelectedAnim(getLengthListbox(listAnimations)-1);
     }
-    public void showFiles(File[] files) {
-        for (File file : files) {
-            if (file.isDirectory()) {
-                System.out.println("Directory: " + file.getName());
-                String configFilePath= "animations\\"+file.getName()+"\\config.json";
-                JSONObject configjson = parent.loadJSONObject(configFilePath);
-                listAnimations.addItem(configjson.getString("name"),indexAnim);
-                parent.println(configFilePath, configjson);
-            }
+
+
+    public int getLengthListbox(ListBox list) {
+        String[][] tempString = list.getListBoxItems();
+        return tempString.length;
+    }
+
+
+    public void deleteAnimation(int id){
+        if(getLengthListbox(listAnimations) != 0) {
+            String name = listAnimations.getItem(id).getName();
+            File animDirectory = new File("animations\\" + name);
+            listAnimations.removeItem(name);
+            deleteFolder(animDirectory);
+            highlightSelectedAnim(id - 1);
         }
     }
-    public void loadAnimations(){
-        //TODO attention au chemin, peut etre different sur OSX,LINUX ...
-        String path= "animations";
-        File[] files = new File(path).listFiles();
-        parent.println(System.getProperty(path));
-        showFiles(files);
+
+    public void deleteFolder(File folder) {
+        File[] files = folder.listFiles();
+        if(files!=null) { //some JVMs return null for empty dirs
+            for(File f: files) {
+                if(f.isDirectory()) {
+                    deleteFolder(f);
+                } else {
+                    parent.println(f);
+                    deleteFile(f);
+                }
+            }
+        }
+        parent.println(folder);
+        deleteFile(folder);
+    }
+
+    void deleteFile(File file) {
+        try {
+            boolean isDeleted = file.delete();
+            if(isDeleted) {
+                parent.println("Success");
+            } else {
+                parent.println("Fail");
+            }
+        } catch (SecurityException e) {
+            parent.println("File : "+e.getMessage());
+        }
+    }
+
+    void loadAnimations() {
+        File[] files = new File("animations").listFiles();
+        //TODO attention au chemin, peut-être different sur OSX,LINUX...
+        for (File file : files) {
+            if (file.isDirectory()) {
+                String configFilePath= "animations\\"+file.getName()+"\\config.json";
+                JSONObject configjson = parent.loadJSONObject(new File(configFilePath));
+                listAnimations.addItem(configjson.getString("name"), getLengthListbox(listAnimations));
+            }
+        }
     }
 }

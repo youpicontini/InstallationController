@@ -1,0 +1,35 @@
+{
+  "id": "3654351td",
+  "outputs": [
+    {
+      "type": "ledstripe",
+      "objects" :
+        [
+          {
+            "id": 0,
+            "params": {
+              "opacity": 0
+            }
+          },
+          {
+            "id": 1,
+            "params": {
+              "opacity": 1
+            }
+          },
+          {
+            "id": 2,
+            "params": {
+              "opacity": 0
+            }
+          },
+          {
+            "id": 3,
+            "params": {
+              "opacity": 1
+            }
+          }
+        ]
+    }
+  ]
+}

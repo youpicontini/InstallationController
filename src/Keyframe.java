@@ -1,6 +1,6 @@
 import processing.core.PApplet;
 import processing.data.JSONObject;
-import java.util.ArrayList;
+import java.io.File;
 
 public class Keyframe {
 
@@ -14,8 +14,8 @@ public class Keyframe {
         parent = _parent;
         nameAnim = _nameAnim;
 
-        jsonKeyframe = new JSONObject();
-        jsonKeyframe.setInt("id", 0);
+//        jsonKeyframe = parent.loadJSONObject(new File("animations\\TEMPLATE_keyframe.json"));
+//        jsonKeyframe.getJSONArray("outputs").get.setString("type","ledstripe");
         jsonKeyframe.setString("species", "Panthera leo");
         jsonKeyframe.setString("name", "Lion");
 
