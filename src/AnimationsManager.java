@@ -37,7 +37,6 @@ public class AnimationsManager {
         buttonDeleteAnim = cp5.addButton("buttonDeleteAnim");
         labelNameAnimation = cp5.addTextlabel("labelNameAnimation");
         inputNewAnimName = cp5.addTextfield("inputNewAnimName");
-
         groupAnimations = cp5.addGroup("groupAnimations");
     }
 
@@ -144,11 +143,19 @@ public class AnimationsManager {
         parent.println("display");
         ListBoxItem item = listAnimations.getItem(index);
         String animName = listAnimations.getItem(index).getName().replaceAll(" ", "_");
-
-        String configFilePath = "animations\\"+animName+"\\config.json";
-        JSONObject configjson = parent.loadJSONObject(new File(configFilePath));
+        String configFilePath;
+        JSONObject configjson;
+        String path;
+        if(System.getProperty("os.name").equals("Mac OS X")) {
+            configFilePath = "animations/"+animName+"/config.json";
+            path = "animations/" + animName + "/keyframes/0.json";
+        }
+        else {
+            configFilePath = "animations\\"+animName+"\\config.json";
+            path = "animations\\" + animName + "\\keyframes\\0.json";
+        }
+        configjson = parent.loadJSONObject(new File(configFilePath));
         labelNameAnimation.setText(item.getText()+"                 "+configjson.getInt("fps")+" FPS");
-        String path = "animations\\" + animName + "\\keyframes\\0.json";
         previewController.displayKeyframe(path);
     }
 
@@ -168,7 +175,13 @@ public class AnimationsManager {
     public void deleteAnimation(int id){
         if(getLengthListbox(listAnimations) != 0) {
             String name = listAnimations.getItem(id).getName();
-            File animDirectory = new File("animations\\" + name);
+            File animDirectory;
+            if(System.getProperty("os.name").equals("Mac OS X")) {
+                animDirectory = new File("animations/" + name);
+            }
+            else{
+                animDirectory = new File("animations\\" + name);
+            }
             listAnimations.removeItem(name);
             deleteFolder(animDirectory);
             highlightSelectedAnim(id - 1);
@@ -206,10 +219,16 @@ public class AnimationsManager {
 
     void loadAnimations() {
         File[] files = new File("animations").listFiles();
-        //TODO attention au chemin, peut-être different sur OSX,LINUX...
+        //TODO attention au chemin, peut-être different sur OSX,LINUX... OK pour "MAC OS X" / "WINDOWS"
         for (File file : files) {
             if (file.isDirectory()) {
-                String configFilePath= "animations\\"+file.getName()+"\\config.json";
+                String configFilePath;
+                if(System.getProperty("os.name").equals("Mac OS X")) {
+                    configFilePath = "animations/" + file.getName() + "/config.json";
+                }
+                else {
+                    configFilePath= "animations\\" + file.getName() + "\\config.json";
+                }
                 JSONObject configjson = parent.loadJSONObject(new File(configFilePath));
                 listAnimations.addItem(configjson.getString("name"), getLengthListbox(listAnimations));
             }
