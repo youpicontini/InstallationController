@@ -68,15 +68,20 @@ public class InstallationController extends PApplet {
             if (appController.editor.animationsManager instanceof AnimationsManager)
                 appController.editor.animationsManager.deleteAnimation(appController.editor.animationsManager.selectedIndex);
         }
-
-
+        if(e.name().equals("buttonNewKeyframe")) {
+            if (appController.editor.animationsManager instanceof AnimationsManager)
+                appController.editor.animationsManager.currentAnim.addKeyframe(5);
+        }
+        if(e.name().equals("buttonDeleteKeyframe")) {
+            if (appController.editor.animationsManager instanceof AnimationsManager)
+               appController.editor.animationsManager.currentAnim.removeKeyframe(5);
+        }
         /*
         if(e.name().equals("keyframeDurationInput")){
             appController.animEditNav.keyframe_duration = Float.parseFloat(appController.animEditNav.keyframe_duration_input.getText());
             print(appController.animEditNav.keyframe_duration);
         }
         */
-
         if(e.name().equals("buttonPlayAnim")){
                 appController.editor.animationsManager.playAnimation();
         }

@@ -29,6 +29,7 @@ public class AnimationsManager {
         cp5 = _cp5;
         previewController = _previewController;
 
+
         // INTERFACE
         listAnimations = cp5.addListBox("listAnimations");
         buttonPlayAnim = cp5.addButton("buttonPlayAnim");
@@ -157,20 +158,27 @@ public class AnimationsManager {
         configjson = parent.loadJSONObject(new File(configFilePath));
         labelNameAnimation.setText(item.getText()+"                 "+configjson.getInt("fps")+" FPS");
         previewController.displayKeyframe(path);
+        updateCurrentAnim(index);
+    }
+
+    public void updateCurrentAnim(int index){
+        if (currentAnim != null) {
+            cp5.remove("buttonDeleteKeyframe");
+            cp5.remove("buttonNewKeyframe");
+        }
+        currentAnim = new Animation(listAnimations.getItem(index).getName(), 25, cp5, parent);
     }
 
     public void newAnimation(String name){
-        currentAnim =new Animation(name,25,parent);
+        currentAnim =new Animation(name, 25, cp5, parent);
         newAnimNameinput(name);
         highlightSelectedAnim(getLengthListbox(listAnimations)-1);
     }
-
 
     public int getLengthListbox(ListBox list) {
         String[][] tempString = list.getListBoxItems();
         return tempString.length;
     }
-
 
     public void deleteAnimation(int id){
         if(getLengthListbox(listAnimations) != 0) {
@@ -184,7 +192,7 @@ public class AnimationsManager {
             }
             listAnimations.removeItem(name);
             deleteFolder(animDirectory);
-            highlightSelectedAnim(id - 1);
+            highlightSelectedAnim(getLengthListbox(listAnimations)-2);
         }
     }
 
@@ -219,7 +227,6 @@ public class AnimationsManager {
 
     void loadAnimations() {
         File[] files = new File("animations").listFiles();
-        //TODO attention au chemin, peut-être different sur OSX,LINUX... OK pour "MAC OS X" / "WINDOWS"
         for (File file : files) {
             if (file.isDirectory()) {
                 String configFilePath;

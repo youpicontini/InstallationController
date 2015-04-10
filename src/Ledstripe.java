@@ -10,8 +10,8 @@ public class LedStripe {
     ControlP5 cp5;
     PApplet parent;
 
-    int rectWidth =200;
-    int rectHeight =5;
+    int rectWidth = 200;
+    int rectHeight = 5;
     float opacity;
     int transparent;
     int white;
