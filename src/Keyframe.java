@@ -6,20 +6,22 @@ import java.io.File;
 public class Keyframe {
 
     PApplet parent;
-    String nameAnim;
-    JSONObject jsonKeyframe;
+    float currentOpacity;
+    int currentDevice;
 
-
-    Keyframe(String _nameAnim, PApplet _parent){
+    Keyframe(PApplet _parent){
 
         parent = _parent;
-        nameAnim = _nameAnim;
 
-        jsonKeyframe = parent.loadJSONObject(new File("animations\\TEMPLATE_keyframe.json"));
-        jsonKeyframe.getJSONArray("outputs").getJSONObject(0).getJSONArray("objects").getJSONObject(0).getString("params").setString("opacity","0");
-        jsonKeyframe.setString("species", "Panthera leo");
-        jsonKeyframe.setString("name", "Lion");
+        currentOpacity = 0.0f;
+        currentDevice = 0;
+    }
 
-        parent.saveJSONObject(jsonKeyframe, "animations/" + nameAnim + "/keyframes/keyframe" + ".json");
+    public float getCurrentOpacity() {
+        return currentOpacity;
+    }
+
+    public void setCurrentOpacity(float currentOpacity) {
+        this.currentOpacity = currentOpacity;
     }
 }

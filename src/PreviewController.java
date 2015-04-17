@@ -11,7 +11,8 @@ public class PreviewController {
     ArrayList<LedStripe> LedStripesArray;
     PApplet parent;
     ControlP5 cp5;
-    float[] keyframe = new float[4];
+    int nb_elements = 4;
+    float[] keyframe = new float[nb_elements];
 
     PreviewController (ControlP5 _cp5, PApplet _parent) {
         parent = _parent;
@@ -22,7 +23,7 @@ public class PreviewController {
 
     void setup(){
         of = parent.createGraphics(1050, 750);
-        for(int i = 0; i < 4; i++){
+        for(int i = 0; i < nb_elements; i++){
             LedStripesArray.add(new LedStripe(Integer.toString(i), of, i*40, i*40, cp5, parent));
         }
     }

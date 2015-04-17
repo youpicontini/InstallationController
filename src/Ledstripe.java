@@ -15,6 +15,8 @@ public class LedStripe {
     float opacity;
     int transparent;
     int white;
+    boolean selected=false;
+
 
     Button ledButton;
 
@@ -32,17 +34,18 @@ public class LedStripe {
         CColor color = new CColor(transparent, transparent, transparent, transparent, transparent);
 
         ledButton = cp5.addButton(id)
-                .setValue(0)
-                .setPosition(200+x,60+y)
-                .setSize(rectWidth,rectHeight)
-                .setColor(color)
+                        .setValue(0)
+                .setPosition(200 + x, 60 + y)
+                .setSize(rectWidth, rectHeight)
+                        .setColor(color)
                 .setSwitch(true)
-                .moveTo("default");
+                        .moveTo("default");
     }
 
     void display(float op){
         opacity = parent.map(op,0,1,1,255);
         canvas.pushStyle();
+        if(selected)canvas.stroke(255,0,0);
         canvas.fill(255, 255, 255, opacity);
         canvas.rect(x, y, rectWidth, rectHeight);
         canvas.popStyle();

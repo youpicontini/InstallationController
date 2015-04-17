@@ -45,14 +45,30 @@ public class InstallationController extends PApplet {
         if(key=='p')pressingP = false;
         if(key=='s')pressingS = false;
         if ((key == CODED )&&(keyCode == CONTROL)) pressingCTRL = false;
+
+//        if(key=='t'){
+//            appController.editor.animationsManager.currentAnim.addKeyframe(5);
+//        }
     }
     public void controlEvent(ControlEvent e) {
         println(e);
         if(e.name().equals("inputNewAnimName")){
-            appController.editor.animationsManager.newAnimation(appController.editor.animationsManager.inputNewAnimName.getText());
+            appController.editor.animationsManager.currentAnimName=appController.editor.animationsManager.inputNewAnimName.getText();
+            println(appController.editor.animationsManager.currentAnimName);
+            appController.editor.animationsManager.labelNameAnimation.setText(appController.editor.animationsManager.currentAnimName);
+            appController.editor.animationsManager.labelNameAnimation.show();
+            appController.editor.animationsManager.inputNewAnimName.hide();
+            appController.editor.animationsManager.inputNewAnimFPS.show();
+            appController.editor.animationsManager.inputNewAnimFPS.setFocus(true);
+        }
+        if(e.name().equals("inputNewAnimFPS")){
+            appController.editor.animationsManager.newAnimation(appController.editor.animationsManager.currentAnimName, Integer.parseInt(appController.editor.animationsManager.inputNewAnimFPS.getText()));
+            appController.editor.animationsManager.inputNewAnimFPS.hide();
+            //appController.editor.animationsManager.show();
         }
         if(e.name().equals("listAnimations")){
             int currentIndex = (int)e.group().value();
+            appController.editor.animationsManager.updateCurrentAnim(currentIndex);
             appController.editor.animationsManager.highlightSelectedAnim(currentIndex);
             appController.editor.animationsManager.displayAnimation(currentIndex);
         }
@@ -74,7 +90,7 @@ public class InstallationController extends PApplet {
         }
         if(e.name().equals("buttonDeleteKeyframe")) {
             if (appController.editor.animationsManager instanceof AnimationsManager)
-               appController.editor.animationsManager.currentAnim.removeKeyframe(5);
+                appController.editor.animationsManager.currentAnim.removeKeyframe(5);
         }
         /*
         if(e.name().equals("keyframeDurationInput")){
@@ -83,10 +99,46 @@ public class InstallationController extends PApplet {
         }
         */
         if(e.name().equals("buttonPlayAnim")){
+            if (appController.editor.animationsManager instanceof AnimationsManager)
                 appController.editor.animationsManager.playAnimation();
         }
         if(e.name().equals("buttonStopAnim")){
+            if (appController.editor.animationsManager instanceof AnimationsManager)
                 appController.editor.animationsManager.stopAnimation();
+        }
+        if(e.name().equals("0")){
+            if (appController.editor.animationsManager instanceof AnimationsManager)
+                appController.editor.animationsManager.currentAnim.currentKeyframe.currentDevice=0;
+                appController.editor.animationsManager.currentAnim.updateCurrentValues();
+                appController.editor.previewController.LedStripesArray.get(0).selected = true;
+                println(appController.editor.animationsManager.currentAnim.currentValues);
+        }
+        if(e.name().equals("1")){
+            if (appController.editor.animationsManager instanceof AnimationsManager)
+                appController.editor.animationsManager.currentAnim.currentKeyframe.currentDevice=1;
+                appController.editor.animationsManager.currentAnim.updateCurrentValues();
+                appController.editor.previewController.LedStripesArray.get(1).selected = true;
+                println(appController.editor.animationsManager.currentAnim.currentValues);
+        }
+        if(e.name().equals("2")){
+            if (appController.editor.animationsManager instanceof AnimationsManager)
+                appController.editor.animationsManager.currentAnim.currentKeyframe.currentDevice=2;
+                appController.editor.animationsManager.currentAnim.updateCurrentValues();
+                appController.editor.previewController.LedStripesArray.get(2).selected = true;
+                println(appController.editor.animationsManager.currentAnim.currentValues);
+        }
+        if(e.name().equals("3")){
+            if (appController.editor.animationsManager instanceof AnimationsManager)
+                appController.editor.animationsManager.currentAnim.currentKeyframe.currentDevice=3;
+                appController.editor.animationsManager.currentAnim.updateCurrentValues();
+                appController.editor.previewController.LedStripesArray.get(3).selected = true;
+                println(appController.editor.animationsManager.currentAnim.currentValues);
+        }
+
+        if(e.name().equals("sliderDeviceOpacity")){
+            appController.editor.animationsManager.currentAnim.currentKeyframe.currentOpacity=appController.editor.animationsManager.sliderDeviceOpacity.getValue();
+            appController.editor.animationsManager.currentAnim.updateCurrentValues();
+            println(appController.editor.animationsManager.currentAnim.currentValues);
         }
     }
 

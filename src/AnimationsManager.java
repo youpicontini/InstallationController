@@ -9,6 +9,7 @@ public class AnimationsManager {
     ControlP5 cp5;
     PreviewController previewController;
     Animation currentAnim;
+    String currentAnimName ="";
 
     // INTERFACE
     ListBox listAnimations;
@@ -16,13 +17,20 @@ public class AnimationsManager {
     Button buttonDeleteAnim;
     Textlabel labelNameAnimation;
     Textfield inputNewAnimName;
+    Textfield inputNewAnimFPS;
     Button buttonPlayAnim;
     Button buttonStopAnim;
     Group groupAnimations;
 
+    Button buttonNewKeyframe;
+    Button buttonDeleteKeyframe;
+    Slider sliderDeviceOpacity;
+
     int colorBG;
     int colorSelected;
     int selectedIndex;//no selection initially
+
+
 
     AnimationsManager(ControlP5 _cp5, PApplet _parent, PreviewController _previewController) {
         parent = _parent;
@@ -38,7 +46,15 @@ public class AnimationsManager {
         buttonDeleteAnim = cp5.addButton("buttonDeleteAnim");
         labelNameAnimation = cp5.addTextlabel("labelNameAnimation");
         inputNewAnimName = cp5.addTextfield("inputNewAnimName");
+        inputNewAnimFPS = cp5.addTextfield("inputNewAnimFPS");
         groupAnimations = cp5.addGroup("groupAnimations");
+
+        buttonNewKeyframe = cp5.addButton("buttonNewKeyframe");
+        buttonDeleteKeyframe = cp5.addButton("buttonDeleteKeyframe");
+
+        sliderDeviceOpacity = cp5.addSlider("sliderDeviceOpacity");
+
+
     }
 
     public void setup(){
@@ -70,8 +86,8 @@ public class AnimationsManager {
 
         buttonNewAnim.setLabel("       +")
                       .setValue(0)
-                       .setPosition(150,770)
-                        .setSize(40,40)
+                       .setPosition(150, 770)
+                        .setSize(40, 40)
                          .setGroup("groupEditor");
 
         buttonDeleteAnim.setLabel("       -")
@@ -81,7 +97,7 @@ public class AnimationsManager {
                             .setGroup("groupEditor");
 
         labelNameAnimation.setText("Choose Animation")
-                           .setPosition(200,40)
+                           .setPosition(200, 40)
                             .moveTo("global")
                              .show();
 
@@ -92,9 +108,34 @@ public class AnimationsManager {
                             .setGroup("groupEditor")
                              .hide();
 
+        inputNewAnimFPS.setLabel("FPS")
+                         .setPosition(380, 20)
+                          .setSize(30, 20)
+                           .setFocus(true)
+                            .setGroup("groupEditor")
+                             .setInputFilter(ControlP5.INTEGER)
+                              .hide();
+
         listAnimations.getCaptionLabel()
                        .hide();
 
+        buttonNewKeyframe.setLabel("       +")
+                          .setValue(0)
+                           .setPosition(1390, 720)
+                            .setSize(40, 40)
+                             .setGroup("groupEditor");
+
+        buttonDeleteKeyframe.setLabel("       -")
+                             .setValue(0)
+                              .setPosition(1340, 720)
+                               .setSize(40, 40)
+                                .setGroup("groupEditor");
+
+        sliderDeviceOpacity.setLabel("opacity")
+                            .setPosition(1260, 80)
+                             .setSize(130, 20)
+                              .setRange(0,1)
+                               .setValue(1.0f);
         loadAnimations();
     }
 
@@ -107,6 +148,7 @@ public class AnimationsManager {
         else {
             labelNameAnimation.show();
             inputNewAnimName.hide();
+            inputNewAnimFPS.hide();
         }
     }
 
@@ -120,10 +162,10 @@ public class AnimationsManager {
 
     public void highlightSelectedAnim(int currentIndex){
 
-        parent.println("highlight");
         if(selectedIndex >= 0){//if something was previously selected
             ListBoxItem previousItem = listAnimations.getItem(selectedIndex);//get the item
             previousItem.setColorBackground(colorBG);//and restore the original bg colours
+
         }
         selectedIndex = currentIndex;//update the selected index
         listAnimations.getItem(selectedIndex).setColorBackground(colorSelected);//and set the bg colour to be the active/'selected one'...until a new selection is made and resets this, like above
@@ -141,7 +183,6 @@ public class AnimationsManager {
         System.out.print("stop");
     }
     void displayAnimation(int index){
-        parent.println("display");
         ListBoxItem item = listAnimations.getItem(index);
         String animName = listAnimations.getItem(index).getName().replaceAll(" ", "_");
         String configFilePath;
@@ -161,18 +202,18 @@ public class AnimationsManager {
         updateCurrentAnim(index);
     }
 
-    public void updateCurrentAnim(int index){
-        if (currentAnim != null) {
-            cp5.remove("buttonDeleteKeyframe");
-            cp5.remove("buttonNewKeyframe");
-        }
-        currentAnim = new Animation(listAnimations.getItem(index).getName(), 25, cp5, parent);
-    }
 
-    public void newAnimation(String name){
-        currentAnim =new Animation(name, 25, cp5, parent);
+    public void newAnimation(String name, int fps){
+        currentAnim = new Animation(name, fps, cp5, parent);
         newAnimNameinput(name);
         highlightSelectedAnim(getLengthListbox(listAnimations)-1);
+    }
+
+    public void updateCurrentAnim(int id){
+        String name = listAnimations.getItem(id).getName();
+        String configFilePath = "animations\\"+name.replaceAll(" ","_")+"\\config.json";
+        JSONObject configjson = parent.loadJSONObject(new File(configFilePath));
+        currentAnim = new Animation(name,configjson.getInt("fps"), cp5, parent);
     }
 
     public int getLengthListbox(ListBox list) {
@@ -180,19 +221,21 @@ public class AnimationsManager {
         return tempString.length;
     }
 
-    public void deleteAnimation(int id){
+    public void deleteAnimation(int index){
         if(getLengthListbox(listAnimations) != 0) {
-            String name = listAnimations.getItem(id).getName();
+            String name = listAnimations.getItem(index).getName();
+            String id = name.replaceAll(" ","_");
             File animDirectory;
             if(System.getProperty("os.name").equals("Mac OS X")) {
-                animDirectory = new File("animations/" + name);
+                animDirectory = new File("animations/" + id);
             }
             else{
-                animDirectory = new File("animations\\" + name);
+                animDirectory = new File("animations\\" + id);
             }
             listAnimations.removeItem(name);
             deleteFolder(animDirectory);
-            highlightSelectedAnim(getLengthListbox(listAnimations)-2);
+            selectedIndex--;
+            highlightSelectedAnim(getLengthListbox(listAnimations) - 1);
         }
     }
 

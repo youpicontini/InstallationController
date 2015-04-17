@@ -2,26 +2,25 @@ import controlP5.Button;
 import controlP5.ControlP5;
 import processing.core.PApplet;
 import processing.data.JSONObject;
-import java.util.ArrayList;
+
+import java.io.File;
+
 
 public class Animation {
 
-    Keyframe keyframe;
-    int indexKeyframe=0;
+    Keyframe currentKeyframe;
+    float[] currentValues = new float[4];
+
     String name;
     String id;
+    String idAnim;
     int fps;
-
-
-    Button buttonNewKeyframe;
-    Button buttonDeleteKeyframe;
 
     ControlP5 cp5;
     PApplet parent;
     JSONObject jsonAnimation;
 
-    ArrayList<Keyframe> keyframesArray;
-
+    //
     Animation (String _name, int _fps,ControlP5 _cp5, PApplet _parent) {
         name = _name;
         id = name.replaceAll(" ","_");
@@ -29,33 +28,21 @@ public class Animation {
         cp5 = _cp5;
         parent = _parent;
 
-        buttonNewKeyframe = cp5.addButton("buttonNewKeyframe");
-        buttonDeleteKeyframe = cp5.addButton("buttonDeleteKeyframe");
-
-        buttonNewKeyframe.setLabel("       +")
-                .setValue(0)
-                .setPosition(1390,720)
-                .setSize(40,40)
-                .setGroup("groupEditor");
-
-        buttonDeleteKeyframe.setLabel("       -")
-                .setValue(0)
-                .setPosition(1340, 720)
-                .setSize(40, 40)
-                .setGroup("groupEditor");
-
-        keyframesArray = new ArrayList<Keyframe>();
-
         jsonAnimation = new JSONObject();
         jsonAnimation.setString("id", id);
         jsonAnimation.setString("name", name);
         jsonAnimation.setInt("fps", fps);
-        parent.saveJSONObject(jsonAnimation, "animations/"+id+"/config.json");
+        parent.saveJSONObject(jsonAnimation, "animations\\" + id + "\\config.json");
+
+        currentKeyframe = new Keyframe(parent);
+        saveKeyframe(0);
+        updateCurrentValues();
     }
 
     void addKeyframe(int currentIndex){
         parent.print("adding kf n°"+currentIndex);
-        keyframe = new Keyframe(String.valueOf(currentIndex+1), parent);
+        saveKeyframe(currentIndex);
+        currentKeyframe = new Keyframe(parent);
 //        keyframesArray.add(keyframe);
 //        indexKeyframe++;
     }
@@ -64,5 +51,18 @@ public class Animation {
         parent.print("removing kf n°"+currentIndex);
 //        keyframesArray.remove(index);
 //        indexKeyframe--;
+    }
+
+    public void saveKeyframe(int currentIndex){
+        JSONObject jsonKeyframe;
+        jsonKeyframe = parent.loadJSONObject(new File("animations\\TEMPLATE_keyframe.json"));
+        for (int i=0; i<currentValues.length;i++){
+            jsonKeyframe.getJSONArray("outputs").getJSONObject(0).getJSONArray("objects").getJSONObject(i).getJSONObject("params").setFloat("opacity", currentValues[i]);
+        }
+        parent.saveJSONObject(jsonKeyframe, "animations\\" + idAnim + "\\keyframes\\"+ currentIndex + ".json");
+    }
+
+    void updateCurrentValues(){
+        currentValues[currentKeyframe.currentDevice] = currentKeyframe.currentOpacity;
     }
 }
