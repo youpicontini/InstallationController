@@ -29,7 +29,9 @@ public class AnimationsManager {
     int colorBG;
     int colorSelected;
     int selectedIndex;//no selection initially
+    boolean animations_loaded=false;
 
+    int currentAnimIndex;
 
 
     AnimationsManager(ControlP5 _cp5, PApplet _parent, PreviewController _previewController) {
@@ -53,7 +55,6 @@ public class AnimationsManager {
         buttonDeleteKeyframe = cp5.addButton("buttonDeleteKeyframe");
 
         sliderDeviceOpacity = cp5.addSlider("sliderDeviceOpacity");
-
 
     }
 
@@ -137,6 +138,7 @@ public class AnimationsManager {
                               .setRange(0,1)
                                .setValue(1.0f);
         loadAnimations();
+
     }
 
     public void toggleVisibilityInputNewAnimation() {
@@ -187,33 +189,38 @@ public class AnimationsManager {
         String animName = listAnimations.getItem(index).getName().replaceAll(" ", "_");
         String configFilePath;
         JSONObject configjson;
-        String path;
+
         if(System.getProperty("os.name").equals("Mac OS X")) {
             configFilePath = "animations/"+animName+"/config.json";
-            path = "animations/" + animName + "/keyframes/0.json";
         }
         else {
             configFilePath = "animations\\"+animName+"\\config.json";
-            path = "animations\\" + animName + "\\keyframes\\0.json";
         }
         configjson = parent.loadJSONObject(new File(configFilePath));
         labelNameAnimation.setText(item.getText()+"                 "+configjson.getInt("fps")+" FPS");
-        previewController.displayKeyframe(path);
+        previewController.setCurrentAnimName(animName);
+        previewController.setCurrentKeyframe(0);
+        previewController.displayKeyframe();
         updateCurrentAnim(index);
     }
 
 
     public void newAnimation(String name, int fps){
-        currentAnim = new Animation(name, fps, cp5, parent);
+        currentAnim = new Animation(name, fps, cp5, parent, previewController);
         newAnimNameinput(name);
         highlightSelectedAnim(getLengthListbox(listAnimations)-1);
     }
 
+
+
     public void updateCurrentAnim(int id){
+        if(animations_loaded)
+            currentAnim.saveKeyframe(currentAnim.currentKeyframeIndex);
+        animations_loaded = true;
         String name = listAnimations.getItem(id).getName();
         String configFilePath = "animations\\"+name.replaceAll(" ","_")+"\\config.json";
         JSONObject configjson = parent.loadJSONObject(new File(configFilePath));
-        currentAnim = new Animation(name,configjson.getInt("fps"), cp5, parent);
+        currentAnim = new Animation(name,configjson.getInt("fps"), cp5, parent, previewController);
     }
 
     public int getLengthListbox(ListBox list) {
@@ -283,5 +290,9 @@ public class AnimationsManager {
                 listAnimations.addItem(configjson.getString("name"), getLengthListbox(listAnimations));
             }
         }
+    }
+
+    void setCurrentAnimIndex(int i){
+        currentAnimIndex = i;
     }
 }

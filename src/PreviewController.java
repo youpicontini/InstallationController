@@ -14,6 +14,9 @@ public class PreviewController {
     int nb_elements = 4;
     float[] keyframe = new float[nb_elements];
 
+    int currentKeyframe;
+    String currentAnimName;
+
     PreviewController (ControlP5 _cp5, PApplet _parent) {
         parent = _parent;
         cp5 = _cp5;
@@ -28,13 +31,40 @@ public class PreviewController {
         }
     }
 
-    void displayKeyframe(String path) {
+    void displayKeyframe() {
+
+        String path;
+        if(System.getProperty("os.name").equals("Mac OS X")) {
+            path = "animations/" + currentAnimName + "/keyframes/" + currentKeyframe + ".json";
+        }
+        else {
+            path = "animations\\" + currentAnimName + "\\keyframes\\" + currentKeyframe + ".json";
+        }
         JSONArray outputs = parent.loadJSONObject(new File(path)).getJSONArray("outputs").getJSONObject(0).getJSONArray("objects");
         float[] out = new float[outputs.size()];
         for (int i=0; i<outputs.size(); i++) {
             out[i] = outputs.getJSONObject(i).getJSONObject("params").getFloat("opacity");
         }
+        parent.println("previewcontroller   " + out);
         keyframe=out;
+    }
+
+    void setCurrentKeyframe(int i){
+        currentKeyframe = i;
+    }
+
+    void setCurrentKeyframeValues(float[] val){
+        keyframe = val;
+    }
+
+    void setCurrentAnimName(String n){
+        currentAnimName = n;
+    }
+
+    void unselectDevices(){
+        for(int i=0; i<nb_elements; i++) {
+            LedStripesArray.get(i).selected = false;
+        }
     }
 
     void draw() {
