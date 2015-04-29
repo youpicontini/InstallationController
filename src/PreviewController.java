@@ -1,5 +1,7 @@
 import processing.core.PApplet;
 import processing.core.PGraphics;
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.io.File;
 import controlP5.*;
@@ -34,11 +36,13 @@ public class PreviewController {
     void displayKeyframe() {
 
         String path;
+        DecimalFormat formatter = new DecimalFormat("0000");
+        String indexFormatted = formatter.format(currentKeyframe);
         if(System.getProperty("os.name").equals("Mac OS X")) {
-            path = "animations/" + currentAnimName + "/keyframes/" + currentKeyframe + ".json";
+            path = "animations/" + currentAnimName + "/keyframes/" + indexFormatted + ".json";
         }
         else {
-            path = "animations\\" + currentAnimName + "\\keyframes\\" + currentKeyframe + ".json";
+            path = "animations\\" + currentAnimName + "\\keyframes\\" + indexFormatted + ".json";
         }
         JSONArray outputs = parent.loadJSONObject(new File(path)).getJSONArray("outputs").getJSONObject(0).getJSONArray("objects");
         float[] out = new float[outputs.size()];

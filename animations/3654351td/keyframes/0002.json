@@ -3,15 +3,15 @@
     "objects": [
       {
         "id": 0,
-        "params": {"opacity": 0}
-      },
-      {
-        "id": 1,
         "params": {"opacity": 1}
       },
       {
-        "id": 2,
+        "id": 1,
         "params": {"opacity": 0}
+      },
+      {
+        "id": 2,
+        "params": {"opacity": 1}
       },
       {
         "id": 3,

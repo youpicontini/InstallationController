@@ -7,11 +7,11 @@
       },
       {
         "id": 1,
-        "params": {"opacity": 1}
+        "params": {"opacity": 0}
       },
       {
         "id": 2,
-        "params": {"opacity": 0.26923078298568726}
+        "params": {"opacity": 0}
       },
       {
         "id": 3,

@@ -30,30 +30,31 @@ public class InstallationController extends PApplet {
 
     public void keyPressed() {
         if (key == 'q' ){
+            println("----");
             println("previous");
-
-            appController.editor.animationsManager.currentAnim.saveKeyframe(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
             if(appController.editor.previewController.currentKeyframe != 0) {
+                appController.editor.animationsManager.currentAnim.saveKeyframe(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
                 appController.editor.animationsManager.currentAnim.currentKeyframeIndex--;
                 appController.editor.animationsManager.currentAnim.loadKeyframe(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
                 appController.editor.previewController.currentKeyframe--;
                 appController.editor.previewController.displayKeyframe();
                 appController.editor.previewController.unselectDevices();
                 println(appController.editor.animationsManager.currentAnim.currentValues);
-                println("    " + appController.editor.previewController.currentKeyframe, appController.editor.previewController.currentAnimName);
+                println("current kf" + appController.editor.previewController.currentKeyframe);
             }
         }
         if (key == 'd' ){
+            println("----");
             println("next");
-            appController.editor.animationsManager.currentAnim.saveKeyframe(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
-            if(appController.editor.previewController.currentKeyframe != 8) {
+            if(appController.editor.previewController.currentKeyframe != (appController.editor.animationsManager.currentAnim.keyframeNumber-1)) {
+                appController.editor.animationsManager.currentAnim.saveKeyframe(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
                 appController.editor.animationsManager.currentAnim.currentKeyframeIndex++;
                 appController.editor.animationsManager.currentAnim.loadKeyframe(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
                 appController.editor.previewController.currentKeyframe++;
                 appController.editor.previewController.displayKeyframe();
                 appController.editor.previewController.unselectDevices();
                 println(appController.editor.animationsManager.currentAnim.currentValues);
-                println("    " + appController.editor.previewController.currentKeyframe, appController.editor.previewController.currentAnimName);
+                println("current kf" + appController.editor.previewController.currentKeyframe);
             }
         }
     }
@@ -84,6 +85,7 @@ public class InstallationController extends PApplet {
             appController.editor.animationsManager.updateCurrentAnim(currentIndex);
             appController.editor.animationsManager.highlightSelectedAnim(currentIndex);
             appController.editor.animationsManager.displayAnimation(currentIndex);
+            appController.editor.animationsManager.currentAnim.kfHasChanged=false;
         }
         if (e.isTab() && e.getTab().getName()=="default" && appController.editor.animationsManager.inputNewAnimName.isVisible()) {
             appController.editor.animationsManager.labelNameAnimation.show();
@@ -96,11 +98,18 @@ public class InstallationController extends PApplet {
         if(e.name().equals("buttonNewKeyframe")) {
             if (appController.editor.animationsManager instanceof AnimationsManager) {
                 appController.editor.animationsManager.currentAnim.addKeyframe(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
+                appController.editor.animationsManager.currentAnim.loadKeyframe(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
+                appController.editor.previewController.currentKeyframe++;
+                appController.editor.previewController.displayKeyframe();
+                appController.editor.previewController.unselectDevices();
+                appController.editor.animationsManager.currentAnim.kfHasChanged=false;
+
             }
         }
         if(e.name().equals("buttonDeleteKeyframe")) {
             if (appController.editor.animationsManager instanceof AnimationsManager)
-                appController.editor.animationsManager.currentAnim.removeKeyframe(5);
+                appController.editor.animationsManager.currentAnim.removeKeyframe(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
+            appController.editor.animationsManager.currentAnim.kfHasChanged=false;
         }
 
         if(e.name().equals("buttonPlayAnim")){
@@ -117,6 +126,7 @@ public class InstallationController extends PApplet {
                 appController.editor.previewController.unselectDevices();
                 appController.editor.previewController.LedStripesArray.get(0).selected = true;
                 appController.editor.animationsManager.sliderDeviceOpacity.setValue(appController.editor.animationsManager.currentAnim.currentValues[0]);
+                appController.editor.animationsManager.currentAnim.kfHasChanged=false;
                 println(appController.editor.animationsManager.currentAnim.currentValues);
             }
         }
@@ -126,6 +136,7 @@ public class InstallationController extends PApplet {
                 appController.editor.previewController.unselectDevices();
                 appController.editor.previewController.LedStripesArray.get(1).selected = true;
                 appController.editor.animationsManager.sliderDeviceOpacity.setValue(appController.editor.animationsManager.currentAnim.currentValues[1]);
+                appController.editor.animationsManager.currentAnim.kfHasChanged=false;
                 println(appController.editor.animationsManager.currentAnim.currentValues);
             }
         }
@@ -135,6 +146,7 @@ public class InstallationController extends PApplet {
                 appController.editor.previewController.unselectDevices();
                 appController.editor.previewController.LedStripesArray.get(2).selected = true;
                 appController.editor.animationsManager.sliderDeviceOpacity.setValue(appController.editor.animationsManager.currentAnim.currentValues[2]);
+                appController.editor.animationsManager.currentAnim.kfHasChanged=false;
                 println(appController.editor.animationsManager.currentAnim.currentValues);
             }
         }
@@ -144,6 +156,7 @@ public class InstallationController extends PApplet {
                 appController.editor.previewController.unselectDevices();
                 appController.editor.previewController.LedStripesArray.get(3).selected = true;
                 appController.editor.animationsManager.sliderDeviceOpacity.setValue(appController.editor.animationsManager.currentAnim.currentValues[3]);
+                appController.editor.animationsManager.currentAnim.kfHasChanged=false;
                 println(appController.editor.animationsManager.currentAnim.currentValues);
             }
         }
@@ -151,6 +164,7 @@ public class InstallationController extends PApplet {
         if(e.name().equals("sliderDeviceOpacity")){
             appController.editor.animationsManager.currentAnim.currentKeyframe.currentOpacity=appController.editor.animationsManager.sliderDeviceOpacity.getValue();
             appController.editor.animationsManager.currentAnim.updateCurrentValues();
+            appController.editor.animationsManager.currentAnim.kfHasChanged=true;
             println(appController.editor.animationsManager.currentAnim.currentValues);
         }
     }

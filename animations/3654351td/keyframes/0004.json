@@ -3,11 +3,11 @@
     "objects": [
       {
         "id": 0,
-        "params": {"opacity": 0.42307692766189575}
+        "params": {"opacity": 1}
       },
       {
         "id": 1,
-        "params": {"opacity": 1}
+        "params": {"opacity": 0}
       },
       {
         "id": 2,
