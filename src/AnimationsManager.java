@@ -198,15 +198,16 @@ public class AnimationsManager {
         }
         configjson = parent.loadJSONObject(new File(configFilePath));
         labelNameAnimation.setText(item.getText()+"                 "+configjson.getInt("fps")+" FPS");
-        previewController.setCurrentAnimName(animName);
-        previewController.setCurrentKeyframe(0);
-        previewController.displayKeyframe();
         updateCurrentAnim(index);
+        currentAnim.loadKeyframe(0);
+        currentAnim.sendCurrentValuesToPreviewController();
+
     }
 
 
     public void newAnimation(String name, int fps){
         currentAnim = new Animation(name, fps, cp5, parent, previewController);
+        currentAnim.addFirstKeyframe();
         newAnimNameinput(name);
         highlightSelectedAnim(getLengthListbox(listAnimations)-1);
     }

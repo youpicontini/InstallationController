@@ -1,11 +1,8 @@
 import processing.core.PApplet;
 import processing.core.PGraphics;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.io.File;
 import controlP5.*;
-import processing.data.JSONArray;
 
 public class PreviewController {
 
@@ -14,10 +11,7 @@ public class PreviewController {
     PApplet parent;
     ControlP5 cp5;
     int nb_elements = 4;
-    float[] keyframe = new float[nb_elements];
-
-    int currentKeyframe;
-    String currentAnimName;
+    float[] currentKeyframeValues = new float[nb_elements];
 
     PreviewController (ControlP5 _cp5, PApplet _parent) {
         parent = _parent;
@@ -33,36 +27,8 @@ public class PreviewController {
         }
     }
 
-    void displayKeyframe() {
-
-        String path;
-        DecimalFormat formatter = new DecimalFormat("0000");
-        String indexFormatted = formatter.format(currentKeyframe);
-        if(System.getProperty("os.name").equals("Mac OS X")) {
-            path = "animations/" + currentAnimName + "/keyframes/" + indexFormatted + ".json";
-        }
-        else {
-            path = "animations\\" + currentAnimName + "\\keyframes\\" + indexFormatted + ".json";
-        }
-        JSONArray outputs = parent.loadJSONObject(new File(path)).getJSONArray("outputs").getJSONObject(0).getJSONArray("objects");
-        float[] out = new float[outputs.size()];
-        for (int i=0; i<outputs.size(); i++) {
-            out[i] = outputs.getJSONObject(i).getJSONObject("params").getFloat("opacity");
-        }
-        parent.println("previewcontroller   " + out);
-        keyframe=out;
-    }
-
-    void setCurrentKeyframe(int i){
-        currentKeyframe = i;
-    }
-
     void setCurrentKeyframeValues(float[] val){
-        keyframe = val;
-    }
-
-    void setCurrentAnimName(String n){
-        currentAnimName = n;
+        currentKeyframeValues = val;
     }
 
     void unselectDevices(){
@@ -74,8 +40,8 @@ public class PreviewController {
     void draw() {
         of.beginDraw();
         of.background(parent.color(125));
-        for (int i = 0; i < keyframe.length; i++) {
-            LedStripesArray.get(i).display(keyframe[i]);
+        for (int i = 0; i < currentKeyframeValues.length; i++) {
+            LedStripesArray.get(i).display(currentKeyframeValues[i]);
         }
         of.endDraw();
         parent.image(of, 200, 60);

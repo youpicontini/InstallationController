@@ -3,13 +3,16 @@ import processing.core.PApplet;
 import processing.data.JSONObject;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.text.DecimalFormat;
+import java.util.Arrays;
 
 
 public class Animation {
 
     Keyframe currentKeyframe;
     float[] currentValues = new float[4];
+
     int currentKeyframeIndex;
 
     String name;
@@ -38,22 +41,32 @@ public class Animation {
         jsonAnimation.setInt("fps", fps);
         parent.saveJSONObject(jsonAnimation, "animations\\" + idAnim + "\\config.json");
 
+
         currentKeyframeIndex=0;
         setInitialKeyframeNumber();
-        loadKeyframe(0);
     }
 
     void addKeyframe(int currentIndex){
+
         saveKeyframe(currentIndex);
         int temp = currentIndex+1;
         currentKeyframeIndex = currentIndex;
         renameFollowingKeyframesFiles(keyframeNumber - 1, currentIndex);
         parent.println("adding kf n°" + temp);
         currentValues = new float[4];
-        kfHasChanged=true;
+        kfHasChanged = true;
         saveKeyframe(temp);
-        currentKeyframe = new Keyframe(parent, currentValues);
+        //currentKeyframe = new Keyframe(parent, currentValues);
         currentKeyframeIndex++;
+        keyframeNumber++;
+    }
+
+    void addFirstKeyframe(){
+        parent.println("1st kf added");
+        currentValues = new float[4];
+        saveKeyframe(0);
+        kfHasChanged = true;
+        currentKeyframeIndex = 0;
         keyframeNumber++;
     }
 
@@ -61,18 +74,20 @@ public class Animation {
         DecimalFormat formatter = new DecimalFormat("0000");
         String indexFormatted = formatter.format(currentIndex);
         File f = new File("animations\\" + idAnim+"\\keyframes\\"+indexFormatted+".json");
+
         boolean deleted = false;
+        int i=0;
         while(!deleted){
             try {
                 deleted = f.delete();
+                parent.println("deleting... wait\t"+i);
             }catch (Exception e){
                 parent.println("File : "+e.getMessage());
             }
+            i++;
         }
-//        deleteFile(f);
-        parent.print("removed kf n°"+currentIndex);
+        parent.println("removed kf n° " + currentIndex);
         renameFollowingKeyframesFiles(currentIndex,keyframeNumber-1);
-        currentKeyframeIndex = currentIndex - 1;
         keyframeNumber--;
     }
 
@@ -102,7 +117,7 @@ public class Animation {
         currentKeyframe = new Keyframe(parent, currentValues);
     }
 
-    void updateCurrentValues(){
+    void sendCurrentValuesToPreviewController(){
         currentValues[currentKeyframe.currentDevice] = currentKeyframe.currentOpacity;
         previewController.setCurrentKeyframeValues(currentValues);
     }
@@ -121,7 +136,7 @@ public class Animation {
                         File newFile = new File("animations\\" + idAnim + "\\keyframes\\" + iFormatted + ".json");
                         renamed = oldFile.renameTo(newFile);
                         int temp=i+1;
-                        System.out.println(i+" renamed to "+temp +">"+ renamed);
+                        System.out.println(i+" renamed to "+ temp +">"+ renamed);
                         if(renamed)i--;
                     }catch(Exception e){
                         System.out.println(e);
@@ -148,6 +163,7 @@ public class Animation {
     }
 
     void setInitialKeyframeNumber(){
+
         File folder = new File("animations\\" + idAnim +"\\keyframes");
         keyframeNumber = folder.listFiles().length;
     }

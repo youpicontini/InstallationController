@@ -32,29 +32,27 @@ public class InstallationController extends PApplet {
         if (key == 'q' ){
             println("----");
             println("previous");
-            if(appController.editor.previewController.currentKeyframe != 0) {
+            if(appController.editor.animationsManager.currentAnim.currentKeyframeIndex != 0) {
                 appController.editor.animationsManager.currentAnim.saveKeyframe(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
                 appController.editor.animationsManager.currentAnim.currentKeyframeIndex--;
                 appController.editor.animationsManager.currentAnim.loadKeyframe(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
-                appController.editor.previewController.currentKeyframe--;
-                appController.editor.previewController.displayKeyframe();
+                appController.editor.animationsManager.currentAnim.sendCurrentValuesToPreviewController();
                 appController.editor.previewController.unselectDevices();
+                println("current kf" + appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
                 println(appController.editor.animationsManager.currentAnim.currentValues);
-                println("current kf" + appController.editor.previewController.currentKeyframe);
             }
         }
         if (key == 'd' ){
             println("----");
             println("next");
-            if(appController.editor.previewController.currentKeyframe != (appController.editor.animationsManager.currentAnim.keyframeNumber-1)) {
+            if(appController.editor.animationsManager.currentAnim.currentKeyframeIndex != (appController.editor.animationsManager.currentAnim.keyframeNumber-1)) {
                 appController.editor.animationsManager.currentAnim.saveKeyframe(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
                 appController.editor.animationsManager.currentAnim.currentKeyframeIndex++;
                 appController.editor.animationsManager.currentAnim.loadKeyframe(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
-                appController.editor.previewController.currentKeyframe++;
-                appController.editor.previewController.displayKeyframe();
+                appController.editor.animationsManager.currentAnim.sendCurrentValuesToPreviewController();
                 appController.editor.previewController.unselectDevices();
+                println("current kf" + appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
                 println(appController.editor.animationsManager.currentAnim.currentValues);
-                println("current kf" + appController.editor.previewController.currentKeyframe);
             }
         }
     }
@@ -99,8 +97,7 @@ public class InstallationController extends PApplet {
             if (appController.editor.animationsManager instanceof AnimationsManager) {
                 appController.editor.animationsManager.currentAnim.addKeyframe(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
                 appController.editor.animationsManager.currentAnim.loadKeyframe(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
-                appController.editor.previewController.currentKeyframe++;
-                appController.editor.previewController.displayKeyframe();
+                appController.editor.animationsManager.currentAnim.sendCurrentValuesToPreviewController();
                 appController.editor.previewController.unselectDevices();
                 appController.editor.animationsManager.currentAnim.kfHasChanged=false;
 
@@ -163,7 +160,7 @@ public class InstallationController extends PApplet {
 
         if(e.name().equals("sliderDeviceOpacity")){
             appController.editor.animationsManager.currentAnim.currentKeyframe.currentOpacity=appController.editor.animationsManager.sliderDeviceOpacity.getValue();
-            appController.editor.animationsManager.currentAnim.updateCurrentValues();
+            appController.editor.animationsManager.currentAnim.sendCurrentValuesToPreviewController();
             appController.editor.animationsManager.currentAnim.kfHasChanged=true;
             println(appController.editor.animationsManager.currentAnim.currentValues);
         }

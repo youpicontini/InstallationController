@@ -1,7 +1,4 @@
 import processing.core.PApplet;
-import processing.data.JSONObject;
-
-import java.io.File;
 
 public class Keyframe {
 
