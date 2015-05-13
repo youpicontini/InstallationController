@@ -1,5 +1,7 @@
 import controlP5.*;
+import controlP5.Button;
 import processing.core.PApplet;
+import processing.core.PConstants;
 import processing.data.JSONObject;
 import java.io.File;
 
@@ -24,11 +26,13 @@ public class AnimationsManager {
 
     Button buttonNewKeyframe;
     Button buttonDeleteKeyframe;
+    Textlabel labelKeyframeName;
     Slider sliderDeviceOpacity;
 
     int colorBG;
     int colorSelected;
     int selectedIndex;//no selection initially
+
     boolean animations_loaded=false;
 
     int currentAnimIndex;
@@ -51,6 +55,7 @@ public class AnimationsManager {
         inputNewAnimFPS = cp5.addTextfield("inputNewAnimFPS");
         groupAnimations = cp5.addGroup("groupAnimations");
 
+        labelKeyframeName = cp5.addTextlabel("labelKeyframeName");
         buttonNewKeyframe = cp5.addButton("buttonNewKeyframe");
         buttonDeleteKeyframe = cp5.addButton("buttonDeleteKeyframe");
 
@@ -72,18 +77,17 @@ public class AnimationsManager {
                             .setColorActive(parent.color(150))
                              .setColorForeground(parent.color(150));
 
-        buttonPlayAnim.setLabel("play (p)")
+        buttonPlayAnim.setLabel("play")
                        .setValue(0)
                         .setPosition(1260, 770)
-                         .setGroup("groupEditor")
-                          .setSize(170, 40);
+                         .moveTo("global")
+                          .setSize(80, 40);
 
         buttonStopAnim.setLabel("stop")
                        .setValue(0)
-                        .setPosition(1260, 770)
-                         .setGroup("groupEditor")
-                          .setSize(170, 40)
-                           .hide();
+                        .setPosition(1350, 770)
+                         .moveTo("global")
+                            .setSize(80, 40);
 
         buttonNewAnim.setLabel("       +")
                       .setValue(0)
@@ -128,9 +132,15 @@ public class AnimationsManager {
 
         buttonDeleteKeyframe.setLabel("       -")
                              .setValue(0)
-                              .setPosition(1340, 720)
-                               .setSize(40, 40)
-                                .setGroup("groupEditor");
+                .setPosition(1340, 720)
+                .setSize(40, 40)
+                .setGroup("groupEditor");
+
+        labelKeyframeName.setLabel("NAME KEYFRAME")
+                          .setValue(0)
+                .setPosition(1620, 400)
+                .setFont(parent.createFont("", 30))
+                .setGroup("groupEditor");
 
         sliderDeviceOpacity.setLabel("opacity")
                             .setPosition(1260, 80)
@@ -174,14 +184,12 @@ public class AnimationsManager {
     }
 
     void playAnimation(){
-        buttonPlayAnim.hide();
-        buttonStopAnim.show();
-        System.out.print("play");
+        currentAnim.play();
+        System.out.print("playing..");
     }
 
     void stopAnimation(){
-        buttonStopAnim.hide();
-        buttonPlayAnim.show();
+        currentAnim.stop();
         System.out.print("stop");
     }
     void displayAnimation(int index){
@@ -265,12 +273,17 @@ public class AnimationsManager {
 
     void deleteFile(File file) {
         try {
-            boolean isDeleted = file.delete();
-            if(isDeleted) {
-                parent.println("Success");
-            } else {
-                parent.println("Fail");
+            boolean isDeleted = false;
+            parent.cursor(PConstants.WAIT);
+            while(!isDeleted) {
+                isDeleted = file.delete();
+                if (isDeleted) {
+                    parent.println("Success");
+                } else {
+                    parent.println("Fail");
+                }
             }
+            parent.cursor(PConstants.ARROW);
         } catch (SecurityException e) {
             parent.println("File : "+e.getMessage());
         }

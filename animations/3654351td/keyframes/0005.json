@@ -3,7 +3,7 @@
     "objects": [
       {
         "id": 0,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       },
       {
         "id": 1,
@@ -11,11 +11,11 @@
       },
       {
         "id": 2,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       },
       {
         "id": 3,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       }
     ],
     "type": "OBJECT_TYPE led etc.."

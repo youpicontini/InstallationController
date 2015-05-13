@@ -6,7 +6,7 @@ public class Editor {
     ControlP5 cp5;
     PApplet parent;
 
-    Timeline timeline;
+    //Timeline timeline;
     AnimationsManager animationsManager;
     PreviewController previewController;
 
@@ -14,7 +14,7 @@ public class Editor {
         cp5 = _cp5;
         parent = _parent;
 
-        timeline = new Timeline(parent);
+        //timeline = new Timeline(parent);
         previewController = new PreviewController(cp5, parent);
         animationsManager = new AnimationsManager(cp5, parent, previewController);
     }

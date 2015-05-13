@@ -10,10 +10,10 @@ public class Keyframe {
     Keyframe(PApplet _parent, float[] _currentValues){
 
         parent = _parent;
-
-        currentOpacity = 0.0f;
-        currentDevice = 0;
         currentValues = _currentValues;
+
+        currentDevice = 0;
+        currentOpacity = currentValues[0];
     }
 
 
