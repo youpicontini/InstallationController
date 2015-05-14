@@ -131,9 +131,17 @@ public class Animation {
                 while (i > endIndex ) {
                     String iFormatted = formatter.format(i);
                     try{
-                        File oldFile = new File("animations\\" + idAnim + "\\keyframes\\" + iFormatted + ".json");
-                        iFormatted = formatter.format(i+1);
-                        File newFile = new File("animations\\" + idAnim + "\\keyframes\\" + iFormatted + ".json");
+                        File oldFile, newFile;
+                        if(System.getProperty("os.name").equals("Mac OS X")) {
+                            oldFile = new File("animations/" + idAnim + "/keyframes/" + iFormatted + ".json");
+                            iFormatted = formatter.format(i + 1);
+                            newFile = new File("animations/" + idAnim + "/keyframes/" + iFormatted + ".json");
+                        }
+                        else {
+                            oldFile = new File("animations\\" + idAnim + "\\keyframes\\" + iFormatted + ".json");
+                            iFormatted = formatter.format(i + 1);
+                            newFile = new File("animations\\" + idAnim + "\\keyframes\\" + iFormatted + ".json");
+                        }
                         renamed = oldFile.renameTo(newFile);
                         int temp=i+1;
                         System.out.println(i+" renamed to "+ temp +">"+ renamed);
@@ -147,9 +155,17 @@ public class Animation {
                 while(i < endIndex) {
                     String iFormatted = formatter.format(i+1);
                     try{
-                        File oldFile = new File("animations\\" + idAnim + "\\keyframes\\" + iFormatted + ".json");
-                        iFormatted = formatter.format(i);
-                        File newFile = new File("animations\\" + idAnim + "\\keyframes\\" + iFormatted + ".json");
+                        File oldFile, newFile;
+                        if(System.getProperty("os.name").equals("Mac OS X")) {
+                            oldFile = new File("animations/" + idAnim + "/keyframes/" + iFormatted + ".json");
+                            iFormatted = formatter.format(i);
+                            newFile = new File("animations/" + idAnim + "/keyframes/" + iFormatted + ".json");
+                        }
+                        else {
+                            oldFile = new File("animations\\" + idAnim + "\\keyframes\\" + iFormatted + ".json");
+                            iFormatted = formatter.format(i);
+                            newFile = new File("animations\\" + idAnim + "\\keyframes\\" + iFormatted + ".json");
+                        }
                         renamed = oldFile.renameTo(newFile);
                         int temp=i-1;
                         System.out.println(i+" renamed to "+temp +">"+ renamed);
@@ -164,7 +180,12 @@ public class Animation {
 
     void setInitialKeyframeNumber(){
 
-        File folder = new File("animations\\" + idAnim +"\\keyframes");
+        File folder;
+        if(System.getProperty("os.name").equals("Mac OS X"))
+            folder = new File("animations/" + idAnim +"/keyframes");
+        else
+            folder = new File("animations\\" + idAnim +"\\keyframes");
+
         keyframeNumber = folder.listFiles().length;
     }
 
