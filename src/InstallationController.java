@@ -1,6 +1,8 @@
 import processing.core.*;
 import controlP5.*;
 
+import java.awt.event.MouseEvent;
+
 public class InstallationController extends PApplet {
 
     ControlP5 cp5;
@@ -30,29 +32,43 @@ public class InstallationController extends PApplet {
 
     public void keyPressed() {
         if (key == 'q' ){
-            println("----");
-            println("previous");
             if(appController.editor.animationsManager.currentAnim.currentKeyframeIndex != 0) {
+                println("----");
+                println("previous");
                 appController.editor.animationsManager.currentAnim.saveKeyframe(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
                 appController.editor.animationsManager.currentAnim.currentKeyframeIndex--;
                 appController.editor.animationsManager.currentAnim.loadKeyframe(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
                 appController.editor.animationsManager.currentAnim.sendCurrentValuesToPreviewController();
                 appController.editor.previewController.unselectDevices();
+                String tempname ="keyframe n°"+ Integer.toString(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
+                appController.editor.animationsManager.labelKeyframeName.setText(tempname);
                 println("current kf" + appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
                 println(appController.editor.animationsManager.currentAnim.currentValues);
             }
+            else {
+                String tempname ="first";
+                appController.editor.animationsManager.labelKeyframeName.setText(tempname);
+                println("first");
+            }
         }
         if (key == 'd' ){
-            println("----");
-            println("next");
             if(appController.editor.animationsManager.currentAnim.currentKeyframeIndex != (appController.editor.animationsManager.currentAnim.keyframeNumber-1)) {
+                println("----");
+                println("next");
                 appController.editor.animationsManager.currentAnim.saveKeyframe(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
                 appController.editor.animationsManager.currentAnim.currentKeyframeIndex++;
                 appController.editor.animationsManager.currentAnim.loadKeyframe(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
                 appController.editor.animationsManager.currentAnim.sendCurrentValuesToPreviewController();
                 appController.editor.previewController.unselectDevices();
+                String tempname ="keyframe n°"+ Integer.toString(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
+                appController.editor.animationsManager.labelKeyframeName.setText(tempname);
                 println("current kf" + appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
                 println(appController.editor.animationsManager.currentAnim.currentValues);
+            }
+            else {
+                String tempname ="last";
+                appController.editor.animationsManager.labelKeyframeName.setText(tempname);
+                println("last");
             }
         }
     }
@@ -74,6 +90,7 @@ public class InstallationController extends PApplet {
         }
         if(e.name().equals("inputNewAnimFPS")){
             appController.editor.animationsManager.newAnimation(appController.editor.animationsManager.currentAnimName, Integer.parseInt(appController.editor.animationsManager.inputNewAnimFPS.getText()));
+            background(100);
             appController.editor.animationsManager.inputNewAnimFPS.hide();
             //appController.editor.animationsManager.show();
         }
@@ -116,6 +133,7 @@ public class InstallationController extends PApplet {
         if(e.name().equals("buttonStopAnim")){
             if (appController.editor.animationsManager instanceof AnimationsManager)
                 appController.editor.animationsManager.stopAnimation();
+
         }
         if(e.name().equals("0")){
             if (appController.editor.animationsManager instanceof AnimationsManager) {
@@ -166,26 +184,26 @@ public class InstallationController extends PApplet {
         }
     }
 
-    public void mousePressed() {
-        if ((mouseY > (appController.editor.timeline.y_timeline - appController.editor.timeline.upTick)) && (mouseY < (appController.editor.timeline.y_timeline + appController.editor.timeline.upTick))) {
-            print("Pressed");
-            appController.editor.timeline.mDifX = mouseX - appController.editor.timeline.mX;
-            cursor(HAND);
-        }
-    }
-
-    public void mouseReleased() {
-        if ((mouseY > (appController.editor.timeline.y_timeline - appController.editor.timeline.upTick)) && (mouseY < (appController.editor.timeline.y_timeline + appController.editor.timeline.upTick))){
-            println("Released");
-            cursor(ARROW);
-        }
-    }
-
-    public void mouseDragged() {
-        if ((mouseY > (appController.editor.timeline.y_timeline - appController.editor.timeline.upTick)) && (mouseY < (appController.editor.timeline.y_timeline + appController.editor.timeline.upTick))){
-            print("dragged");
-            appController.editor.timeline.mX = mouseX - appController.editor.timeline.mDifX;
-            println(appController.editor.timeline.mX);
-        }
-    }
+//    public void mousePressed() {
+//        if ((mouseY > (appController.editor.timeline.y_timeline - appController.editor.timeline.upTick)) && (mouseY < (appController.editor.timeline.y_timeline + appController.editor.timeline.upTick))) {
+//            print("Pressed");
+//            appController.editor.timeline.mDifX = mouseX - appController.editor.timeline.mX;
+//            cursor(HAND);
+//        }
+//    }
+//
+//    public void mouseReleased() {
+//        if ((mouseY > (appController.editor.timeline.y_timeline - appController.editor.timeline.upTick)) && (mouseY < (appController.editor.timeline.y_timeline + appController.editor.timeline.upTick))){
+//            println("Released");
+//            cursor(ARROW);
+//        }
+//    }
+//
+//    public void mouseDragged() {
+//        if ((mouseY > (appController.editor.timeline.y_timeline - appController.editor.timeline.upTick)) && (mouseY < (appController.editor.timeline.y_timeline + appController.editor.timeline.upTick))){
+//            print("dragged");
+//            appController.editor.timeline.mX = mouseX - appController.editor.timeline.mDifX;
+//            println(appController.editor.timeline.mX);
+//        }
+//    }
 }

@@ -1,11 +1,10 @@
 import controlP5.ControlP5;
 import processing.core.PApplet;
+import processing.core.PConstants;
 import processing.data.JSONObject;
 
 import java.io.File;
-import java.nio.file.Path;
 import java.text.DecimalFormat;
-import java.util.Arrays;
 
 
 public class Animation {
@@ -19,8 +18,9 @@ public class Animation {
     String idAnim;
     int fps;
 
-    int keyframeNumber;
+    int keyframeNumber = 1;
     boolean kfHasChanged = false;
+    boolean AnimPlaying;
 
     ControlP5 cp5;
     PApplet parent;
@@ -41,8 +41,8 @@ public class Animation {
         jsonAnimation.setInt("fps", fps);
         parent.saveJSONObject(jsonAnimation, "animations\\" + idAnim + "\\config.json");
 
-
         currentKeyframeIndex=0;
+        AnimPlaying = false;
         setInitialKeyframeNumber();
     }
 
@@ -62,12 +62,12 @@ public class Animation {
     }
 
     void addFirstKeyframe(){
-        parent.println("1st kf added");
         currentValues = new float[4];
-        saveKeyframe(0);
         kfHasChanged = true;
+        saveKeyframe(0);
         currentKeyframeIndex = 0;
-        keyframeNumber++;
+        keyframeNumber = 1;
+        parent.println("1st kf added");
     }
 
     void removeKeyframe(int currentIndex){
@@ -77,6 +77,7 @@ public class Animation {
 
         boolean deleted = false;
         int i=0;
+        parent.cursor(PConstants.WAIT);
         while(!deleted){
             try {
                 deleted = f.delete();
@@ -86,9 +87,11 @@ public class Animation {
             }
             i++;
         }
+        parent.cursor(PConstants.ARROW);
         parent.println("removed kf n° " + currentIndex);
         renameFollowingKeyframesFiles(currentIndex,keyframeNumber-1);
         keyframeNumber--;
+        currentKeyframeIndex--;
     }
 
     public void saveKeyframe(int currentIndex){
@@ -96,6 +99,11 @@ public class Animation {
             parent.println("saving..." + currentKeyframeIndex);
             JSONObject jsonKeyframe;
             jsonKeyframe = parent.loadJSONObject(new File("animations\\TEMPLATE_keyframe.json"));
+            parent.println("current values lenght:"+currentValues.length);
+            parent.println("saving/");
+            parent.println(currentValues);
+            parent.println("missing:");
+            parent.println(currentValues[0]);
             for (int i = 0; i < currentValues.length; i++) {
                 jsonKeyframe.getJSONArray("outputs").getJSONObject(0).getJSONArray("objects").getJSONObject(i).getJSONObject("params").setFloat("opacity", currentValues[i]);
             }
@@ -123,25 +131,18 @@ public class Animation {
     }
 
     void renameFollowingKeyframesFiles(int startIndex, int endIndex){
-        boolean renamed;
         if(startIndex != endIndex) {
+            boolean renamed;
+            parent.cursor(PConstants.WAIT);
             DecimalFormat formatter = new DecimalFormat("0000");
             int i = startIndex;
             if(startIndex>endIndex) { //add
                 while (i > endIndex ) {
                     String iFormatted = formatter.format(i);
                     try{
-                        File oldFile, newFile;
-                        if(System.getProperty("os.name").equals("Mac OS X")) {
-                            oldFile = new File("animations/" + idAnim + "/keyframes/" + iFormatted + ".json");
-                            iFormatted = formatter.format(i + 1);
-                            newFile = new File("animations/" + idAnim + "/keyframes/" + iFormatted + ".json");
-                        }
-                        else {
-                            oldFile = new File("animations\\" + idAnim + "\\keyframes\\" + iFormatted + ".json");
-                            iFormatted = formatter.format(i + 1);
-                            newFile = new File("animations\\" + idAnim + "\\keyframes\\" + iFormatted + ".json");
-                        }
+                        File oldFile = new File("animations\\" + idAnim + "\\keyframes\\" + iFormatted + ".json");
+                        iFormatted = formatter.format(i+1);
+                        File newFile = new File("animations\\" + idAnim + "\\keyframes\\" + iFormatted + ".json");
                         renamed = oldFile.renameTo(newFile);
                         int temp=i+1;
                         System.out.println(i+" renamed to "+ temp +">"+ renamed);
@@ -155,17 +156,9 @@ public class Animation {
                 while(i < endIndex) {
                     String iFormatted = formatter.format(i+1);
                     try{
-                        File oldFile, newFile;
-                        if(System.getProperty("os.name").equals("Mac OS X")) {
-                            oldFile = new File("animations/" + idAnim + "/keyframes/" + iFormatted + ".json");
-                            iFormatted = formatter.format(i);
-                            newFile = new File("animations/" + idAnim + "/keyframes/" + iFormatted + ".json");
-                        }
-                        else {
-                            oldFile = new File("animations\\" + idAnim + "\\keyframes\\" + iFormatted + ".json");
-                            iFormatted = formatter.format(i);
-                            newFile = new File("animations\\" + idAnim + "\\keyframes\\" + iFormatted + ".json");
-                        }
+                        File oldFile = new File("animations\\" + idAnim + "\\keyframes\\" + iFormatted + ".json");
+                        iFormatted = formatter.format(i);
+                        File newFile = new File("animations\\" + idAnim + "\\keyframes\\" + iFormatted + ".json");
                         renamed = oldFile.renameTo(newFile);
                         int temp=i-1;
                         System.out.println(i+" renamed to "+temp +">"+ renamed);
@@ -175,18 +168,44 @@ public class Animation {
                     }
                 }
             }
+            parent.cursor(PConstants.ARROW);
         }
     }
 
     void setInitialKeyframeNumber(){
 
-        File folder;
-        if(System.getProperty("os.name").equals("Mac OS X"))
-            folder = new File("animations/" + idAnim +"/keyframes");
+        File folder = new File("animations\\" + idAnim +"\\keyframes");
+        if (folder.exists())
+            keyframeNumber = folder.listFiles().length;
         else
-            folder = new File("animations\\" + idAnim +"\\keyframes");
+            keyframeNumber = 1;
+    }
 
-        keyframeNumber = folder.listFiles().length;
+    void play(){
+        AnimPlaying = true;
+        Thread t = new Thread(new Runnable() {
+            public void run()
+            {
+                while(AnimPlaying) {
+                    for (currentKeyframeIndex = 0; currentKeyframeIndex < keyframeNumber; currentKeyframeIndex++) {
+                        parent.println(currentKeyframeIndex+" played");
+                        loadKeyframe(currentKeyframeIndex);
+                        sendCurrentValuesToPreviewController();
+                        try {
+                            Thread.sleep(1000 / fps);                 //1000 milliseconds is one second.
+                        } catch (InterruptedException ex) {
+                            Thread.currentThread().interrupt();
+                        }
+                    }
+                    currentKeyframeIndex = 0;
+                }
+            }
+        });
+        t.start();
+    }
+
+    void stop(){
+        AnimPlaying = false;
     }
 
 }
