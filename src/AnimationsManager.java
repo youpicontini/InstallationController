@@ -198,12 +198,12 @@ public class AnimationsManager {
         String configFilePath;
         JSONObject configjson;
 
-        if(System.getProperty("os.name").equals("Mac OS X")) {
+        if(System.getProperty("os.name").equals("Mac OS X"))
             configFilePath = "animations/"+animName+"/config.json";
-        }
-        else {
+
+        else
             configFilePath = "animations\\"+animName+"\\config.json";
-        }
+
         configjson = parent.loadJSONObject(new File(configFilePath));
         labelNameAnimation.setText(item.getText()+"                 "+configjson.getInt("fps")+" FPS");
         updateCurrentAnim(index);
@@ -227,7 +227,12 @@ public class AnimationsManager {
             currentAnim.saveKeyframe(currentAnim.currentKeyframeIndex);
         animations_loaded = true;
         String name = listAnimations.getItem(id).getName();
-        String configFilePath = "animations\\"+name.replaceAll(" ","_")+"\\config.json";
+
+        String configFilePath;
+        if(System.getProperty("os.name").equals("Mac OS X"))
+            configFilePath = "animations/"+name.replaceAll(" ","_")+"/config.json";
+        else
+            configFilePath = "animations\\"+name.replaceAll(" ","_")+"\\config.json";
         JSONObject configjson = parent.loadJSONObject(new File(configFilePath));
         currentAnim = new Animation(name,configjson.getInt("fps"), cp5, parent, previewController);
     }
