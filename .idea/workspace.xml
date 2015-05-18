@@ -1,46 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/AnimationsManager.java" line="288" />
+    <bookmark url="file://$PROJECT_DIR$/src/AnimationsManager.java" line="287" />
     <bookmark url="file://$PROJECT_DIR$/src/Keyframe.java" line="14" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eea022a7-1c0e-4f79-a85a-6618cd97b5c0" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\animations\3654351td\keyframes\0008.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\animations\3654351td\keyframes\0009.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\animations\bondolero\config.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\animations\bondolero\keyframes\0000.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\animations\bondolero\keyframes\0001.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\animations\bondolero\keyframes\0002.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\animations\bondolero\keyframes\0003.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\animations\bondolero\keyframes\0004.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\animations\bondolero\keyframes\0005.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\animations\bondolero\keyframes\0006.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\animations\bondolero\keyframes\0007.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\animations\bondolero\keyframes\0008.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\animations\bondolero\keyframes\0009.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\animations\zef\config.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\out\production\InstallationController\KeyframesController.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\src\KeyframesController.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/InstallationController/Animation.class" afterPath="$PROJECT_DIR$/out/production/InstallationController/Animation.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/InstallationController/AnimationsManager.class" afterPath="$PROJECT_DIR$/out/production/InstallationController/AnimationsManager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/InstallationController/Editor.class" afterPath="$PROJECT_DIR$/out/production/InstallationController/Editor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/InstallationController/InstallationController.class" afterPath="$PROJECT_DIR$/out/production/InstallationController/InstallationController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/InstallationController/Keyframe.class" afterPath="$PROJECT_DIR$/out/production/InstallationController/Keyframe.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/animations/3654351td/keyframes/0000.json" afterPath="$PROJECT_DIR$/animations/3654351td/keyframes/0000.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/animations/3654351td/keyframes/0001.json" afterPath="$PROJECT_DIR$/animations/3654351td/keyframes/0001.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/animations/3654351td/keyframes/0002.json" afterPath="$PROJECT_DIR$/animations/3654351td/keyframes/0002.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/animations/3654351td/keyframes/0003.json" afterPath="$PROJECT_DIR$/animations/3654351td/keyframes/0003.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/animations/3654351td/keyframes/0004.json" afterPath="$PROJECT_DIR$/animations/3654351td/keyframes/0004.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/animations/3654351td/keyframes/0005.json" afterPath="$PROJECT_DIR$/animations/3654351td/keyframes/0005.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/animations/3654351td/keyframes/0006.json" afterPath="$PROJECT_DIR$/animations/3654351td/keyframes/0006.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/animations/3654351td/keyframes/0007.json" afterPath="$PROJECT_DIR$/animations/3654351td/keyframes/0007.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Animation.java" afterPath="$PROJECT_DIR$/src/Animation.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AnimationsManager.java" afterPath="$PROJECT_DIR$/src/AnimationsManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Editor.java" afterPath="$PROJECT_DIR$/src/Editor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/InstallationController.java" afterPath="$PROJECT_DIR$/src/InstallationController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Keyframe.java" afterPath="$PROJECT_DIR$/src/Keyframe.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/animations/3654351td/config.json" afterPath="$PROJECT_DIR$/animations/3654351td/config.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="InstallationController.iws" />
@@ -69,9 +36,21 @@
       <file leaf-file-name="AppController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="254" max-vertical-offset="1326">
+            <state vertical-scroll-proportion="0.0" vertical-offset="748" max-vertical-offset="1326">
               <caret line="23" column="41" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Editor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Editor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="663">
+              <caret line="29" column="33" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -79,12 +58,10 @@
       <file leaf-file-name="AnimationsManager.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AnimationsManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.867031" vertical-offset="1224" max-vertical-offset="5406">
-              <caret line="100" column="43" selection-start-line="100" selection-start-column="43" selection-end-line="100" selection-end-column="43" />
+            <state vertical-scroll-proportion="0.51384085" vertical-offset="1981" max-vertical-offset="5355">
+              <caret line="134" column="38" selection-start-line="134" selection-start-column="35" selection-end-line="134" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#10857#10858#0" expanded="true" />
-                <element signature="e#10893#10894#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -93,7 +70,7 @@
       <file leaf-file-name="Animation.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Animation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="3587">
+            <state vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="3587">
               <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
               <folding />
             </state>
@@ -103,7 +80,7 @@
       <file leaf-file-name="Keyframe.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Keyframe.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
+            <state vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="510">
               <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
               <folding />
             </state>
@@ -179,10 +156,10 @@
         <option value="$PROJECT_DIR$/animations/hjktk/config.json" />
         <option value="$PROJECT_DIR$/animations/3654351td/config.json" />
         <option value="$PROJECT_DIR$/src/GUIManager.java" />
-        <option value="$PROJECT_DIR$/src/Editor.java" />
         <option value="$PROJECT_DIR$/src/AppController.java" />
         <option value="$PROJECT_DIR$/src/Animation.java" />
         <option value="$PROJECT_DIR$/src/InstallationController.java" />
+        <option value="$PROJECT_DIR$/src/Editor.java" />
         <option value="$PROJECT_DIR$/src/AnimationsManager.java" />
       </list>
     </option>
@@ -217,7 +194,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -270,6 +246,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -556,14 +533,22 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/PreviewController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="323" max-vertical-offset="901">
+          <caret line="25" column="64" selection-start-line="25" selection-start-column="63" selection-end-line="25" selection-end-column="64" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/AnimationsManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="4165" max-vertical-offset="5100">
           <caret line="211" column="49" selection-start-line="211" selection-start-column="49" selection-end-line="211" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#10857#10858#0" expanded="true" />
-            <element signature="e#10893#10894#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -590,8 +575,6 @@
           <caret line="266" column="46" selection-start-line="266" selection-start-column="46" selection-end-line="266" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#10857#10858#0" expanded="true" />
-            <element signature="e#10893#10894#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -635,8 +618,6 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#10857#10858#0" expanded="true" />
-            <element signature="e#10893#10894#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -688,8 +669,6 @@
           <caret line="36" column="54" selection-start-line="36" selection-start-column="54" selection-end-line="36" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#10857#10858#0" expanded="true" />
-            <element signature="e#10893#10894#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -740,8 +719,6 @@
           <caret line="36" column="54" selection-start-line="36" selection-start-column="54" selection-end-line="36" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#10857#10858#0" expanded="true" />
-            <element signature="e#10893#10894#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -905,28 +882,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Editor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3" max-vertical-offset="663">
-          <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/LedStripe.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="84" max-vertical-offset="1003">
           <caret line="52" column="26" selection-start-line="52" selection-start-column="26" selection-end-line="52" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Keyframe.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
-          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -939,14 +898,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Animation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3587">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="254" max-vertical-offset="1326">
@@ -955,14 +906,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AnimationsManager.java">
+    <entry file="file://$PROJECT_DIR$/src/Editor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.867031" vertical-offset="1224" max-vertical-offset="5406">
-          <caret line="100" column="43" selection-start-line="100" selection-start-column="43" selection-end-line="100" selection-end-column="43" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
+          <caret line="29" column="33" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#10857#10858#0" expanded="true" />
-            <element signature="e#10893#10894#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Animation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3587">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Keyframe.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AnimationsManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.51384085" vertical-offset="1981" max-vertical-offset="5355">
+          <caret line="134" column="38" selection-start-line="134" selection-start-column="35" selection-end-line="134" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
