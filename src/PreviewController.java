@@ -1,8 +1,11 @@
 import processing.core.PApplet;
+import processing.core.PConstants;
 import processing.core.PGraphics;
 
 import java.util.ArrayList;
 import controlP5.*;
+import processing.core.PVector;
+import processing.data.JSONArray;
 
 public class PreviewController {
 
@@ -10,7 +13,7 @@ public class PreviewController {
     ArrayList<LedStripe> LedStripesArray;
     PApplet parent;
     ControlP5 cp5;
-    int nb_elements = 4;
+    int nb_elements = 50;
     float[] currentKeyframeValues = new float[nb_elements];
 
     PreviewController (ControlP5 _cp5, PApplet _parent) {
@@ -22,8 +25,10 @@ public class PreviewController {
 
     void setup(){
         of = parent.createGraphics(1050, 750);
+        JSONArray currentCoordinates;
         for(int i = 0; i < nb_elements; i++){
-            LedStripesArray.add(new LedStripe(Integer.toString(i), of, i*40, i*40, cp5, parent));
+            currentCoordinates =  parent.loadJSONObject("installation\\setup.json").getJSONArray("coordinates").getJSONArray(i).getJSONObject(0).getJSONArray("line");
+            LedStripesArray.add(new LedStripe(Integer.toString(i), of, currentCoordinates, cp5, parent));
         }
     }
 
@@ -41,9 +46,21 @@ public class PreviewController {
         of.beginDraw();
         of.background(parent.color(125));
         for (int i = 0; i < currentKeyframeValues.length; i++) {
-            LedStripesArray.get(i).display(currentKeyframeValues[i]);
+            LedStripe currentLedStripe =  LedStripesArray.get(i) ;
+            currentLedStripe.display(currentKeyframeValues[i]);
+            parent.pushStyle();
+            // Offset the cursor so we can see what is happening
+            boolean ol = currentLedStripe.isOnLine(currentLedStripe.a, currentLedStripe.b, currentLedStripe.c, currentLedStripe.pj);
+            if (ol) {
+                parent.cursor(PConstants.HAND);
+                parent.println(ol);
+            }
+            else {
+                parent.cursor(PConstants.ARROW);
+            }
         }
         of.endDraw();
         parent.image(of, 200, 60);
+
     }
 }
