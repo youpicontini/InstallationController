@@ -39,8 +39,12 @@ public class Animation {
         jsonAnimation.setString("id", idAnim);
         jsonAnimation.setString("name", name);
         jsonAnimation.setInt("fps", fps);
-        parent.saveJSONObject(jsonAnimation, "animations\\" + idAnim + "\\config.json");
-
+        String tempPath;
+        if(System.getProperty("os.name").equals("Mac OS X"))
+            tempPath = "animations/" + idAnim + "/config.json";
+        else
+            tempPath = "animations\\" + idAnim + "\\config.json";
+        parent.saveJSONObject(jsonAnimation, tempPath);
         currentKeyframeIndex=0;
         AnimPlaying = false;
         setInitialKeyframeNumber();
@@ -73,8 +77,12 @@ public class Animation {
     void removeKeyframe(int currentIndex){
         DecimalFormat formatter = new DecimalFormat("0000");
         String indexFormatted = formatter.format(currentIndex);
-        File f = new File("animations\\" + idAnim+"\\keyframes\\"+indexFormatted+".json");
-
+        String tempPath;
+        if(System.getProperty("os.name").equals("Mac OS X"))
+            tempPath = "animations/" + idAnim+"/keyframes/"+indexFormatted+".json";
+        else
+            tempPath = "animations\\" + idAnim+"\\keyframes\\"+indexFormatted+".json";
+        File f = new File(tempPath);
         boolean deleted = false;
         int i=0;
         parent.cursor(PConstants.WAIT);
@@ -98,7 +106,12 @@ public class Animation {
         if(kfHasChanged) {
             parent.println("saving..." + currentKeyframeIndex);
             JSONObject jsonKeyframe;
-            jsonKeyframe = parent.loadJSONObject(new File("animations\\TEMPLATE_keyframe.json"));
+            String tempPath;
+            if(System.getProperty("os.name").equals("Mac OS X"))
+                tempPath = "animations/TEMPLATE_keyframe.json";
+            else
+                tempPath = "animations\\TEMPLATE_keyframe.json";
+            jsonKeyframe = parent.loadJSONObject(new File(tempPath));
             parent.println("current values lenght:"+currentValues.length);
             parent.println("saving/");
             parent.println(currentValues);
@@ -109,7 +122,11 @@ public class Animation {
             }
             DecimalFormat formatter = new DecimalFormat("0000");
             String indexFormatted = formatter.format(currentIndex);
-            parent.saveJSONObject(jsonKeyframe, "animations\\" + idAnim + "\\keyframes\\" + indexFormatted + ".json");
+            if(System.getProperty("os.name").equals("Mac OS X"))
+                tempPath = "animations/" + idAnim + "/keyframes/" + indexFormatted + ".json";
+            else
+                tempPath = "animations\\" + idAnim + "\\keyframes\\" + indexFormatted + ".json";
+            parent.saveJSONObject(jsonKeyframe, tempPath);
             kfHasChanged = false;
         }
     }
@@ -118,7 +135,12 @@ public class Animation {
         JSONObject jsonKeyframe;
         DecimalFormat formatter = new DecimalFormat("0000");
         String indexFormatted = formatter.format(currentIndex);
-        jsonKeyframe = parent.loadJSONObject(new File("animations\\" + idAnim + "\\keyframes\\"+ indexFormatted + ".json"));
+        String tempPath;
+        if(System.getProperty("os.name").equals("Mac OS X"))
+            tempPath = "animations/" + idAnim + "/keyframes/"+ indexFormatted + ".json";
+        else
+            tempPath = "animations\\" + idAnim + "\\keyframes\\"+ indexFormatted + ".json";
+        jsonKeyframe = parent.loadJSONObject(new File(tempPath));
         for (int i=0; i<currentValues.length;i++) {
             currentValues[i] = jsonKeyframe.getJSONArray("outputs").getJSONObject(0).getJSONArray("objects").getJSONObject(i).getJSONObject("params").getFloat("opacity");
         }
@@ -135,15 +157,19 @@ public class Animation {
             boolean renamed;
             parent.cursor(PConstants.WAIT);
             DecimalFormat formatter = new DecimalFormat("0000");
+            String tempPath;
+            if(System.getProperty("os.name").equals("Mac OS X"))
+                tempPath = "animations/" + idAnim + "/keyframes/";
+            else
+                tempPath = "animations\\" + idAnim + "\\keyframes\\";
             int i = startIndex;
             if(startIndex>endIndex) { //add
                 while (i > endIndex ) {
                     String iFormatted = formatter.format(i);
                     try{
-                        File oldFile = new File("animations\\" + idAnim + "\\keyframes\\" + iFormatted + ".json");
+                        File oldFile = new File(tempPath + iFormatted + ".json");
                         iFormatted = formatter.format(i+1);
-                        File newFile = new File("animations\\" + idAnim + "\\keyframes\\" + iFormatted + ".json");
-                        renamed = oldFile.renameTo(newFile);
+                        renamed = oldFile.renameTo(new File(tempPath + iFormatted + ".json"));
                         int temp=i+1;
                         System.out.println(i+" renamed to "+ temp +">"+ renamed);
                         if(renamed)i--;
@@ -156,10 +182,9 @@ public class Animation {
                 while(i < endIndex) {
                     String iFormatted = formatter.format(i+1);
                     try{
-                        File oldFile = new File("animations\\" + idAnim + "\\keyframes\\" + iFormatted + ".json");
+                        File oldFile = new File(tempPath + iFormatted + ".json");
                         iFormatted = formatter.format(i);
-                        File newFile = new File("animations\\" + idAnim + "\\keyframes\\" + iFormatted + ".json");
-                        renamed = oldFile.renameTo(newFile);
+                        renamed = oldFile.renameTo(new File(tempPath + iFormatted + ".json"));
                         int temp=i-1;
                         System.out.println(i+" renamed to "+temp +">"+ renamed);
                         if(renamed)i++;
@@ -174,7 +199,12 @@ public class Animation {
 
     void setInitialKeyframeNumber(){
 
-        File folder = new File("animations\\" + idAnim +"\\keyframes");
+        String tempPath;
+        if(System.getProperty("os.name").equals("Mac OS X"))
+            tempPath = "animations/" + idAnim + "/keyframes/";
+        else
+            tempPath = "animations\\" + idAnim +"\\keyframes";
+        File folder = new File(tempPath);
         if (folder.exists())
             keyframeNumber = folder.listFiles().length;
         else
