@@ -1,5 +1,6 @@
 import controlP5.*;
 import processing.core.PApplet;
+import processing.core.PConstants;
 import processing.core.PGraphics;
 import processing.core.PVector;
 import processing.data.JSONArray;
@@ -21,8 +22,9 @@ public class LedStripe {
     boolean selected=false;
     JSONArray coordinates;
 
+    boolean ol;
     PVector a, b, c, pj;
-    float closeness = 100;
+    float closeness = 10;
 
 
     Button ledButton;
@@ -57,12 +59,16 @@ public class LedStripe {
 
     void display(float op){
         opacity = parent.map(op,0,1,1,255);
+
+        // Offset the cursor so we can see what is happening
+        ol = isOnLine(a, b, c, pj);
+
         canvas.pushStyle();
         canvas.strokeWeight(5);
         canvas.stroke(255, 255, 255, opacity);
         canvas.line(coordinates.getInt(0), coordinates.getInt(1), coordinates.getInt(2), coordinates.getInt(3));
-        if(selected)
-            canvas.stroke(255,0,0);
+        if(ol && selected)
+            canvas.stroke(255, 0, 0);
         else
             canvas.stroke(0, 255, 0);
 
@@ -70,7 +76,6 @@ public class LedStripe {
         canvas.line(coordinates.getInt(0), coordinates.getInt(1), coordinates.getInt(2), coordinates.getInt(3));
 
         canvas.popStyle();
-
     }
 
     boolean isOnLine(PVector v0, PVector v1, PVector p, PVector vp) {
@@ -92,5 +97,10 @@ public class LedStripe {
             return true;
         else
             return false;
+    }
+
+
+    void selectDevice(){
+
     }
 }

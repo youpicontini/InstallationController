@@ -4,7 +4,6 @@ import processing.core.PGraphics;
 
 import java.util.ArrayList;
 import controlP5.*;
-import processing.core.PVector;
 import processing.data.JSONArray;
 
 public class PreviewController {
@@ -13,8 +12,11 @@ public class PreviewController {
     ArrayList<LedStripe> LedStripesArray;
     PApplet parent;
     ControlP5 cp5;
-    int nb_elements = 50;
-    float[] currentKeyframeValues = new float[nb_elements];
+    int nb_elements;
+    float[] currentKeyframeValues;
+    LedStripe currentLedStripe;
+
+    boolean clicked;
 
     PreviewController (ControlP5 _cp5, PApplet _parent) {
         parent = _parent;
@@ -27,7 +29,7 @@ public class PreviewController {
         of = parent.createGraphics(1050, 750);
         JSONArray currentCoordinates;
         for(int i = 0; i < nb_elements; i++){
-            currentCoordinates =  parent.loadJSONObject("installation\\setup.json").getJSONArray("coordinates").getJSONArray(i).getJSONObject(0).getJSONArray("line");
+            currentCoordinates =  parent.loadJSONObject("installations\\CrystalNet\\setup.json").getJSONArray("coordinates").getJSONArray(i).getJSONObject(0).getJSONArray("line");
             LedStripesArray.add(new LedStripe(Integer.toString(i), of, currentCoordinates, cp5, parent));
         }
     }
@@ -46,21 +48,16 @@ public class PreviewController {
         of.beginDraw();
         of.background(parent.color(125));
         for (int i = 0; i < currentKeyframeValues.length; i++) {
-            LedStripe currentLedStripe =  LedStripesArray.get(i) ;
+            currentLedStripe =  LedStripesArray.get(i) ;
             currentLedStripe.display(currentKeyframeValues[i]);
-            parent.pushStyle();
-            // Offset the cursor so we can see what is happening
-            boolean ol = currentLedStripe.isOnLine(currentLedStripe.a, currentLedStripe.b, currentLedStripe.c, currentLedStripe.pj);
-            if (ol) {
-                parent.cursor(PConstants.HAND);
-                parent.println(ol);
-            }
-            else {
-                parent.cursor(PConstants.ARROW);
-            }
+            setCursor();
+
         }
         of.endDraw();
         parent.image(of, 200, 60);
+    }
 
+    void setCursor(){
+        currentLedStripe.c.set(parent.mouseX - 200, parent.mouseY - 60);
     }
 }

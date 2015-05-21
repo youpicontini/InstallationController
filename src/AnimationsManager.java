@@ -2,6 +2,7 @@ import controlP5.*;
 import controlP5.Button;
 import processing.core.PApplet;
 import processing.core.PConstants;
+import processing.data.JSONArray;
 import processing.data.JSONObject;
 import java.io.File;
 
@@ -36,6 +37,7 @@ public class AnimationsManager {
     boolean animations_loaded=false;
 
     int currentAnimIndex;
+    int nb_elements;
 
 
     AnimationsManager(ControlP5 _cp5, PApplet _parent, PreviewController _previewController) {
@@ -148,7 +150,18 @@ public class AnimationsManager {
                               .setRange(0,1)
                                .setValue(1.0f);
         loadAnimations();
+        String tempPath;
+        if(System.getProperty("os.name").equals("Mac OS X")) {
+            tempPath = "installations/CrystalNet/setup.json";
+        }
+        else {
+            tempPath = "installations\\CrystalNet\\setup.json";
+        }
 
+        nb_elements = parent.loadJSONObject(tempPath).getInt("nb_elements");
+        previewController.setCurrentKeyframeValues(new float[nb_elements]);
+        setNbElementsPreviewController(nb_elements);
+        //createTemplateKeyframe(nb_elements);
     }
 
     public void toggleVisibilityInputNewAnimation() {
@@ -199,10 +212,10 @@ public class AnimationsManager {
         JSONObject configjson;
 
         if(System.getProperty("os.name").equals("Mac OS X"))
-            configFilePath = "animations/"+animName+"/config.json";
+            configFilePath = "installations/CrystalNet/animations/"+animName+"/config.json";
 
         else
-            configFilePath = "animations\\"+animName+"\\config.json";
+            configFilePath = "installations\\CrystalNet\\animations\\"+animName+"\\config.json";
 
         configjson = parent.loadJSONObject(new File(configFilePath));
         labelNameAnimation.setText(item.getText()+"                 "+configjson.getInt("fps")+" FPS");
@@ -214,7 +227,7 @@ public class AnimationsManager {
 
 
     public void newAnimation(String name, int fps){
-        currentAnim = new Animation(name, fps, cp5, parent, previewController);
+        currentAnim = new Animation(name, fps, nb_elements, cp5, parent, previewController);
         currentAnim.addFirstKeyframe();
         newAnimNameinput(name);
         highlightSelectedAnim(getLengthListbox(listAnimations)-1);
@@ -230,11 +243,11 @@ public class AnimationsManager {
 
         String configFilePath;
         if(System.getProperty("os.name").equals("Mac OS X"))
-            configFilePath = "animations/"+name.replaceAll(" ","_")+"/config.json";
+            configFilePath = "installations/CrystalNet/animations/"+name.replaceAll(" ","_")+"/config.json";
         else
-            configFilePath = "animations\\"+name.replaceAll(" ","_")+"\\config.json";
+            configFilePath = "installations\\CrystalNet\\animations\\"+name.replaceAll(" ","_")+"\\config.json";
         JSONObject configjson = parent.loadJSONObject(new File(configFilePath));
-        currentAnim = new Animation(name,configjson.getInt("fps"), cp5, parent, previewController);
+        currentAnim = new Animation(name,configjson.getInt("fps"), nb_elements, cp5, parent, previewController);
     }
 
     public int getLengthListbox(ListBox list) {
@@ -248,10 +261,10 @@ public class AnimationsManager {
             String id = name.replaceAll(" ","_");
             File animDirectory;
             if(System.getProperty("os.name").equals("Mac OS X")) {
-                animDirectory = new File("animations/" + id);
+                animDirectory = new File("installations/CrystalNet/animations/" + id);
             }
             else{
-                animDirectory = new File("animations\\" + id);
+                animDirectory = new File("installations\\CrystalNet\\animations\\" + id);
             }
             listAnimations.removeItem(name);
             deleteFolder(animDirectory);
@@ -295,15 +308,21 @@ public class AnimationsManager {
     }
 
     void loadAnimations() {
-        File[] files = new File("animations").listFiles();
+        File[] files;
+        if(System.getProperty("os.name").equals("Mac OS X")) {
+            files = new File("installations/CrystalNet/animations").listFiles();
+        }
+        else {
+            files = new File("installations\\CrystalNet\\animations").listFiles();
+        }
         for (File file : files) {
             if (file.isDirectory()) {
                 String configFilePath;
                 if(System.getProperty("os.name").equals("Mac OS X")) {
-                    configFilePath = "animations/" + file.getName() + "/config.json";
+                    configFilePath = "installations/CrystalNet/animations/" + file.getName() + "/config.json";
                 }
                 else {
-                    configFilePath= "animations\\" + file.getName() + "\\config.json";
+                    configFilePath= "installations\\CrystalNet\\animations\\" + file.getName() + "\\config.json";
                 }
                 JSONObject configjson = parent.loadJSONObject(new File(configFilePath));
                 listAnimations.addItem(configjson.getString("name"), getLengthListbox(listAnimations));
@@ -313,5 +332,42 @@ public class AnimationsManager {
 
     void setCurrentAnimIndex(int i){
         currentAnimIndex = i;
+    }
+
+    void setNbElementsPreviewController(int i){
+        previewController.nb_elements = i;
+    }
+
+    void createTemplateKeyframe(int nb_elmts){
+        String templateKfFilePath;
+        if(System.getProperty("os.name").equals("Mac OS X"))
+            templateKfFilePath = "installations/CrystalNet/animations/TEMPLATE_keyframe.json";
+
+        else
+            templateKfFilePath = "installations\\CrystalNet\\animations\\TEMPLATE_keyframe.json";
+
+        JSONObject templateKfjson = new JSONObject();
+        templateKfjson.setString("id", currentAnimName);
+        JSONArray values = new JSONArray();
+        JSONObject val = new JSONObject();
+        val.setString("type","led");
+        JSONArray obj = new JSONArray();
+        JSONObject ledObj = new JSONObject();
+        JSONObject params = new JSONObject();
+        params.setFloat("opacity",0);
+        ledObj.setJSONObject("params", params);
+        for(int i = 0; i <nb_elmts; i++) {
+            ledObj.setInt("id", i);
+            parent.println(i);
+            parent.println(ledObj);
+            obj.setJSONObject(i, ledObj);
+//            JSONObject templateKfjson = parent.loadJSONObject(new File(templateKfFilePath));
+//            templateKfjson.setString("Id",currentAnimName);
+//            templateKfjson.setJSONArray("outputs",i).setJSONObject(0).setJSONArray("objects").setJSONObject(i).setInt("id",i).setJSONObject("params").setFloat("opacity", 0);
+        }
+        val.setJSONArray("objects",obj);
+        values.setJSONObject(0,val);
+        templateKfjson.setJSONArray("outputs", values);
+        parent.println(templateKfjson);
     }
 }

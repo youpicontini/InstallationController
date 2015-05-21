@@ -30,6 +30,14 @@ public class InstallationController extends PApplet {
 	}
 
 
+    public void mousePressed(){
+        if (mouseY >60 && mouseY <810 && mouseX<1250 && mouseX>200) {
+            print(appController.editor.previewController.currentLedStripe.selected, appController.editor.previewController.currentLedStripe.id);
+            appController.editor.previewController.currentLedStripe.selected = true;
+        }
+    }
+
+
     public void keyPressed() {
         if (key == 'q' ){
             if(appController.editor.animationsManager.currentAnim.currentKeyframeIndex != 0) {
