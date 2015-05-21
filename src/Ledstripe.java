@@ -4,18 +4,14 @@ import processing.core.PConstants;
 import processing.core.PGraphics;
 import processing.core.PVector;
 import processing.data.JSONArray;
-import processing.data.JSONObject;
 
 public class LedStripe {
     String id;
     PGraphics canvas;
-    int x;
-    int y;
     ControlP5 cp5;
     PApplet parent;
+    PreviewController pc;
 
-    int rectWidth = 200;
-    int rectHeight = 5;
     float opacity;
     int transparent;
     int white;
@@ -26,29 +22,18 @@ public class LedStripe {
     PVector a, b, c, pj;
     float closeness = 10;
 
-
-    Button ledButton;
-
-    LedStripe(String _id, PGraphics _canvas,JSONArray _coordinates, ControlP5 _cp5, PApplet _parent){
+    LedStripe(String _id, PGraphics _canvas,JSONArray _coordinates, ControlP5 _cp5, PApplet _parent, PreviewController _pc){
         id = _id;
         canvas = _canvas;
         cp5 = _cp5;
         parent = _parent;
         coordinates = _coordinates;
+        pc = _pc;
 
         transparent = parent.color(0, 0, 0, 1);
         white = parent.color(255, 255, 255, 255);
 
-//        CColor color = new CColor(transparent, transparent, transparent, transparent, transparent);
-//        ledButton = cp5.addButton(id)
-//                        .setValue(0)
-//                        .setPosition(200 + x, 60 + y)
-//                        .setSize(rectWidth, rectHeight)
-//                        .setColor(color)
-//                        .setSwitch(true)
-//                        .moveTo("default");
 
-        // cursor(cross);
         a = new PVector(coordinates.getInt(0), coordinates.getInt(1));
         b = new PVector(coordinates.getInt(2), coordinates.getInt(3));
         parent.println(a,b);
@@ -67,14 +52,19 @@ public class LedStripe {
         canvas.strokeWeight(5);
         canvas.stroke(255, 255, 255, opacity);
         canvas.line(coordinates.getInt(0), coordinates.getInt(1), coordinates.getInt(2), coordinates.getInt(3));
-        if(ol && selected)
+        //parent.println(id);
+        c.set(parent.mouseX - 200, parent.mouseY - 60);
+        canvas.stroke(0, 255, 0);
+        if(ol){
+            pc.setCurrentLedStripeHover(this);
+            canvas.stroke(0, 0, 255);
+        }
+        if (selected){
+            pc.setCurrentLedStripe(this);
             canvas.stroke(255, 0, 0);
-        else
-            canvas.stroke(0, 255, 0);
-
+        }
         canvas.strokeWeight(1);
         canvas.line(coordinates.getInt(0), coordinates.getInt(1), coordinates.getInt(2), coordinates.getInt(3));
-
         canvas.popStyle();
     }
 
@@ -99,8 +89,7 @@ public class LedStripe {
             return false;
     }
 
-
-    void selectDevice(){
-
+    String getId(){
+        return id;
     }
 }

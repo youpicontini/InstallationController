@@ -27,16 +27,27 @@ public class InstallationController extends PApplet {
 	public void draw() {
         background(100);
         appController.draw();
+        //print(appController.editor.previewController.currentLedStripe.id);
 	}
 
-
-    public void mousePressed(){
+    public void mouseClicked(){
         if (mouseY >60 && mouseY <810 && mouseX<1250 && mouseX>200) {
-            print(appController.editor.previewController.currentLedStripe.selected, appController.editor.previewController.currentLedStripe.id);
-            appController.editor.previewController.currentLedStripe.selected = true;
+            if(appController.editor.previewController.currentLedStripeHover.ol) {
+                appController.editor.previewController.currentLedStripe.selected = false;
+                appController.editor.previewController.currentLedStripe = appController.editor.previewController.currentLedStripeHover;
+                appController.editor.previewController.currentLedStripe.selected = true;
+                int tempIndex = Integer.parseInt(appController.editor.previewController.currentLedStripe.id);
+                print(tempIndex);
+                appController.editor.animationsManager.currentAnim.currentKeyframe.currentDevice = tempIndex;
+                appController.editor.animationsManager.sliderDeviceOpacity.setValue(appController.editor.animationsManager.currentAnim.currentValues[tempIndex]);
+                appController.editor.animationsManager.currentAnim.kfHasChanged=false;
+
+            }
+            else {
+                appController.editor.previewController.currentLedStripe.selected = false;
+            }
         }
     }
-
 
     public void keyPressed() {
         if (key == 'q' ){
@@ -147,7 +158,6 @@ public class InstallationController extends PApplet {
             if (appController.editor.animationsManager instanceof AnimationsManager) {
                 appController.editor.animationsManager.currentAnim.currentKeyframe.currentDevice = 0;
                 appController.editor.previewController.unselectDevices();
-                appController.editor.previewController.LedStripesArray.get(0).selected = true;
                 appController.editor.animationsManager.sliderDeviceOpacity.setValue(appController.editor.animationsManager.currentAnim.currentValues[0]);
                 appController.editor.animationsManager.currentAnim.kfHasChanged=false;
                 println(appController.editor.animationsManager.currentAnim.currentValues);

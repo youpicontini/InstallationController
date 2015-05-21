@@ -14,9 +14,8 @@ public class PreviewController {
     ControlP5 cp5;
     int nb_elements;
     float[] currentKeyframeValues;
-    LedStripe currentLedStripe;
+    LedStripe currentLedStripe,currentLedStripeHover;
 
-    boolean clicked;
 
     PreviewController (ControlP5 _cp5, PApplet _parent) {
         parent = _parent;
@@ -30,8 +29,9 @@ public class PreviewController {
         JSONArray currentCoordinates;
         for(int i = 0; i < nb_elements; i++){
             currentCoordinates =  parent.loadJSONObject("installations\\CrystalNet\\setup.json").getJSONArray("coordinates").getJSONArray(i).getJSONObject(0).getJSONArray("line");
-            LedStripesArray.add(new LedStripe(Integer.toString(i), of, currentCoordinates, cp5, parent));
+            LedStripesArray.add(new LedStripe(Integer.toString(i), of, currentCoordinates, cp5, parent, this));
         }
+        currentLedStripe = LedStripesArray.get(0);
     }
 
     void setCurrentKeyframeValues(float[] val){
@@ -48,16 +48,21 @@ public class PreviewController {
         of.beginDraw();
         of.background(parent.color(125));
         for (int i = 0; i < currentKeyframeValues.length; i++) {
-            currentLedStripe =  LedStripesArray.get(i) ;
-            currentLedStripe.display(currentKeyframeValues[i]);
-            setCursor();
+            //currentLedStripe =  LedStripesArray.get(i) ;
+            LedStripesArray.get(i).display(currentKeyframeValues[i]);
+            //parent.println(currentLedStripe.id);
+
 
         }
         of.endDraw();
         parent.image(of, 200, 60);
     }
 
-    void setCursor(){
-        currentLedStripe.c.set(parent.mouseX - 200, parent.mouseY - 60);
+    void setCurrentLedStripe(LedStripe ls) {
+        currentLedStripe = ls;
     }
+    void setCurrentLedStripeHover(LedStripe ls) {
+        currentLedStripeHover = ls;
+    }
+
 }
