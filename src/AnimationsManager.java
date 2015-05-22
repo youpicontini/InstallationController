@@ -29,6 +29,7 @@ public class AnimationsManager {
     Button buttonDeleteKeyframe;
     Textlabel labelKeyframeName;
     Slider sliderDeviceOpacity;
+    Slider sliderMasterOpacity;
 
     int colorBG;
     int colorSelected;
@@ -62,6 +63,7 @@ public class AnimationsManager {
         buttonDeleteKeyframe = cp5.addButton("buttonDeleteKeyframe");
 
         sliderDeviceOpacity = cp5.addSlider("sliderDeviceOpacity");
+        sliderMasterOpacity = cp5.addSlider("sliderMasterOpacity");
 
     }
 
@@ -153,6 +155,15 @@ public class AnimationsManager {
 
         sliderDeviceOpacity.setLabel("opacity")
                 .setPosition(1260, 80)
+                .setSize(130, 20)
+                .setRange(0,1)
+                .setValue(1.0f)
+                .setGroup("groupEditor")
+                .hide();
+
+        sliderMasterOpacity.setLabel("Master opacity")
+                .setPosition(1260, 80)
+                .setGroup("groupPlayer")
                 .setSize(130, 20)
                 .setRange(0,1)
                 .setValue(1.0f)

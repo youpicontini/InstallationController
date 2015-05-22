@@ -6,6 +6,8 @@ import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
 
+
+
 public class InstallationController extends PApplet {
 
     ControlP5 cp5;
@@ -13,6 +15,16 @@ public class InstallationController extends PApplet {
 
     public static final String APPNAME="InstallationController";
     public static final String PROJECTNAME="Crystal Net";
+
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_WHITE = "\u001B[37m";
 
     public static void main(String args[]) {
         PApplet.main("InstallationController");
@@ -41,7 +53,6 @@ public class InstallationController extends PApplet {
                     appController.editor.previewController.currentLedStripe = appController.editor.previewController.currentLedStripeHover;
                     appController.editor.previewController.currentLedStripe.selected = true;
                     int tempIndex = Integer.parseInt(appController.editor.previewController.currentLedStripe.id);
-                    print(tempIndex);
                     appController.editor.animationsManager.currentAnim.currentKeyframe.currentDevice = tempIndex;
                     appController.editor.animationsManager.sliderDeviceOpacity.setValue(appController.editor.animationsManager.currentAnim.currentValues[tempIndex]);
                     appController.editor.animationsManager.currentAnim.kfHasChanged=false;
@@ -55,8 +66,6 @@ public class InstallationController extends PApplet {
     public void keyPressed() {
         if (key == 'q' ){
             if(appController.editor.animationsManager.currentAnim.currentKeyframeIndex != 0) {
-                println("----");
-                println("previous");
                 appController.editor.animationsManager.currentAnim.saveKeyframe(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
                 appController.editor.animationsManager.currentAnim.currentKeyframeIndex--;
                 appController.editor.animationsManager.currentAnim.loadKeyframe(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
@@ -64,13 +73,11 @@ public class InstallationController extends PApplet {
                 appController.editor.previewController.unselectDevices();
                 String tempname ="keyframe n°"+ Integer.toString(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
                 appController.editor.animationsManager.labelKeyframeName.setText(tempname);
-                println("current kf" + appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
-                println(appController.editor.animationsManager.currentAnim.currentValues);
             }
             else {
                 String tempname ="first";
                 appController.editor.animationsManager.labelKeyframeName.setText(tempname);
-                println("first");
+                println(tempname);
             }
         }
         if (key == 'd' ){
@@ -84,13 +91,11 @@ public class InstallationController extends PApplet {
                 appController.editor.previewController.unselectDevices();
                 String tempname ="keyframe n°"+ Integer.toString(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
                 appController.editor.animationsManager.labelKeyframeName.setText(tempname);
-                println("current kf" + appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
-                println(appController.editor.animationsManager.currentAnim.currentValues);
             }
             else {
                 String tempname ="last";
                 appController.editor.animationsManager.labelKeyframeName.setText(tempname);
-                println("last");
+                println(tempname);
             }
         }
     }
@@ -100,7 +105,7 @@ public class InstallationController extends PApplet {
     }
 
     public void controlEvent(ControlEvent e) {
-        println(e);
+        println(ANSI_GREEN+e+ANSI_RESET);
         if(e.name().equals("inputNewAnimName")){
             appController.editor.animationsManager.currentAnimName=appController.editor.animationsManager.inputNewAnimName.getText();
             println(appController.editor.animationsManager.currentAnimName);
@@ -135,6 +140,8 @@ public class InstallationController extends PApplet {
             appController.editor.animationsManager.buttonNewAnim.show();
             appController.editor.animationsManager.buttonDeleteAnim.show();
             appController.editor.animationsManager.sliderDeviceOpacity.show();
+            appController.editor.animationsManager.stopAnimation();
+
         }
         if (e.isTab() && e.getTab().getName()=="default" && appController.editor.animationsManager.inputNewAnimName.isVisible()) {
             appController.editor.animationsManager.labelNameAnimation.show();
@@ -185,6 +192,7 @@ public class InstallationController extends PApplet {
         }
         if(e.name().equals("tabPlayer")){
             appController.editor.animationsManager.listAnimations.show();
+            appController.editor.animationsManager.sliderMasterOpacity.show();
             appController.editor.previewController.editor=false;
         }
         if(e.name().equals("sliderDeviceOpacity")){

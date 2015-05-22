@@ -1,38 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/AnimationsManager.java" line="315" />
+    <bookmark url="file://$PROJECT_DIR$/src/AnimationsManager.java" line="326" />
     <bookmark url="file://$PROJECT_DIR$/src/Keyframe.java" line="14" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eea022a7-1c0e-4f79-a85a-6618cd97b5c0" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\3654351td\config.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\3654351td\keyframes\0000.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\3654351td\keyframes\0001.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\3654351td\keyframes\0002.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\3654351td\keyframes\0003.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\3654351td\keyframes\0004.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\3654351td\keyframes\0005.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\3654351td\keyframes\0006.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\3654351td\keyframes\0007.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\fghfgh\config.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\fghfgh\keyframes\0000.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\fghfgh\keyframes\0001.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\hjktk\config.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\hjktk\keyframes\0000.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\hjktk\keyframes\0001.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\hjktk\keyframes\0002.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\hjktk\keyframes\0003.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\hjktk\keyframes\0004.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\hjktk\keyframes\0005.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\jenmi\config.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\jenmi\keyframes\0000.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\jenmi\keyframes\0001.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\jenmi\keyframes\0002.json" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AnimationsManager.java" afterPath="$PROJECT_DIR$/src/AnimationsManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/InstallationController.java" afterPath="$PROJECT_DIR$/src/InstallationController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PreviewController.java" afterPath="$PROJECT_DIR$/src/PreviewController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="InstallationController.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -60,12 +35,12 @@
       <file leaf-file-name="InstallationController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/InstallationController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.14333895" vertical-offset="476" max-vertical-offset="3808">
-              <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.51602024" vertical-offset="2958" max-vertical-offset="3944">
+              <caret line="194" column="51" selection-start-line="194" selection-start-column="51" selection-end-line="194" selection-end-column="51" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#5235#5236#0" expanded="true" />
-                <element signature="e#5284#5285#0" expanded="true" />
+                <element signature="e#5244#5245#0" expanded="true" />
+                <element signature="e#5293#5294#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -74,8 +49,18 @@
       <file leaf-file-name="AnimationsManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AnimationsManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1791" max-vertical-offset="6426">
-              <caret line="72" column="22" selection-start-line="72" selection-start-column="8" selection-end-line="72" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2318" max-vertical-offset="6613">
+              <caret line="163" column="27" selection-start-line="163" selection-start-column="8" selection-end-line="163" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AppController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="203" max-vertical-offset="1326">
+              <caret line="17" column="33" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -94,9 +79,11 @@
       <file leaf-file-name="PreviewController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/PreviewController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1156">
-              <caret line="0" column="31" selection-start-line="0" selection-start-column="31" selection-end-line="0" selection-end-column="31" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="33" max-vertical-offset="1156">
+              <caret line="41" column="20" selection-start-line="41" selection-start-column="20" selection-end-line="41" selection-end-column="20" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -554,7 +541,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -566,7 +553,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3305174" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3305174" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25208333" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
@@ -621,7 +608,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="1224">
           <caret line="57" column="34" selection-start-line="57" selection-start-column="34" selection-end-line="57" selection-end-column="34" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -651,8 +640,8 @@
           <caret line="81" column="77" selection-start-line="81" selection-start-column="77" selection-end-line="81" selection-end-column="77" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5235#5236#0" expanded="true" />
-            <element signature="e#5284#5285#0" expanded="true" />
+            <element signature="e#5244#5245#0" expanded="true" />
+            <element signature="e#5293#5294#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -669,7 +658,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="1156">
           <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -714,8 +705,8 @@
           <caret line="136" column="49" selection-start-line="136" selection-start-column="49" selection-end-line="136" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5235#5236#0" expanded="true" />
-            <element signature="e#5284#5285#0" expanded="true" />
+            <element signature="e#5244#5245#0" expanded="true" />
+            <element signature="e#5293#5294#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -741,7 +732,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="333" max-vertical-offset="918">
           <caret line="19" column="53" selection-start-line="19" selection-start-column="53" selection-end-line="19" selection-end-column="53" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -777,8 +770,8 @@
           <caret line="77" column="9" selection-start-line="77" selection-start-column="9" selection-end-line="77" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5235#5236#0" expanded="true" />
-            <element signature="e#5284#5285#0" expanded="true" />
+            <element signature="e#5244#5245#0" expanded="true" />
+            <element signature="e#5293#5294#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -794,7 +787,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="918">
           <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -835,7 +830,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="918">
           <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -922,14 +919,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.14532872" vertical-offset="356" max-vertical-offset="1326">
-          <caret line="17" column="33" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/installations/CrystalNet/animations/TEMPLATE_config.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="578">
@@ -992,14 +981,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AnimationsManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="822" max-vertical-offset="6426">
-          <caret line="72" column="22" selection-start-line="72" selection-start-column="8" selection-end-line="72" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/LedStripe.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="612" max-vertical-offset="1700">
@@ -1007,14 +988,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PreviewController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1156">
-          <caret line="0" column="31" selection-start-line="0" selection-start-column="31" selection-end-line="0" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1026,14 +999,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/InstallationController.java">
+    <entry file="file://$PROJECT_DIR$/src/PreviewController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14333895" vertical-offset="476" max-vertical-offset="3808">
-          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="33" max-vertical-offset="1156">
+          <caret line="41" column="20" selection-start-line="41" selection-start-column="20" selection-end-line="41" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5235#5236#0" expanded="true" />
-            <element signature="e#5284#5285#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="203" max-vertical-offset="1326">
+          <caret line="17" column="33" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AnimationsManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2318" max-vertical-offset="6613">
+          <caret line="163" column="27" selection-start-line="163" selection-start-column="8" selection-end-line="163" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/InstallationController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.51602024" vertical-offset="2958" max-vertical-offset="3944">
+          <caret line="194" column="51" selection-start-line="194" selection-start-column="51" selection-end-line="194" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5244#5245#0" expanded="true" />
+            <element signature="e#5293#5294#0" expanded="true" />
           </folding>
         </state>
       </provider>
