@@ -5,7 +5,7 @@ public class Keyframe {
     PApplet parent;
     float currentOpacity;
     int currentDevice;
-    float[] currentValues = new float[4];
+    float[] currentValues;
 
     Keyframe(PApplet _parent, float[] _currentValues){
 

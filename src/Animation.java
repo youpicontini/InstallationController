@@ -10,8 +10,8 @@ import java.text.DecimalFormat;
 public class Animation {
 
     Keyframe currentKeyframe;
-    float[] currentValues = new float[4];
-
+    int nb_elements;
+    float[] currentValues;
     int currentKeyframeIndex;
 
     String name;
@@ -27,26 +27,33 @@ public class Animation {
     JSONObject jsonAnimation;
     PreviewController previewController;
 
-    Animation (String _name, int _fps,ControlP5 _cp5, PApplet _parent, PreviewController _previewController) {
+    Animation (String _name, int _fps, int _nb_elements, ControlP5 _cp5, PApplet _parent, PreviewController _previewController) {
         name = _name;
         idAnim = name.replaceAll(" ","_");
         fps = _fps;
+        nb_elements = _nb_elements;
         cp5 = _cp5;
         parent = _parent;
         previewController = _previewController;
 
-        jsonAnimation = new JSONObject();
-        jsonAnimation.setString("id", idAnim);
-        jsonAnimation.setString("name", name);
-        jsonAnimation.setInt("fps", fps);
+
         String tempPath;
-        if(System.getProperty("os.name").equals("Mac OS X"))
-            tempPath = "animations/" + idAnim + "/config.json";
-        else
-            tempPath = "animations\\" + idAnim + "\\config.json";
-        parent.saveJSONObject(jsonAnimation, tempPath);
+        if(System.getProperty("os.name").equals("Mac OS X")) {
+            tempPath = "installations/CrystalNet/animations/" + idAnim + "/config.json";
+        }
+        else {
+            tempPath = "installations\\CrystalNet\\animations\\" + idAnim + "\\config.json";
+        }
+        if(!(new File(tempPath).exists())) {
+            jsonAnimation = new JSONObject();
+            jsonAnimation.setString("id", idAnim);
+            jsonAnimation.setString("name", name);
+            jsonAnimation.setInt("fps", fps);
+            parent.saveJSONObject(jsonAnimation, tempPath);
+        }
         currentKeyframeIndex=0;
         AnimPlaying = false;
+        currentValues = new float[nb_elements];
         setInitialKeyframeNumber();
     }
 
@@ -57,7 +64,7 @@ public class Animation {
         currentKeyframeIndex = currentIndex;
         renameFollowingKeyframesFiles(keyframeNumber - 1, currentIndex);
         parent.println("adding kf n°" + temp);
-        currentValues = new float[4];
+        currentValues = new float[nb_elements];
         kfHasChanged = true;
         saveKeyframe(temp);
         //currentKeyframe = new Keyframe(parent, currentValues);
@@ -66,7 +73,7 @@ public class Animation {
     }
 
     void addFirstKeyframe(){
-        currentValues = new float[4];
+        currentValues = new float[nb_elements];
         kfHasChanged = true;
         saveKeyframe(0);
         currentKeyframeIndex = 0;
@@ -79,9 +86,9 @@ public class Animation {
         String indexFormatted = formatter.format(currentIndex);
         String tempPath;
         if(System.getProperty("os.name").equals("Mac OS X"))
-            tempPath = "animations/" + idAnim+"/keyframes/"+indexFormatted+".json";
+            tempPath = "installations/CrystalNet/animations/" + idAnim +"/keyframes/"+indexFormatted+".json";
         else
-            tempPath = "animations\\" + idAnim+"\\keyframes\\"+indexFormatted+".json";
+            tempPath = "installations\\CrystalNet\\animations\\" + idAnim +"\\keyframes\\"+indexFormatted+".json";
         File f = new File(tempPath);
         boolean deleted = false;
         int i=0;
@@ -108,24 +115,24 @@ public class Animation {
             JSONObject jsonKeyframe;
             String tempPath;
             if(System.getProperty("os.name").equals("Mac OS X"))
-                tempPath = "animations/TEMPLATE_keyframe.json";
+                tempPath = "installations/CrystalNet/animations/TEMPLATE_keyframe.json";
             else
-                tempPath = "animations\\TEMPLATE_keyframe.json";
+                tempPath = "installations\\CrystalNet\\animations\\TEMPLATE_keyframe.json";
             jsonKeyframe = parent.loadJSONObject(new File(tempPath));
-            parent.println("current values lenght:"+currentValues.length);
-            parent.println("saving/");
-            parent.println(currentValues);
-            parent.println("missing:");
-            parent.println(currentValues[0]);
+//            parent.println("current values lenght:"+currentValues.length);
+//            parent.println("saving/");
+//            parent.println(currentValues);
+//            parent.println("missing:");
+//            parent.println(currentValues[0]);
             for (int i = 0; i < currentValues.length; i++) {
                 jsonKeyframe.getJSONArray("outputs").getJSONObject(0).getJSONArray("objects").getJSONObject(i).getJSONObject("params").setFloat("opacity", currentValues[i]);
             }
             DecimalFormat formatter = new DecimalFormat("0000");
             String indexFormatted = formatter.format(currentIndex);
             if(System.getProperty("os.name").equals("Mac OS X"))
-                tempPath = "animations/" + idAnim + "/keyframes/" + indexFormatted + ".json";
+                tempPath = "installations/CrystalNet/animations/" + idAnim + "/keyframes/" + indexFormatted + ".json";
             else
-                tempPath = "animations\\" + idAnim + "\\keyframes\\" + indexFormatted + ".json";
+                tempPath = "installations\\CrystalNet\\animations\\" + idAnim + "\\keyframes\\" + indexFormatted + ".json";
             parent.saveJSONObject(jsonKeyframe, tempPath);
             kfHasChanged = false;
         }
@@ -137,10 +144,11 @@ public class Animation {
         String indexFormatted = formatter.format(currentIndex);
         String tempPath;
         if(System.getProperty("os.name").equals("Mac OS X"))
-            tempPath = "animations/" + idAnim + "/keyframes/"+ indexFormatted + ".json";
+            tempPath = "installations/CrystalNet/animations/" + idAnim + "/keyframes/"+ indexFormatted + ".json";
         else
-            tempPath = "animations\\" + idAnim + "\\keyframes\\"+ indexFormatted + ".json";
+            tempPath = "installations\\CrystalNet\\animations\\" + idAnim + "\\keyframes\\"+ indexFormatted + ".json";
         jsonKeyframe = parent.loadJSONObject(new File(tempPath));
+        parent.println(currentValues);
         for (int i=0; i<currentValues.length;i++) {
             currentValues[i] = jsonKeyframe.getJSONArray("outputs").getJSONObject(0).getJSONArray("objects").getJSONObject(i).getJSONObject("params").getFloat("opacity");
         }
@@ -159,9 +167,9 @@ public class Animation {
             DecimalFormat formatter = new DecimalFormat("0000");
             String tempPath;
             if(System.getProperty("os.name").equals("Mac OS X"))
-                tempPath = "animations/" + idAnim + "/keyframes/";
+                tempPath = "installations/CrystalNet/animations/" + idAnim + "/keyframes/";
             else
-                tempPath = "animations\\" + idAnim + "\\keyframes\\";
+                tempPath = "installations\\CrystalNet\\animations\\" + idAnim + "\\keyframes\\";
             int i = startIndex;
             if(startIndex>endIndex) { //add
                 while (i > endIndex ) {
@@ -201,9 +209,9 @@ public class Animation {
 
         String tempPath;
         if(System.getProperty("os.name").equals("Mac OS X"))
-            tempPath = "animations/" + idAnim + "/keyframes/";
+            tempPath = "installations/CrystalNet/animations/" + idAnim + "/keyframes/";
         else
-            tempPath = "animations\\" + idAnim +"\\keyframes";
+            tempPath = "installations\\CrystalNet\\animations\\" + idAnim +"\\keyframes";
         File folder = new File(tempPath);
         if (folder.exists())
             keyframeNumber = folder.listFiles().length;
