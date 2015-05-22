@@ -52,16 +52,17 @@ public class LedStripe {
         canvas.strokeWeight(5);
         canvas.stroke(255, 255, 255, opacity);
         canvas.line(coordinates.getInt(0), coordinates.getInt(1), coordinates.getInt(2), coordinates.getInt(3));
-        //parent.println(id);
         c.set(parent.mouseX - 200, parent.mouseY - 60);
         canvas.stroke(0, 255, 0);
-        if(ol){
-            pc.setCurrentLedStripeHover(this);
-            canvas.stroke(0, 0, 255);
-        }
-        if (selected){
-            pc.setCurrentLedStripe(this);
-            canvas.stroke(255, 0, 0);
+        if(pc.editor && pc.animation) {
+            if (ol) {
+                pc.setCurrentLedStripeHover(this);
+                canvas.stroke(0, 0, 255);
+            }
+            if (selected) {
+                pc.setCurrentLedStripe(this);
+                canvas.stroke(255, 0, 0);
+            }
         }
         canvas.strokeWeight(1);
         canvas.line(coordinates.getInt(0), coordinates.getInt(1), coordinates.getInt(2), coordinates.getInt(3));

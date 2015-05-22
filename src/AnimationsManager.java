@@ -77,31 +77,36 @@ public class AnimationsManager {
                           .moveTo("global")
                            .setColorBackground(parent.color(50))
                             .setColorActive(parent.color(150))
-                             .setColorForeground(parent.color(150));
+                             .setColorForeground(parent.color(150))
+                              .hide();
 
         buttonPlayAnim.setLabel("play")
                        .setValue(0)
                         .setPosition(1260, 770)
                          .moveTo("global")
-                          .setSize(80, 40);
+                          .setSize(80, 40)
+                            .hide();
 
         buttonStopAnim.setLabel("stop")
                        .setValue(0)
                         .setPosition(1350, 770)
                          .moveTo("global")
-                            .setSize(80, 40);
+                          .setSize(80, 40)
+                           .hide();
 
         buttonNewAnim.setLabel("       +")
                       .setValue(0)
                        .setPosition(150, 770)
                         .setSize(40, 40)
-                         .setGroup("groupEditor");
+                         .setGroup("groupEditor")
+                          .hide();
 
         buttonDeleteAnim.setLabel("       -")
-                         .setValue(0)
-                          .setPosition(100, 770)
-                           .setSize(40, 40)
-                            .setGroup("groupEditor");
+                .setValue(0)
+                .setPosition(100, 770)
+                .setSize(40, 40)
+                .setGroup("groupEditor")
+                             .hide();
 
         labelNameAnimation.setText("Choose Animation")
                            .setPosition(200, 40)
@@ -130,13 +135,15 @@ public class AnimationsManager {
                           .setValue(0)
                            .setPosition(1390, 720)
                             .setSize(40, 40)
-                             .setGroup("groupEditor");
+                             .setGroup("groupEditor")
+                            .hide();
 
         buttonDeleteKeyframe.setLabel("       -")
                              .setValue(0)
                 .setPosition(1340, 720)
                 .setSize(40, 40)
-                .setGroup("groupEditor");
+                .setGroup("groupEditor")
+                .hide();
 
         labelKeyframeName.setLabel("NAME KEYFRAME")
                           .setValue(0)
@@ -145,10 +152,12 @@ public class AnimationsManager {
                 .setGroup("groupEditor");
 
         sliderDeviceOpacity.setLabel("opacity")
-                            .setPosition(1260, 80)
-                             .setSize(130, 20)
-                              .setRange(0,1)
-                               .setValue(1.0f);
+                .setPosition(1260, 80)
+                .setSize(130, 20)
+                .setRange(0,1)
+                .setValue(1.0f)
+                .hide();
+
         loadAnimations();
         String tempPath;
         if(System.getProperty("os.name").equals("Mac OS X")) {

@@ -1,5 +1,4 @@
 import processing.core.PApplet;
-import processing.core.PConstants;
 import processing.core.PGraphics;
 
 import java.util.ArrayList;
@@ -16,12 +15,17 @@ public class PreviewController {
     float[] currentKeyframeValues;
     LedStripe currentLedStripe,currentLedStripeHover;
 
+    boolean editor;
+    boolean animation;
 
     PreviewController (ControlP5 _cp5, PApplet _parent) {
         parent = _parent;
         cp5 = _cp5;
 
         LedStripesArray = new ArrayList<LedStripe>();
+
+        editor = false;
+        animation = false;
     }
 
     void setup(){
@@ -48,11 +52,7 @@ public class PreviewController {
         of.beginDraw();
         of.background(parent.color(125));
         for (int i = 0; i < currentKeyframeValues.length; i++) {
-            //currentLedStripe =  LedStripesArray.get(i) ;
             LedStripesArray.get(i).display(currentKeyframeValues[i]);
-            //parent.println(currentLedStripe.id);
-
-
         }
         of.endDraw();
         parent.image(of, 200, 60);

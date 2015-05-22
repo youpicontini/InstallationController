@@ -1,13 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/AnimationsManager.java" line="306" />
+    <bookmark url="file://$PROJECT_DIR$/src/AnimationsManager.java" line="315" />
     <bookmark url="file://$PROJECT_DIR$/src/Keyframe.java" line="14" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eea022a7-1c0e-4f79-a85a-6618cd97b5c0" name="Default" comment="">
+      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\3654351td\config.json" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\3654351td\keyframes\0000.json" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\3654351td\keyframes\0001.json" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\3654351td\keyframes\0002.json" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\3654351td\keyframes\0003.json" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\3654351td\keyframes\0004.json" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\3654351td\keyframes\0005.json" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\3654351td\keyframes\0006.json" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\3654351td\keyframes\0007.json" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\fghfgh\config.json" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\fghfgh\keyframes\0000.json" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\fghfgh\keyframes\0001.json" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\hjktk\config.json" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\hjktk\keyframes\0000.json" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\hjktk\keyframes\0001.json" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\hjktk\keyframes\0002.json" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\hjktk\keyframes\0003.json" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\hjktk\keyframes\0004.json" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\hjktk\keyframes\0005.json" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\jenmi\config.json" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\jenmi\keyframes\0000.json" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\jenmi\keyframes\0001.json" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\jenmi\keyframes\0002.json" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AnimationsManager.java" afterPath="$PROJECT_DIR$/src/AnimationsManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/InstallationController.java" afterPath="$PROJECT_DIR$/src/InstallationController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PreviewController.java" afterPath="$PROJECT_DIR$/src/PreviewController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="InstallationController.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,8 +60,22 @@
       <file leaf-file-name="InstallationController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/InstallationController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3322091" vertical-offset="381" max-vertical-offset="3876">
-              <caret line="39" column="33" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.14333895" vertical-offset="476" max-vertical-offset="3808">
+              <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#5235#5236#0" expanded="true" />
+                <element signature="e#5284#5285#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AnimationsManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AnimationsManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1791" max-vertical-offset="6426">
+              <caret line="72" column="22" selection-start-line="72" selection-start-column="8" selection-end-line="72" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -55,15 +94,9 @@
       <file leaf-file-name="PreviewController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/PreviewController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="1224">
-              <caret line="57" column="34" selection-start-line="57" selection-start-column="34" selection-end-line="57" selection-end-column="34" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1786#1787#0" expanded="true" />
-                <element signature="e#1823#1824#0" expanded="true" />
-                <element signature="e#1873#1874#0" expanded="true" />
-                <element signature="e#1915#1916#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1156">
+              <caret line="0" column="31" selection-start-line="0" selection-start-column="31" selection-end-line="0" selection-end-column="31" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -71,12 +104,10 @@
       <file leaf-file-name="LedStripe.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/LedStripe.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="754" max-vertical-offset="1717">
-              <caret line="58" column="46" selection-start-line="58" selection-start-column="46" selection-end-line="58" selection-end-column="46" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="584" max-vertical-offset="1700">
+              <caret line="56" column="36" selection-start-line="56" selection-start-column="36" selection-end-line="56" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2705#2706#0" expanded="true" />
-                <element signature="e#2730#2731#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -130,11 +161,12 @@
         <option value="$PROJECT_DIR$/animations/TEMPLATE_keyframe.json" />
         <option value="$PROJECT_DIR$/src/Keyframe.java" />
         <option value="$PROJECT_DIR$/src/AppController.java" />
-        <option value="$PROJECT_DIR$/src/AnimationsManager.java" />
         <option value="$PROJECT_DIR$/installations/CrystalNet/animations/TEMPLATE_keyframe.json" />
         <option value="$PROJECT_DIR$/src/Animation.java" />
+        <option value="$PROJECT_DIR$/installations/CrystalNet/animations/cocktailbananas/config.json" />
         <option value="$PROJECT_DIR$/src/LedStripe.java" />
         <option value="$PROJECT_DIR$/src/PreviewController.java" />
+        <option value="$PROJECT_DIR$/src/AnimationsManager.java" />
         <option value="$PROJECT_DIR$/src/InstallationController.java" />
       </list>
     </option>
@@ -168,7 +200,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -260,8 +291,35 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="InstallationController" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="InstallationController" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="installations" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CrystalNet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="animations" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cocktailbananas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -508,7 +566,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3305174" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3305174" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25208333" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
@@ -551,12 +609,38 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/Keyframe.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="289" max-vertical-offset="510">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PreviewController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="1224">
+          <caret line="57" column="34" selection-start-line="57" selection-start-column="34" selection-end-line="57" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LedStripe.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="754" max-vertical-offset="1717">
+          <caret line="58" column="46" selection-start-line="58" selection-start-column="46" selection-end-line="58" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Editor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="19" max-vertical-offset="663">
           <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -565,7 +649,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2699" max-vertical-offset="3570">
           <caret line="81" column="77" selection-start-line="81" selection-start-column="77" selection-end-line="81" selection-end-column="77" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5235#5236#0" expanded="true" />
+            <element signature="e#5284#5285#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -573,9 +661,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6409">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -583,13 +669,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="1156">
           <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1786#1787#0" expanded="true" />
-            <element signature="e#1823#1824#0" expanded="true" />
-            <element signature="e#1873#1874#0" expanded="true" />
-            <element signature="e#1915#1916#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -597,7 +677,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="170">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -607,8 +686,6 @@
           <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2705#2706#0" expanded="true" />
-            <element signature="e#2730#2731#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -618,7 +695,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2720">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -627,9 +704,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="4199" max-vertical-offset="5083">
           <caret line="266" column="46" selection-start-line="266" selection-start-column="46" selection-end-line="266" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -637,7 +712,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1118" max-vertical-offset="3349">
           <caret line="136" column="49" selection-start-line="136" selection-start-column="49" selection-end-line="136" selection-end-column="49" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5235#5236#0" expanded="true" />
+            <element signature="e#5284#5285#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -646,7 +725,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2380">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -662,13 +741,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="333" max-vertical-offset="918">
           <caret line="19" column="53" selection-start-line="19" selection-start-column="53" selection-end-line="19" selection-end-column="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1786#1787#0" expanded="true" />
-            <element signature="e#1823#1824#0" expanded="true" />
-            <element signature="e#1873#1874#0" expanded="true" />
-            <element signature="e#1915#1916#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -676,9 +749,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4148">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -687,7 +758,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="1258">
           <caret line="31" column="51" selection-start-line="31" selection-start-column="51" selection-end-line="31" selection-end-column="51" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -704,7 +775,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="582" max-vertical-offset="2057">
           <caret line="77" column="9" selection-start-line="77" selection-start-column="9" selection-end-line="77" selection-end-column="9" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5235#5236#0" expanded="true" />
+            <element signature="e#5284#5285#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -719,13 +794,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="918">
           <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1786#1787#0" expanded="true" />
-            <element signature="e#1823#1824#0" expanded="true" />
-            <element signature="e#1873#1874#0" expanded="true" />
-            <element signature="e#1915#1916#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -733,9 +802,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="3066" max-vertical-offset="3791">
           <caret line="36" column="54" selection-start-line="36" selection-start-column="54" selection-end-line="36" selection-end-column="54" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -744,7 +811,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="74" max-vertical-offset="799">
           <caret line="33" column="37" selection-start-line="33" selection-start-column="37" selection-end-line="33" selection-end-column="37" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -768,13 +835,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="918">
           <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1786#1787#0" expanded="true" />
-            <element signature="e#1823#1824#0" expanded="true" />
-            <element signature="e#1873#1874#0" expanded="true" />
-            <element signature="e#1915#1916#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -782,9 +843,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="3066" max-vertical-offset="3791">
           <caret line="36" column="54" selection-start-line="36" selection-start-column="54" selection-end-line="36" selection-end-column="54" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -793,7 +852,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="74" max-vertical-offset="799">
           <caret line="33" column="37" selection-start-line="33" selection-start-column="37" selection-end-line="33" selection-end-column="37" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -871,27 +930,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/installations/CrystalNet/animations/jenmi/keyframes/0000.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3621">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/installations/CrystalNet/animations/jenmi/config.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="606">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/installations/CrystalNet/animations/TEMPLATE_config.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="578">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -899,7 +941,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.29655173" vertical-offset="4792" max-vertical-offset="5372">
           <caret line="292" column="24" selection-start-line="292" selection-start-column="24" selection-end-line="292" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -908,17 +949,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="19" max-vertical-offset="663">
           <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AnimationsManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.9834983" vertical-offset="357" max-vertical-offset="6375">
-          <caret line="163" column="10" selection-start-line="163" selection-start-column="10" selection-end-line="163" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -928,34 +959,62 @@
         <state vertical-scroll-proportion="1.4207921" vertical-offset="1859" max-vertical-offset="4233">
           <caret line="160" column="5" selection-start-line="160" selection-start-column="5" selection-end-line="160" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/installations/CrystalNet/animations/cocktailbananas/config.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.9615384" vertical-offset="0" max-vertical-offset="170">
+          <caret line="3" column="24" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/installations/CrystalNet/animations/cocktailbananas/keyframes/0000.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3621">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/installations/CrystalNet/animations/cocktailbananas/keyframes/0001.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3621">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/installations/CrystalNet/animations/cocktailbananas/keyframes/0002.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8206897" vertical-offset="0" max-vertical-offset="3621">
+          <caret line="28" column="16" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AnimationsManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="822" max-vertical-offset="6426">
+          <caret line="72" column="22" selection-start-line="72" selection-start-column="8" selection-end-line="72" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/LedStripe.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="754" max-vertical-offset="1717">
-          <caret line="58" column="46" selection-start-line="58" selection-start-column="46" selection-end-line="58" selection-end-column="46" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="612" max-vertical-offset="1700">
+          <caret line="56" column="36" selection-start-line="56" selection-start-column="36" selection-end-line="56" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2705#2706#0" expanded="true" />
-            <element signature="e#2730#2731#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/PreviewController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="1224">
-          <caret line="57" column="34" selection-start-line="57" selection-start-column="34" selection-end-line="57" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1786#1787#0" expanded="true" />
-            <element signature="e#1823#1824#0" expanded="true" />
-            <element signature="e#1873#1874#0" expanded="true" />
-            <element signature="e#1915#1916#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1156">
+          <caret line="0" column="31" selection-start-line="0" selection-start-column="31" selection-end-line="0" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -969,9 +1028,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/InstallationController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3322091" vertical-offset="381" max-vertical-offset="3876">
-          <caret line="39" column="33" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
-          <folding />
+        <state vertical-scroll-proportion="0.14333895" vertical-offset="476" max-vertical-offset="3808">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5235#5236#0" expanded="true" />
+            <element signature="e#5284#5285#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
