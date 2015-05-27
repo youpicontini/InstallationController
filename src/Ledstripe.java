@@ -1,6 +1,5 @@
 import controlP5.*;
 import processing.core.PApplet;
-import processing.core.PConstants;
 import processing.core.PGraphics;
 import processing.core.PVector;
 import processing.data.JSONArray;
@@ -36,7 +35,7 @@ public class LedStripe {
 
         a = new PVector(coordinates.getInt(0), coordinates.getInt(1));
         b = new PVector(coordinates.getInt(2), coordinates.getInt(3));
-        parent.println(a,b);
+        //parent.println(a,b);
         c = new PVector();
         pj = new PVector();
 

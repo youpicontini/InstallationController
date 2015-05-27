@@ -21,7 +21,7 @@ public class AppController {
         cp5 = _cp5;
 
         editor = new Editor(cp5, parent);
-        player = new Player(cp5, parent);
+        player = new Player(cp5, parent, editor);
 
 
         /* [INTERFACE] TABS*/
@@ -68,6 +68,6 @@ public class AppController {
     public void draw(){
         framerateProject.setText(""+Math.round(parent.frameRate)).setColor(0xff000000);
         editor.draw();
-        player.draw();
+        //player.draw();
     }
 }

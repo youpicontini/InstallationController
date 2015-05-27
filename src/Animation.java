@@ -21,6 +21,7 @@ public class Animation {
     int keyframeNumber = 1;
     boolean kfHasChanged = false;
     boolean AnimPlaying;
+    Thread playingThread;
 
     ControlP5 cp5;
     PApplet parent;
@@ -148,7 +149,7 @@ public class Animation {
         else
             tempPath = "installations\\CrystalNet\\animations\\" + idAnim + "\\keyframes\\"+ indexFormatted + ".json";
         jsonKeyframe = parent.loadJSONObject(new File(tempPath));
-        parent.println(currentValues);
+        //parent.println(currentValues);
         for (int i=0; i<currentValues.length;i++) {
             currentValues[i] = jsonKeyframe.getJSONArray("outputs").getJSONObject(0).getJSONArray("objects").getJSONObject(i).getJSONObject("params").getFloat("opacity");
         }
@@ -220,13 +221,12 @@ public class Animation {
     }
 
     void play(){
-        AnimPlaying = true;
-        Thread t = new Thread(new Runnable() {
+        playingThread = new Thread(new Runnable() {
             public void run()
             {
-                while(AnimPlaying) {
+                while(true) {
                     for (currentKeyframeIndex = 0; currentKeyframeIndex < keyframeNumber; currentKeyframeIndex++) {
-                        parent.println(currentKeyframeIndex+" played");
+                        //parent.println(currentKeyframeIndex+" played");
                         loadKeyframe(currentKeyframeIndex);
                         sendCurrentValuesToPreviewController();
                         try {
@@ -239,11 +239,12 @@ public class Animation {
                 }
             }
         });
-        t.start();
+        playingThread.start();
     }
 
     void stop(){
-        AnimPlaying = false;
+        if(playingThread instanceof Thread)
+            playingThread.stop();
     }
 
 }
