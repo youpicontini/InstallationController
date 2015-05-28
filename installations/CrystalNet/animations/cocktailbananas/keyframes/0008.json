@@ -95,19 +95,19 @@
       },
       {
         "id": 23,
-        "params": {"opacity": 1}
+        "params": {"opacity": 0}
       },
       {
         "id": 24,
-        "params": {"opacity": 1}
+        "params": {"opacity": 0}
       },
       {
         "id": 25,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       },
       {
         "id": 26,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       },
       {
         "id": 27,
@@ -131,19 +131,19 @@
       },
       {
         "id": 32,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       },
       {
         "id": 33,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       },
       {
         "id": 34,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       },
       {
         "id": 35,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       },
       {
         "id": 36,
@@ -159,7 +159,7 @@
       },
       {
         "id": 39,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       },
       {
         "id": 40,

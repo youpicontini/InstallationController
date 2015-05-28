@@ -22,14 +22,13 @@ public class AnimationsManager {
     Textfield inputNewAnimName;
     Textfield inputNewAnimFPS;
     Button buttonPlayAnim;
-    Button buttonStopAnim;
     Group groupAnimations;
 
     Button buttonNewKeyframe;
     Button buttonDeleteKeyframe;
+    Button buttonResetKeyframe;
     Textlabel labelKeyframeName;
     Slider sliderDeviceOpacity;
-    Slider sliderMasterOpacity;
 
     int colorBG;
     int colorSelected;
@@ -50,7 +49,6 @@ public class AnimationsManager {
         // INTERFACE
         listAnimations = cp5.addListBox("listAnimations");
         buttonPlayAnim = cp5.addButton("buttonPlayAnim");
-        buttonStopAnim = cp5.addButton("buttonStopAnim");
         buttonNewAnim = cp5.addButton("buttonNewAnim");
         buttonDeleteAnim = cp5.addButton("buttonDeleteAnim");
         labelNameAnimation = cp5.addTextlabel("labelNameAnimation");
@@ -61,9 +59,9 @@ public class AnimationsManager {
         labelKeyframeName = cp5.addTextlabel("labelKeyframeName");
         buttonNewKeyframe = cp5.addButton("buttonNewKeyframe");
         buttonDeleteKeyframe = cp5.addButton("buttonDeleteKeyframe");
+        buttonResetKeyframe = cp5.addButton("buttonResetKeyframe");
 
         sliderDeviceOpacity = cp5.addSlider("sliderDeviceOpacity");
-        sliderMasterOpacity = cp5.addSlider("sliderMasterOpacity");
 
     }
 
@@ -86,15 +84,9 @@ public class AnimationsManager {
                        .setValue(0)
                         .setPosition(1260, 770)
                          .moveTo("global")
-                          .setSize(80, 40)
+                          .setSize(170, 40)
+                            .setSwitch(true)
                             .hide();
-
-        buttonStopAnim.setLabel("stop")
-                       .setValue(0)
-                        .setPosition(1350, 770)
-                         .moveTo("global")
-                          .setSize(80, 40)
-                           .hide();
 
         buttonNewAnim.setLabel("       +")
                       .setValue(0)
@@ -147,6 +139,13 @@ public class AnimationsManager {
                 .setGroup("groupEditor")
                 .hide();
 
+        buttonResetKeyframe.setLabel("RESET")
+                             .setValue(0)
+                .setPosition(1260, 720)
+                .setSize(70, 40)
+                .setGroup("groupEditor")
+                .hide();
+
         labelKeyframeName.setLabel("NAME KEYFRAME")
                           .setValue(0)
                 .setPosition(1620, 400)
@@ -161,13 +160,7 @@ public class AnimationsManager {
                 .setGroup("groupEditor")
                 .hide();
 
-        sliderMasterOpacity.setLabel("Master opacity")
-                .setPosition(1260, 80)
-                .setGroup("groupPlayer")
-                .setSize(130, 20)
-                .setRange(0,1)
-                .setValue(1.0f)
-                .hide();
+
 
         loadAnimations();
         String tempPath;

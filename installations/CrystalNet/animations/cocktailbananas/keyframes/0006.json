@@ -3,15 +3,15 @@
     "objects": [
       {
         "id": 0,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       },
       {
         "id": 1,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       },
       {
         "id": 2,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       },
       {
         "id": 3,
@@ -31,15 +31,15 @@
       },
       {
         "id": 7,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       },
       {
         "id": 8,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       },
       {
         "id": 9,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       },
       {
         "id": 10,
@@ -55,7 +55,7 @@
       },
       {
         "id": 13,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       },
       {
         "id": 14,
@@ -91,7 +91,7 @@
       },
       {
         "id": 22,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       },
       {
         "id": 23,
@@ -131,11 +131,11 @@
       },
       {
         "id": 32,
-        "params": {"opacity": 1}
+        "params": {"opacity": 0}
       },
       {
         "id": 33,
-        "params": {"opacity": 1}
+        "params": {"opacity": 0}
       },
       {
         "id": 34,

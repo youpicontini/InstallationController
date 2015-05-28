@@ -3,7 +3,7 @@
     "objects": [
       {
         "id": 0,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       },
       {
         "id": 1,
@@ -95,11 +95,11 @@
       },
       {
         "id": 23,
-        "params": {"opacity": 1}
+        "params": {"opacity": 0}
       },
       {
         "id": 24,
-        "params": {"opacity": 1}
+        "params": {"opacity": 0}
       },
       {
         "id": 25,

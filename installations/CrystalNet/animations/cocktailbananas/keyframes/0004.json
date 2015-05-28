@@ -27,7 +27,7 @@
       },
       {
         "id": 6,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       },
       {
         "id": 7,
@@ -83,11 +83,11 @@
       },
       {
         "id": 20,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       },
       {
         "id": 21,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       },
       {
         "id": 22,
@@ -95,7 +95,7 @@
       },
       {
         "id": 23,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       },
       {
         "id": 24,
@@ -131,11 +131,11 @@
       },
       {
         "id": 32,
-        "params": {"opacity": 1}
+        "params": {"opacity": 0}
       },
       {
         "id": 33,
-        "params": {"opacity": 1}
+        "params": {"opacity": 0}
       },
       {
         "id": 34,

@@ -95,11 +95,11 @@
       },
       {
         "id": 23,
-        "params": {"opacity": 1}
+        "params": {"opacity": 0}
       },
       {
         "id": 24,
-        "params": {"opacity": 1}
+        "params": {"opacity": 0}
       },
       {
         "id": 25,
@@ -191,15 +191,15 @@
       },
       {
         "id": 47,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       },
       {
         "id": 48,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       },
       {
         "id": 49,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       }
     ],
     "type": "OBJECT_TYPE led etc.."

@@ -21,6 +21,7 @@ public class Animation {
     int keyframeNumber = 1;
     boolean kfHasChanged = false;
     boolean AnimPlaying;
+    Thread playingThread;
 
     ControlP5 cp5;
     PApplet parent;
@@ -64,7 +65,7 @@ public class Animation {
         currentKeyframeIndex = currentIndex;
         renameFollowingKeyframesFiles(keyframeNumber - 1, currentIndex);
         parent.println("adding kf n°" + temp);
-        currentValues = new float[nb_elements];
+        //currentValues = new float[nb_elements];
         kfHasChanged = true;
         saveKeyframe(temp);
         //currentKeyframe = new Keyframe(parent, currentValues);
@@ -148,7 +149,7 @@ public class Animation {
         else
             tempPath = "installations\\CrystalNet\\animations\\" + idAnim + "\\keyframes\\"+ indexFormatted + ".json";
         jsonKeyframe = parent.loadJSONObject(new File(tempPath));
-        parent.println(currentValues);
+        //parent.println(currentValues);
         for (int i=0; i<currentValues.length;i++) {
             currentValues[i] = jsonKeyframe.getJSONArray("outputs").getJSONObject(0).getJSONArray("objects").getJSONObject(i).getJSONObject("params").getFloat("opacity");
         }
@@ -175,9 +176,9 @@ public class Animation {
                 while (i > endIndex ) {
                     String iFormatted = formatter.format(i);
                     try{
-                        File oldFile = new File(tempPath + iFormatted + ".json");
-                        iFormatted = formatter.format(i+1);
-                        renamed = oldFile.renameTo(new File(tempPath + iFormatted + ".json"));
+                        //File oldFile = new File(tempPath + iFormatted + ".json");
+                        //iFormatted = formatter.format(i+1);
+                        renamed =  new File(tempPath + formatter.format(i) + ".json").renameTo(new File(tempPath + formatter.format(i+1) + ".json"));
                         int temp=i+1;
                         System.out.println(i+" renamed to "+ temp +">"+ renamed);
                         if(renamed)i--;
@@ -190,9 +191,9 @@ public class Animation {
                 while(i < endIndex) {
                     String iFormatted = formatter.format(i+1);
                     try{
-                        File oldFile = new File(tempPath + iFormatted + ".json");
-                        iFormatted = formatter.format(i);
-                        renamed = oldFile.renameTo(new File(tempPath + iFormatted + ".json"));
+//                        File oldFile = new File(tempPath + iFormatted + ".json");
+//                        iFormatted = formatter.format(i);
+                        renamed = new File(tempPath + formatter.format(i+1) + ".json").renameTo(new File(tempPath + formatter.format(i) + ".json"));
                         int temp=i-1;
                         System.out.println(i+" renamed to "+temp +">"+ renamed);
                         if(renamed)i++;
@@ -220,13 +221,12 @@ public class Animation {
     }
 
     void play(){
-        AnimPlaying = true;
-        Thread t = new Thread(new Runnable() {
+        playingThread = new Thread(new Runnable() {
             public void run()
             {
-                while(AnimPlaying) {
+                while(true) {
                     for (currentKeyframeIndex = 0; currentKeyframeIndex < keyframeNumber; currentKeyframeIndex++) {
-                        parent.println(currentKeyframeIndex+" played");
+                        //parent.println(currentKeyframeIndex+" played");
                         loadKeyframe(currentKeyframeIndex);
                         sendCurrentValuesToPreviewController();
                         try {
@@ -239,11 +239,12 @@ public class Animation {
                 }
             }
         });
-        t.start();
+        playingThread.start();
     }
 
     void stop(){
-        AnimPlaying = false;
+        if(playingThread instanceof Thread)
+            playingThread.stop();
     }
 
 }
