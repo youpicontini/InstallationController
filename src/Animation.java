@@ -27,8 +27,9 @@ public class Animation {
     PApplet parent;
     JSONObject jsonAnimation;
     PreviewController previewController;
+    AnimationsManager AM;
 
-    Animation (String _name, int _fps, int _nb_elements, ControlP5 _cp5, PApplet _parent, PreviewController _previewController) {
+    Animation (String _name, int _fps, int _nb_elements, ControlP5 _cp5, PApplet _parent, PreviewController _previewController, AnimationsManager _AM) {
         name = _name;
         idAnim = name.replaceAll(" ","_");
         fps = _fps;
@@ -36,6 +37,7 @@ public class Animation {
         cp5 = _cp5;
         parent = _parent;
         previewController = _previewController;
+        AM = _AM;
 
 
         String tempPath;
@@ -64,7 +66,6 @@ public class Animation {
         int temp = currentIndex+1;
         currentKeyframeIndex = currentIndex;
         renameFollowingKeyframesFiles(keyframeNumber - 1, currentIndex);
-        parent.println("adding kf n°" + temp);
         //currentValues = new float[nb_elements];
         kfHasChanged = true;
         saveKeyframe(temp);
@@ -79,7 +80,6 @@ public class Animation {
         saveKeyframe(0);
         currentKeyframeIndex = 0;
         keyframeNumber = 1;
-        parent.println("1st kf added");
     }
 
     void removeKeyframe(int currentIndex){
@@ -104,7 +104,6 @@ public class Animation {
             i++;
         }
         parent.cursor(PConstants.ARROW);
-        parent.println("removed kf n° " + currentIndex);
         renameFollowingKeyframesFiles(currentIndex,keyframeNumber-1);
         keyframeNumber--;
         currentKeyframeIndex--;
@@ -112,7 +111,6 @@ public class Animation {
 
     public void saveKeyframe(int currentIndex){
         if(kfHasChanged) {
-            parent.println("saving..." + currentKeyframeIndex);
             JSONObject jsonKeyframe;
             String tempPath;
             if(System.getProperty("os.name").equals("Mac OS X"))
@@ -120,11 +118,6 @@ public class Animation {
             else
                 tempPath = "installations\\CrystalNet\\animations\\TEMPLATE_keyframe.json";
             jsonKeyframe = parent.loadJSONObject(new File(tempPath));
-//            parent.println("current values lenght:"+currentValues.length);
-//            parent.println("saving/");
-//            parent.println(currentValues);
-//            parent.println("missing:");
-//            parent.println(currentValues[0]);
             for (int i = 0; i < currentValues.length; i++) {
                 jsonKeyframe.getJSONArray("outputs").getJSONObject(0).getJSONArray("objects").getJSONObject(i).getJSONObject("params").setFloat("opacity", currentValues[i]);
             }
@@ -149,11 +142,17 @@ public class Animation {
         else
             tempPath = "installations\\CrystalNet\\animations\\" + idAnim + "\\keyframes\\"+ indexFormatted + ".json";
         jsonKeyframe = parent.loadJSONObject(new File(tempPath));
-        //parent.println(currentValues);
+        if (currentIndex == 0)
+            AM.labelKeyframeName.setText("FIRST");
+        else if(currentIndex == keyframeNumber-1)
+                AM.labelKeyframeName.setText("LAST");
+            else
+                AM.labelKeyframeName.setText("keyframe n°" +Integer.toString(currentIndex));
         for (int i=0; i<currentValues.length;i++) {
             currentValues[i] = jsonKeyframe.getJSONArray("outputs").getJSONObject(0).getJSONArray("objects").getJSONObject(i).getJSONObject("params").getFloat("opacity");
         }
         currentKeyframe = new Keyframe(parent, currentValues);
+
     }
 
     void sendCurrentValuesToPreviewController(){
@@ -226,7 +225,6 @@ public class Animation {
             {
                 while(true) {
                     for (currentKeyframeIndex = 0; currentKeyframeIndex < keyframeNumber; currentKeyframeIndex++) {
-                        //parent.println(currentKeyframeIndex+" played");
                         loadKeyframe(currentKeyframeIndex);
                         sendCurrentValuesToPreviewController();
                         try {
