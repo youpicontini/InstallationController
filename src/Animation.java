@@ -4,8 +4,8 @@ import processing.core.PConstants;
 import processing.data.JSONObject;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.text.DecimalFormat;
-
 
 public class Animation {
 
@@ -214,7 +214,12 @@ public class Animation {
             tempPath = "installations\\CrystalNet\\animations\\" + idAnim +"\\keyframes";
         File folder = new File(tempPath);
         if (folder.exists())
-            keyframeNumber = folder.listFiles().length;
+            keyframeNumber = folder.listFiles(new FileFilter() {
+                @Override
+                public boolean accept(File f) {
+                    return !f.isHidden();
+                }
+            }).length;
         else
             keyframeNumber = 1;
     }
