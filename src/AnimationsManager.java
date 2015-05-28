@@ -81,7 +81,6 @@ public class AnimationsManager {
                               .hide();
 
         buttonPlayAnim.setLabel("play")
-                       .setValue(0)
                         .setPosition(1260, 770)
                          .moveTo("global")
                           .setSize(170, 40)
@@ -89,14 +88,12 @@ public class AnimationsManager {
                             .hide();
 
         buttonNewAnim.setLabel("       +")
-                      .setValue(0)
                        .setPosition(150, 770)
                         .setSize(40, 40)
                          .setGroup("groupEditor")
                           .hide();
 
         buttonDeleteAnim.setLabel("       -")
-                .setValue(0)
                 .setPosition(100, 770)
                 .setSize(40, 40)
                 .setGroup("groupEditor")
@@ -126,32 +123,28 @@ public class AnimationsManager {
                        .hide();
 
         buttonNewKeyframe.setLabel("       +")
-                          .setValue(0)
                            .setPosition(1390, 720)
                             .setSize(40, 40)
                              .setGroup("groupEditor")
                             .hide();
 
         buttonDeleteKeyframe.setLabel("       -")
-                             .setValue(0)
                 .setPosition(1340, 720)
                 .setSize(40, 40)
                 .setGroup("groupEditor")
                 .hide();
 
         buttonResetKeyframe.setLabel("RESET")
-                             .setValue(0)
                 .setPosition(1260, 720)
                 .setSize(70, 40)
                 .setGroup("groupEditor")
                 .hide();
 
         labelKeyframeName.setLabel("NAME KEYFRAME")
-                          .setValue(0)
-                .setPosition(1260, 400)
-                .setFont(parent.createFont("", 30))
-                .setGroup("groupEditor")
-                .hide();
+                            .setPosition(1260, 650)
+                            .setFont(parent.createFont("", 28))
+                            .setTab("global")
+                            .hide();
 
         sliderDeviceOpacity.setLabel("opacity")
                 .setPosition(1260, 80)
@@ -212,12 +205,10 @@ public class AnimationsManager {
 
     void playAnimation(){
         currentAnim.play();
-        System.out.print("playing..");
     }
 
     void stopAnimation(){
         currentAnim.stop();
-        System.out.print("stop");
     }
     void displayAnimation(int index){
         ListBoxItem item = listAnimations.getItem(index);
@@ -241,7 +232,7 @@ public class AnimationsManager {
 
 
     public void newAnimation(String name, int fps){
-        currentAnim = new Animation(name, fps, nb_elements, cp5, parent, previewController);
+        currentAnim = new Animation(name, fps, nb_elements, cp5, parent, previewController,this);
         currentAnim.addFirstKeyframe();
         newAnimNameinput(name);
         highlightSelectedAnim(getLengthListbox(listAnimations)-1);
@@ -261,7 +252,7 @@ public class AnimationsManager {
         else
             configFilePath = "installations\\CrystalNet\\animations\\"+name.replaceAll(" ","_")+"\\config.json";
         JSONObject configjson = parent.loadJSONObject(new File(configFilePath));
-        currentAnim = new Animation(name,configjson.getInt("fps"), nb_elements, cp5, parent, previewController);
+        currentAnim = new Animation(name,configjson.getInt("fps"), nb_elements, cp5, parent, previewController,this);
     }
 
     public int getLengthListbox(ListBox list) {
@@ -352,36 +343,30 @@ public class AnimationsManager {
         previewController.nb_elements = i;
     }
 
-    void createTemplateKeyframe(int nb_elmts){
-        String templateKfFilePath;
-        if(System.getProperty("os.name").equals("Mac OS X"))
-            templateKfFilePath = "installations/CrystalNet/animations/TEMPLATE_keyframe.json";
-
-        else
-            templateKfFilePath = "installations\\CrystalNet\\animations\\TEMPLATE_keyframe.json";
-
-        JSONObject templateKfjson = new JSONObject();
-        templateKfjson.setString("id", currentAnimName);
-        JSONArray values = new JSONArray();
-        JSONObject val = new JSONObject();
-        val.setString("type","led");
-        JSONArray obj = new JSONArray();
-        JSONObject ledObj = new JSONObject();
-        JSONObject params = new JSONObject();
-        params.setFloat("opacity",0);
-        ledObj.setJSONObject("params", params);
-        for(int i = 0; i <nb_elmts; i++) {
-            ledObj.setInt("id", i);
-            parent.println(i);
-            parent.println(ledObj);
-            obj.setJSONObject(i, ledObj);
-//            JSONObject templateKfjson = parent.loadJSONObject(new File(templateKfFilePath));
-//            templateKfjson.setString("Id",currentAnimName);
-//            templateKfjson.setJSONArray("outputs",i).setJSONObject(0).setJSONArray("objects").setJSONObject(i).setInt("id",i).setJSONObject("params").setFloat("opacity", 0);
-        }
-        val.setJSONArray("objects",obj);
-        values.setJSONObject(0,val);
-        templateKfjson.setJSONArray("outputs", values);
-        parent.println(templateKfjson);
-    }
+//    void createTemplateKeyframe(int nb_elmts){
+//        String templateKfFilePath;
+//        if(System.getProperty("os.name").equals("Mac OS X"))
+//            templateKfFilePath = "installations/CrystalNet/animations/TEMPLATE_keyframe.json";
+//
+//        else
+//            templateKfFilePath = "installations\\CrystalNet\\animations\\TEMPLATE_keyframe.json";
+//
+//        JSONObject templateKfjson = new JSONObject();
+//        templateKfjson.setString("id", currentAnimName);
+//        JSONArray values = new JSONArray();
+//        JSONObject val = new JSONObject();
+//        val.setString("type","led");
+//        JSONArray obj = new JSONArray();
+//        JSONObject ledObj = new JSONObject();
+//        JSONObject params = new JSONObject();
+//        params.setFloat("opacity",0);
+//        ledObj.setJSONObject("params", params);
+//        for(int i = 0; i <nb_elmts; i++) {
+//            ledObj.setInt("id", i);
+//            obj.setJSONObject(i, ledObj);
+//        }
+//        val.setJSONArray("objects",obj);
+//        values.setJSONObject(0,val);
+//        templateKfjson.setJSONArray("outputs", values);
+//    }
 }
