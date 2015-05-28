@@ -148,9 +148,10 @@ public class AnimationsManager {
 
         labelKeyframeName.setLabel("NAME KEYFRAME")
                           .setValue(0)
-                .setPosition(1620, 400)
+                .setPosition(1260, 400)
                 .setFont(parent.createFont("", 30))
-                .setGroup("groupEditor");
+                .setGroup("groupEditor")
+                .hide();
 
         sliderDeviceOpacity.setLabel("opacity")
                 .setPosition(1260, 80)

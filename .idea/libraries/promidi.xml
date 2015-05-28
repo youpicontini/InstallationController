@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="promidi">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../../../../Processing/libraries/promidi/library/promidi.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/Processing/libraries/promidi/library/promidi.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
