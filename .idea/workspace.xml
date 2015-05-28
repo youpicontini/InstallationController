@@ -6,9 +6,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eea022a7-1c0e-4f79-a85a-6618cd97b5c0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Animation.java" afterPath="$PROJECT_DIR$/src/Animation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AnimationsManager.java" afterPath="$PROJECT_DIR$/src/AnimationsManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/InstallationController.java" afterPath="$PROJECT_DIR$/src/InstallationController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/installations/CrystalNet/animations/cocktailbananas/keyframes/0001.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/installations/CrystalNet/animations/cocktailbananas/keyframes/0002.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="InstallationController.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,10 +33,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="InstallationController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="InstallationController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/InstallationController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.24138" vertical-offset="1850" max-vertical-offset="5661">
+            <state vertical-scroll-proportion="0.5780142" vertical-offset="1850" max-vertical-offset="5661">
               <caret line="128" column="78" selection-start-line="128" selection-start-column="78" selection-end-line="128" selection-end-column="78" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -53,10 +53,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AnimationsManager.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AnimationsManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AnimationsManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.920792" vertical-offset="4286" max-vertical-offset="6358">
+            <state vertical-scroll-proportion="0.0" vertical-offset="4184" max-vertical-offset="6358">
               <caret line="148" column="27" selection-start-line="148" selection-start-column="8" selection-end-line="148" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -69,11 +69,31 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="0001.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/installations/CrystalNet/animations/cocktailbananas/keyframes/0001.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="3621">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="0002.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/installations/CrystalNet/animations/cocktailbananas/keyframes/0002.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-13.730769" vertical-offset="0" max-vertical-offset="3621">
+              <caret line="21" column="32" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Animation.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Animation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.586207" vertical-offset="3665" max-vertical-offset="4199">
-              <caret line="226" column="115" selection-start-line="226" selection-start-column="115" selection-end-line="226" selection-end-column="115" />
+            <state vertical-scroll-proportion="-8.172414" vertical-offset="3520" max-vertical-offset="4199">
+              <caret line="227" column="57" selection-start-line="227" selection-start-column="37" selection-end-line="227" selection-end-column="57" />
               <folding>
                 <element signature="e#8914#9639#0" expanded="true" />
                 <element signature="e#9638#9639#0" expanded="true" />
@@ -87,16 +107,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
               <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/installations/CrystalNet/animations/cocktailbananas/config.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.6153846" vertical-offset="0" max-vertical-offset="170">
-              <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -127,8 +137,8 @@
       <file leaf-file-name="PreviewController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/PreviewController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.931034" vertical-offset="630" max-vertical-offset="2125">
-              <caret line="54" column="42" selection-start-line="54" selection-start-column="27" selection-end-line="54" selection-end-column="42" />
+            <state vertical-scroll-proportion="-9.931034" vertical-offset="715" max-vertical-offset="2210">
+              <caret line="59" column="42" selection-start-line="59" selection-start-column="27" selection-end-line="59" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -206,6 +216,7 @@
         <option value="$PROJECT_DIR$/src/LedStripe.java" />
         <option value="$PROJECT_DIR$/src/AnimationsManager.java" />
         <option value="$PROJECT_DIR$/src/InstallationController.java" />
+        <option value="$PROJECT_DIR$/installations/CrystalNet/animations/cocktailbananas/keyframes/0001.json" />
       </list>
     </option>
   </component>
@@ -388,32 +399,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="InstallationController" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="InstallationController" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="installations" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CrystalNet" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="animations" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cocktailbananas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -437,11 +422,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\installations\CrystalNet\animations\cocktailbananas\keyframes" />
       <recent name="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\animations" />
       <recent name="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\animations\3654351td" />
       <recent name="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\animations\3654351td\keyframes" />
       <recent name="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\animations\85tfh465ft4h56t4" />
-      <recent name="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController\animations\fthf65h56tf" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\presta\Documents\work\repositories\InstallationController\InstallationController" />
@@ -653,7 +638,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -665,7 +650,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3305174" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3305174" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25208333" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
@@ -1011,20 +996,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/installations/CrystalNet/animations/cocktailbananas/keyframes/0001.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3621">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/installations/CrystalNet/animations/cocktailbananas/keyframes/0002.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8206897" vertical-offset="0" max-vertical-offset="3621">
-          <caret line="28" column="16" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/../../../../Processing/libraries/dmxP512/library/dmxP512.jar!/dmxP512/DmxP512.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3321859" vertical-offset="1847" max-vertical-offset="3383">
@@ -1110,8 +1081,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/PreviewController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.931034" vertical-offset="630" max-vertical-offset="2125">
-          <caret line="54" column="42" selection-start-line="54" selection-start-column="27" selection-end-line="54" selection-end-column="42" />
+        <state vertical-scroll-proportion="-9.931034" vertical-offset="715" max-vertical-offset="2210">
+          <caret line="59" column="42" selection-start-line="59" selection-start-column="27" selection-end-line="59" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1123,17 +1094,6 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="663" max-vertical-offset="1326">
           <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Animation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.586207" vertical-offset="3665" max-vertical-offset="4199">
-          <caret line="226" column="115" selection-start-line="226" selection-start-column="115" selection-end-line="226" selection-end-column="115" />
-          <folding>
-            <element signature="e#8914#9639#0" expanded="true" />
-            <element signature="e#9638#9639#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1157,9 +1117,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/installations/CrystalNet/animations/cocktailbananas/keyframes/0001.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3621">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/installations/CrystalNet/animations/cocktailbananas/keyframes/0002.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.730769" vertical-offset="0" max-vertical-offset="3621">
+          <caret line="21" column="32" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Animation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.172414" vertical-offset="3520" max-vertical-offset="4199">
+          <caret line="227" column="57" selection-start-line="227" selection-start-column="37" selection-end-line="227" selection-end-column="57" />
+          <folding>
+            <element signature="e#8914#9639#0" expanded="true" />
+            <element signature="e#9638#9639#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AnimationsManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="4286" max-vertical-offset="6358">
+          <caret line="148" column="27" selection-start-line="148" selection-start-column="8" selection-end-line="148" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#7103#7104#0" expanded="true" />
+            <element signature="e#7137#7138#0" expanded="true" />
+            <element signature="e#7164#7165#0" expanded="true" />
+            <element signature="e#7198#7199#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/InstallationController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.24138" vertical-offset="1850" max-vertical-offset="5661">
+        <state vertical-scroll-proportion="0.5780142" vertical-offset="1850" max-vertical-offset="5661">
           <caret line="128" column="78" selection-start-line="128" selection-start-column="78" selection-end-line="128" selection-end-column="78" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1171,20 +1172,6 @@
             <element signature="e#16196#16197#0" expanded="true" />
             <element signature="e#16816#16817#0" expanded="true" />
             <element signature="e#16867#16868#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AnimationsManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.920792" vertical-offset="4286" max-vertical-offset="6358">
-          <caret line="148" column="27" selection-start-line="148" selection-start-column="8" selection-end-line="148" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#7103#7104#0" expanded="true" />
-            <element signature="e#7137#7138#0" expanded="true" />
-            <element signature="e#7164#7165#0" expanded="true" />
-            <element signature="e#7198#7199#0" expanded="true" />
           </folding>
         </state>
       </provider>
