@@ -26,6 +26,7 @@ public class AnimationsManager {
 
     Button buttonNewKeyframe;
     Button buttonDeleteKeyframe;
+    Button buttonResetKeyframe;
     Textlabel labelKeyframeName;
     Slider sliderDeviceOpacity;
 
@@ -58,6 +59,7 @@ public class AnimationsManager {
         labelKeyframeName = cp5.addTextlabel("labelKeyframeName");
         buttonNewKeyframe = cp5.addButton("buttonNewKeyframe");
         buttonDeleteKeyframe = cp5.addButton("buttonDeleteKeyframe");
+        buttonResetKeyframe = cp5.addButton("buttonResetKeyframe");
 
         sliderDeviceOpacity = cp5.addSlider("sliderDeviceOpacity");
 
@@ -134,6 +136,13 @@ public class AnimationsManager {
                              .setValue(0)
                 .setPosition(1340, 720)
                 .setSize(40, 40)
+                .setGroup("groupEditor")
+                .hide();
+
+        buttonResetKeyframe.setLabel("RESET")
+                             .setValue(0)
+                .setPosition(1260, 720)
+                .setSize(70, 40)
                 .setGroup("groupEditor")
                 .hide();
 

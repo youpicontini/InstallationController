@@ -15,6 +15,7 @@ public class LedStripe {
     int transparent;
     int white;
     boolean selected=false;
+    boolean severalSelected=false;
     JSONArray coordinates;
 
     boolean ol;

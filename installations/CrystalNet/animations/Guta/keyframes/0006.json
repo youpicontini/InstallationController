@@ -7,11 +7,11 @@
       },
       {
         "id": 1,
-        "params": {"opacity": 1}
+        "params": {"opacity": 0}
       },
       {
         "id": 2,
-        "params": {"opacity": 1}
+        "params": {"opacity": 0}
       },
       {
         "id": 3,
@@ -23,7 +23,7 @@
       },
       {
         "id": 5,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       },
       {
         "id": 6,
@@ -31,15 +31,15 @@
       },
       {
         "id": 7,
-        "params": {"opacity": 1}
+        "params": {"opacity": 0}
       },
       {
         "id": 8,
-        "params": {"opacity": 1}
+        "params": {"opacity": 0}
       },
       {
         "id": 9,
-        "params": {"opacity": 1}
+        "params": {"opacity": 0}
       },
       {
         "id": 10,
@@ -51,15 +51,15 @@
       },
       {
         "id": 12,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       },
       {
         "id": 13,
-        "params": {"opacity": 1}
+        "params": {"opacity": 0}
       },
       {
         "id": 14,
-        "params": {"opacity": 1}
+        "params": {"opacity": 0}
       },
       {
         "id": 15,
@@ -75,7 +75,7 @@
       },
       {
         "id": 18,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       },
       {
         "id": 19,
@@ -83,7 +83,7 @@
       },
       {
         "id": 20,
-        "params": {"opacity": 1}
+        "params": {"opacity": 0}
       },
       {
         "id": 21,
@@ -91,7 +91,7 @@
       },
       {
         "id": 22,
-        "params": {"opacity": 1}
+        "params": {"opacity": 0}
       },
       {
         "id": 23,
@@ -103,7 +103,7 @@
       },
       {
         "id": 25,
-        "params": {"opacity": 1}
+        "params": {"opacity": 0}
       },
       {
         "id": 26,
@@ -139,7 +139,7 @@
       },
       {
         "id": 34,
-        "params": {"opacity": 1}
+        "params": {"opacity": 0}
       },
       {
         "id": 35,
@@ -167,7 +167,7 @@
       },
       {
         "id": 41,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       },
       {
         "id": 42,
@@ -195,11 +195,11 @@
       },
       {
         "id": 48,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       },
       {
         "id": 49,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       }
     ],
     "type": "OBJECT_TYPE led etc.."

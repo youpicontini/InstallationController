@@ -65,7 +65,7 @@ public class Animation {
         currentKeyframeIndex = currentIndex;
         renameFollowingKeyframesFiles(keyframeNumber - 1, currentIndex);
         parent.println("adding kf n°" + temp);
-        currentValues = new float[nb_elements];
+        //currentValues = new float[nb_elements];
         kfHasChanged = true;
         saveKeyframe(temp);
         //currentKeyframe = new Keyframe(parent, currentValues);
@@ -176,9 +176,9 @@ public class Animation {
                 while (i > endIndex ) {
                     String iFormatted = formatter.format(i);
                     try{
-                        File oldFile = new File(tempPath + iFormatted + ".json");
-                        iFormatted = formatter.format(i+1);
-                        renamed = oldFile.renameTo(new File(tempPath + iFormatted + ".json"));
+                        //File oldFile = new File(tempPath + iFormatted + ".json");
+                        //iFormatted = formatter.format(i+1);
+                        renamed =  new File(tempPath + formatter.format(i) + ".json").renameTo(new File(tempPath + formatter.format(i+1) + ".json"));
                         int temp=i+1;
                         System.out.println(i+" renamed to "+ temp +">"+ renamed);
                         if(renamed)i--;
@@ -191,9 +191,9 @@ public class Animation {
                 while(i < endIndex) {
                     String iFormatted = formatter.format(i+1);
                     try{
-                        File oldFile = new File(tempPath + iFormatted + ".json");
-                        iFormatted = formatter.format(i);
-                        renamed = oldFile.renameTo(new File(tempPath + iFormatted + ".json"));
+//                        File oldFile = new File(tempPath + iFormatted + ".json");
+//                        iFormatted = formatter.format(i);
+                        renamed = new File(tempPath + formatter.format(i+1) + ".json").renameTo(new File(tempPath + formatter.format(i) + ".json"));
                         int temp=i-1;
                         System.out.println(i+" renamed to "+temp +">"+ renamed);
                         if(renamed)i++;

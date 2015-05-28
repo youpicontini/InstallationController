@@ -86,38 +86,52 @@ public class InstallationController extends PApplet {
     }
 
     public void keyPressed() {
-        if (key == 'q' ){
-            if(appController.editor.animationsManager.currentAnim.currentKeyframeIndex != 0) {
-                appController.editor.animationsManager.currentAnim.saveKeyframe(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
-                appController.editor.animationsManager.currentAnim.currentKeyframeIndex--;
-                appController.editor.animationsManager.currentAnim.loadKeyframe(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
-                appController.editor.animationsManager.currentAnim.sendCurrentValuesToPreviewController();
-                appController.editor.previewController.unselectDevices();
-                String tempname ="keyframe n°"+ Integer.toString(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
-                appController.editor.animationsManager.labelKeyframeName.setText(tempname);
+        if (key == CODED) {
+            if (keyCode == SHIFT) {
+                appController.editor.previewController.currentLedStripe.severalSelected = true;
+                println(appController.editor.previewController.currentLedStripe.severalSelected);
             }
-            else {
-                String tempname ="first";
-                appController.editor.animationsManager.labelKeyframeName.setText(tempname);
-                println(tempname);
+        } else {
+            if (key == 'q') {
+                if (appController.editor.animationsManager.currentAnim.currentKeyframeIndex != 0) {
+                    appController.editor.animationsManager.currentAnim.saveKeyframe(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
+                    appController.editor.animationsManager.currentAnim.currentKeyframeIndex--;
+                    appController.editor.animationsManager.currentAnim.loadKeyframe(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
+                    appController.editor.animationsManager.currentAnim.sendCurrentValuesToPreviewController();
+                    appController.editor.previewController.unselectDevices();
+                    String tempname = "keyframe n°" + Integer.toString(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
+                    appController.editor.animationsManager.labelKeyframeName.setText(tempname);
+                } else {
+                    String tempname = "first";
+                    appController.editor.animationsManager.labelKeyframeName.setText(tempname);
+                    println(tempname);
+                }
+            }
+            if (key == 'd') {
+                if (appController.editor.animationsManager.currentAnim.currentKeyframeIndex != (appController.editor.animationsManager.currentAnim.keyframeNumber - 1)) {
+                    println("----");
+                    println("next");
+                    appController.editor.animationsManager.currentAnim.saveKeyframe(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
+                    appController.editor.animationsManager.currentAnim.currentKeyframeIndex++;
+                    appController.editor.animationsManager.currentAnim.loadKeyframe(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
+                    appController.editor.animationsManager.currentAnim.sendCurrentValuesToPreviewController();
+                    appController.editor.previewController.unselectDevices();
+                    String tempname = "keyframe n°" + Integer.toString(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
+                    appController.editor.animationsManager.labelKeyframeName.setText(tempname);
+                } else {
+                    String tempname = "last";
+                    appController.editor.animationsManager.labelKeyframeName.setText(tempname);
+                    println(tempname);
+                }
             }
         }
-        if (key == 'd' ){
-            if(appController.editor.animationsManager.currentAnim.currentKeyframeIndex != (appController.editor.animationsManager.currentAnim.keyframeNumber-1)) {
-                println("----");
-                println("next");
-                appController.editor.animationsManager.currentAnim.saveKeyframe(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
-                appController.editor.animationsManager.currentAnim.currentKeyframeIndex++;
-                appController.editor.animationsManager.currentAnim.loadKeyframe(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
-                appController.editor.animationsManager.currentAnim.sendCurrentValuesToPreviewController();
-                appController.editor.previewController.unselectDevices();
-                String tempname ="keyframe n°"+ Integer.toString(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
-                appController.editor.animationsManager.labelKeyframeName.setText(tempname);
-            }
-            else {
-                String tempname ="last";
-                appController.editor.animationsManager.labelKeyframeName.setText(tempname);
-                println(tempname);
+    }
+
+    public void keyReleased(){
+        if (key == CODED) {
+            if (keyCode == SHIFT) {
+                appController.editor.previewController.currentLedStripe.severalSelected = false;
+                println(appController.editor.previewController.currentLedStripe.severalSelected);
             }
         }
     }
@@ -160,9 +174,11 @@ public class InstallationController extends PApplet {
             appController.editor.animationsManager.displayAnimation(currentIndex);
             appController.editor.animationsManager.currentAnim.kfHasChanged=false;
             appController.editor.previewController.animation=true;
+            appController.editor.animationsManager.currentAnim.saveKeyframe(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
             appController.editor.animationsManager.buttonPlayAnim.show();
             appController.editor.animationsManager.buttonNewKeyframe.show();
             appController.editor.animationsManager.buttonDeleteKeyframe.show();
+            appController.editor.animationsManager.buttonResetKeyframe.show();
             appController.editor.animationsManager.buttonNewAnim.show();
             appController.editor.animationsManager.buttonDeleteAnim.show();
             appController.editor.animationsManager.sliderDeviceOpacity.show();
@@ -192,20 +208,30 @@ public class InstallationController extends PApplet {
                 appController.editor.animationsManager.currentAnim.removeKeyframe(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
             appController.editor.animationsManager.currentAnim.kfHasChanged=false;
         }
+        if(e.name().equals("buttonResetKeyframe")) {
+            if (appController.editor.animationsManager instanceof AnimationsManager)
+                appController.editor.animationsManager.currentAnim.currentValues = new float[appController.editor.animationsManager.currentAnim.nb_elements];
+                appController.editor.animationsManager.currentAnim.sendCurrentValuesToPreviewController();
+                appController.editor.animationsManager.sliderDeviceOpacity.setValue(0);
+                appController.editor.animationsManager.currentAnim.kfHasChanged=true;
+        }
 
         if(e.name().equals("buttonPlayAnim")){
             if (appController.editor.animationsManager instanceof AnimationsManager) {
                 if(appController.editor.animationsManager.buttonPlayAnim.isOn()) {
                     appController.editor.animationsManager.buttonNewKeyframe.hide();
                     appController.editor.animationsManager.buttonDeleteKeyframe.hide();
+                    appController.editor.animationsManager.buttonResetKeyframe.hide();
                     appController.editor.animationsManager.buttonNewAnim.hide();
                     appController.editor.animationsManager.buttonDeleteAnim.hide();
                     appController.editor.animationsManager.sliderDeviceOpacity.hide();
+                    appController.editor.animationsManager.currentAnim.saveKeyframe(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
                     appController.editor.animationsManager.playAnimation();
                 }
                 else{
                     appController.editor.animationsManager.buttonNewKeyframe.show();
                     appController.editor.animationsManager.buttonDeleteKeyframe.show();
+                    appController.editor.animationsManager.buttonResetKeyframe.show();
                     appController.editor.animationsManager.buttonNewAnim.show();
                     appController.editor.animationsManager.buttonDeleteAnim.show();
                     appController.editor.animationsManager.sliderDeviceOpacity.show();
@@ -213,21 +239,13 @@ public class InstallationController extends PApplet {
                 }
             }
         }
-        if(e.name().equals("buttonStopAnim")){
-            if (appController.editor.animationsManager instanceof AnimationsManager) {
-                appController.editor.animationsManager.buttonNewKeyframe.show();
-                appController.editor.animationsManager.buttonDeleteKeyframe.show();
-                appController.editor.animationsManager.buttonNewAnim.show();
-                appController.editor.animationsManager.buttonDeleteAnim.show();
-                appController.editor.animationsManager.sliderDeviceOpacity.show();
-                appController.editor.animationsManager.stopAnimation();
-            }
-        }
         if(e.name().equals("default")){
             appController.editor.animationsManager.listAnimations.show();
             appController.editor.previewController.editor=true;
             appController.editor.previewController.offsetOpacity = 0;
             appController.player.sliderMasterOpacity.setValue(1);
+            appController.player.buttonNoise.setOff();
+            appController.player.buttonStrobe.setOff();
         }
         if(e.name().equals("tabPlayer")){
             appController.editor.animationsManager.listAnimations.show();
@@ -238,10 +256,10 @@ public class InstallationController extends PApplet {
             appController.player.sliderMasterOpacity.setValue(1);
         }
         if(e.name().equals("sliderDeviceOpacity")){
-            appController.editor.animationsManager.currentAnim.currentKeyframe.currentOpacity=appController.editor.animationsManager.sliderDeviceOpacity.getValue();
+            appController.editor.animationsManager.currentAnim.currentKeyframe.currentOpacity = appController.editor.animationsManager.sliderDeviceOpacity.getValue();
             appController.editor.animationsManager.currentAnim.sendCurrentValuesToPreviewController();
             appController.editor.animationsManager.currentAnim.kfHasChanged=true;
-            println(appController.editor.animationsManager.currentAnim.currentValues);
+            //println(appController.editor.animationsManager.currentAnim.currentValues);
         }
         if(e.name().equals("sliderMasterOpacity")){
             appController.player.adaptOpacityFromMaster(appController.player.sliderMasterOpacity.getValue());
