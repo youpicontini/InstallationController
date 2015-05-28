@@ -31,8 +31,13 @@ public class PreviewController {
     void setup(){
         of = parent.createGraphics(1050, 750);
         JSONArray currentCoordinates;
+        String tempPath;
+        if(System.getProperty("os.name").equals("Mac OS X"))
+            tempPath = "installations/CrystalNet/setup.json";
+        else
+            tempPath = "installations\\CrystalNet\\setup.json";
         for(int i = 0; i < nb_elements; i++){
-            currentCoordinates =  parent.loadJSONObject("installations\\CrystalNet\\setup.json").getJSONArray("coordinates").getJSONArray(i).getJSONObject(0).getJSONArray("line");
+            currentCoordinates =  parent.loadJSONObject(tempPath).getJSONArray("coordinates").getJSONArray(i).getJSONObject(0).getJSONArray("line");
             LedStripesArray.add(new LedStripe(Integer.toString(i), of, currentCoordinates, cp5, parent, this));
         }
         currentLedStripe = LedStripesArray.get(0);

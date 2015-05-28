@@ -103,11 +103,11 @@
       },
       {
         "id": 25,
-        "params": {"opacity": 1}
+        "params": {"opacity": 0}
       },
       {
         "id": 26,
-        "params": {"opacity": 1}
+        "params": {"opacity": 0}
       },
       {
         "id": 27,
@@ -123,7 +123,7 @@
       },
       {
         "id": 30,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       },
       {
         "id": 31,
@@ -139,11 +139,11 @@
       },
       {
         "id": 34,
-        "params": {"opacity": 1}
+        "params": {"opacity": 0}
       },
       {
         "id": 35,
-        "params": {"opacity": 1}
+        "params": {"opacity": 0}
       },
       {
         "id": 36,
@@ -159,7 +159,7 @@
       },
       {
         "id": 39,
-        "params": {"opacity": 1}
+        "params": {"opacity": 0}
       },
       {
         "id": 40,
