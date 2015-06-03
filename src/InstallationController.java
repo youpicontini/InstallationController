@@ -1,12 +1,9 @@
 import processing.core.*;
 import controlP5.*;
-//import dmxP512.*;
 import promidi.*;
 
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
+
 import java.awt.event.MouseWheelEvent;
-import java.awt.event.MouseWheelListener;
 
 
 
@@ -15,24 +12,16 @@ public class InstallationController extends PApplet {
 
     ControlP5 cp5;
     AppController appController;
-    //DMXInterface dmxInterface;
     MidiIO midiIO;
+    DMXInterface dmxInterface;
     //MIDIController midiController;
+    SoundSpectrum soundSpectrum;
+
     public static final String APPNAME="InstallationController";
     public static final String PROJECTNAME="Crystal Net";
 
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_BLACK = "\u001B[30m";
-    public static final String ANSI_RED = "\u001B[31m";
-    public static final String ANSI_GREEN = "\u001B[32m";
-    public static final String ANSI_YELLOW = "\u001B[33m";
-    public static final String ANSI_BLUE = "\u001B[34m";
-    public static final String ANSI_PURPLE = "\u001B[35m";
-    public static final String ANSI_CYAN = "\u001B[36m";
-    public static final String ANSI_WHITE = "\u001B[37m";
-
     public static void main(String args[]) {
-        PApplet.main("InstallationController");
+        PApplet.main(/*new String[] {"--present",*/"InstallationController"/*}*/);
     }
 
 	public void setup() {
@@ -40,17 +29,18 @@ public class InstallationController extends PApplet {
         frame.setTitle(APPNAME);
 
         cp5 = new ControlP5(this);
+
         appController = new AppController(cp5, this);
+        dmxInterface = new DMXInterface(this, appController);
+        soundSpectrum = new SoundSpectrum(this);
+
         appController.setup();
-//        dmxInterface = new DMXInterface(this, appController);
-//        dmxInterface.setup();
+        dmxInterface.setup();
 //        midiController = new MIDIController(this, appController);
 //        midiController.setup();
-
-        // get an instance of midiIO
+        soundSpectrum.setup();
+        // MIDI
         midiIO = MidiIO.getInstance(this);
-
-        // print a list of all devices
         midiIO.printDevices();
 
         //plug all methods to handle midievents
@@ -63,8 +53,8 @@ public class InstallationController extends PApplet {
 	public void draw() {
         background(100);
         appController.draw();
-//        dmxInterface.draw();
-        //print(appController.editor.previewController.currentLedStripe.id);
+        dmxInterface.draw();
+        soundSpectrum.draw();
 	}
 
     public void mouseClicked(){
@@ -89,7 +79,6 @@ public class InstallationController extends PApplet {
         if (key == CODED) {
             if (keyCode == SHIFT) {
                 appController.editor.previewController.currentLedStripe.severalSelected = true;
-                //println(appController.editor.previewController.currentLedStripe.severalSelected);
             }
         } else {
             if (key == 'q') {
@@ -126,14 +115,13 @@ public class InstallationController extends PApplet {
     }
 
     public void controlEvent(ControlEvent e) {
-        if(appController.editor.animationsManager instanceof AnimationsManager && appController.player instanceof Player) {
             if (e.name().equals("inputNewAnimName")) {
                 appController.editor.animationsManager.currentAnimName = appController.editor.animationsManager.inputNewAnimName.getText();
                 appController.editor.animationsManager.labelNameAnimation.setText(appController.editor.animationsManager.currentAnimName);
                 appController.editor.animationsManager.labelNameAnimation.show();
                 appController.editor.animationsManager.inputNewAnimName.hide();
                 appController.editor.animationsManager.inputNewAnimFPS.show();
-                appController.editor.animationsManager.inputNewAnimFPS.setFocus(true);
+                //appController.editor.animationsManager.inputNewAnimFPS.setFocus(true);
             }
             if (e.name().equals("buttonNewAnim")) {
                 if (appController.editor.animationsManager instanceof AnimationsManager)
@@ -172,7 +160,7 @@ public class InstallationController extends PApplet {
                     appController.editor.animationsManager.buttonPlayAnim.setOn();
 
             }
-            if (e.isTab() && e.getTab().getName() == "default" && appController.editor.animationsManager.inputNewAnimName.isVisible()) {
+            if (e.isTab() && e.getTab().getName().equals("default") && appController.editor.animationsManager.inputNewAnimName.isVisible()) {
                 appController.editor.animationsManager.labelNameAnimation.show();
                 appController.editor.animationsManager.inputNewAnimName.hide();
             }
@@ -255,7 +243,7 @@ public class InstallationController extends PApplet {
             if (e.name().equals("buttonStrobe")) {
                 appController.editor.previewController.strobe = appController.player.buttonStrobe.getBooleanValue();
             }
-        }
+
     }
 
 
@@ -291,7 +279,7 @@ public class InstallationController extends PApplet {
         switch (num){
             case 25: appController.player.sliderMasterOpacity.setValue(map(val, 0, 127, 0, 1));
                 break;
-            case 24: appController.editor.previewController.periodStrobe=(long)map(val, 0, 127, 1, 20);
+            case 24: appController.editor.previewController.periodStrobe=(long)map(val, 0, 127, 1, 15);
                 break;
             case 3: appController.editor.animationsManager.currentAnim.fps= (int)map(val, 0, 127, 1, 20);
                 break;

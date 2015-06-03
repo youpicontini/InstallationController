@@ -14,6 +14,7 @@ public class PreviewController {
     ControlP5 cp5;
     int nb_elements;
     float[] currentKeyframeValues;
+    float[] currentKeyframeValuesDisplayed;
     LedStripe currentLedStripe,currentLedStripeHover;
 
     boolean editor;
@@ -37,7 +38,7 @@ public class PreviewController {
         editor = false;
         animation = false;
 
-        offsetOpacity=0;
+        offsetOpacity=1;
         noise=false;
         strobe=false;
         strobbing = false;
@@ -50,7 +51,7 @@ public class PreviewController {
         JSONArray currentCoordinates;
         String tempPath;
         if(System.getProperty("os.name").equals("Mac OS X"))
-            tempPath = "installations/CrystalNet/setup.json";
+            tempPath = System.getProperty("user.dir")+"/installations/CrystalNet/setup.json";
         else
             tempPath = "installations\\CrystalNet\\setup.json";
         for(int i = 0; i < nb_elements; i++){
@@ -59,6 +60,7 @@ public class PreviewController {
         }
         currentLedStripe = LedStripesArray.get(0);
         savedTime = parent.millis();
+        currentKeyframeValuesDisplayed = new float[nb_elements];
 
     }
 
@@ -77,26 +79,30 @@ public class PreviewController {
         of.background(parent.color(125));
         if(noise){
             for (int i = 0; i < currentKeyframeValues.length; i++) {
-                LedStripesArray.get(i).display(parent.noise(parent.random(0,parent.width),parent.random(0,parent.height))- parent.map(offsetOpacity, 1, 0, 0, 1));
+                currentKeyframeValuesDisplayed[i] = parent.noise(parent.random(0,parent.width),parent.random(0,parent.height)) * offsetOpacity;
+                LedStripesArray.get(i).display(currentKeyframeValuesDisplayed[i]);
             }
         }
-        if(strobe){
-            strobeTick();
-            if(strobbing){
-                for (int i = 0; i < currentKeyframeValues.length; i++) {
-                    LedStripesArray.get(i).display(1- parent.map(offsetOpacity, 1, 0, 0, 1));
+        else if(strobe){
+                strobeTick();
+                if(strobbing){
+                    for (int i = 0; i < currentKeyframeValues.length; i++) {
+                        currentKeyframeValuesDisplayed[i] = 1 * offsetOpacity;
+                        LedStripesArray.get(i).display(currentKeyframeValuesDisplayed[i]);
+                    }
                 }
-            }
-            else{
-                for (int i = 0; i < currentKeyframeValues.length; i++) {
-                    LedStripesArray.get(i).display(0);
+                else{
+                    for (int i = 0; i < currentKeyframeValues.length; i++) {
+                        currentKeyframeValuesDisplayed[i] = 0;
+                        LedStripesArray.get(i).display(currentKeyframeValuesDisplayed[i]);
+                    }
                 }
-            }
 
         }
         else {
             for (int i = 0; i < currentKeyframeValues.length; i++) {
-                LedStripesArray.get(i).display(currentKeyframeValues[i] - parent.map(offsetOpacity, 1, 0, 0, 1));
+                currentKeyframeValuesDisplayed[i] = currentKeyframeValues[i] * offsetOpacity;
+                LedStripesArray.get(i).display(currentKeyframeValuesDisplayed[i]);
             }
         }
         of.endDraw();

@@ -39,10 +39,9 @@ public class Animation {
         previewController = _previewController;
         AM = _AM;
 
-
         String tempPath;
         if(System.getProperty("os.name").equals("Mac OS X")) {
-            tempPath = "installations/CrystalNet/animations/" + idAnim + "/config.json";
+            tempPath = System.getProperty("user.dir")+"/installations/CrystalNet/animations/" + idAnim + "/config.json";
         }
         else {
             tempPath = "installations\\CrystalNet\\animations\\" + idAnim + "\\config.json";
@@ -87,7 +86,7 @@ public class Animation {
         String indexFormatted = formatter.format(currentIndex);
         String tempPath;
         if(System.getProperty("os.name").equals("Mac OS X"))
-            tempPath = "installations/CrystalNet/animations/" + idAnim +"/keyframes/"+indexFormatted+".json";
+            tempPath = System.getProperty("user.dir")+"/installations/CrystalNet/animations/" + idAnim +"/keyframes/"+indexFormatted+".json";
         else
             tempPath = "installations\\CrystalNet\\animations\\" + idAnim +"\\keyframes\\"+indexFormatted+".json";
         File f = new File(tempPath);
@@ -114,7 +113,7 @@ public class Animation {
             JSONObject jsonKeyframe;
             String tempPath;
             if(System.getProperty("os.name").equals("Mac OS X"))
-                tempPath = "installations/CrystalNet/animations/TEMPLATE_keyframe.json";
+                tempPath = System.getProperty("user.dir")+"/installations/CrystalNet/animations/TEMPLATE_keyframe.json";
             else
                 tempPath = "installations\\CrystalNet\\animations\\TEMPLATE_keyframe.json";
             jsonKeyframe = parent.loadJSONObject(new File(tempPath));
@@ -124,7 +123,7 @@ public class Animation {
             DecimalFormat formatter = new DecimalFormat("0000");
             String indexFormatted = formatter.format(currentIndex);
             if(System.getProperty("os.name").equals("Mac OS X"))
-                tempPath = "installations/CrystalNet/animations/" + idAnim + "/keyframes/" + indexFormatted + ".json";
+                tempPath = System.getProperty("user.dir")+"/installations/CrystalNet/animations/" + idAnim + "/keyframes/" + indexFormatted + ".json";
             else
                 tempPath = "installations\\CrystalNet\\animations\\" + idAnim + "\\keyframes\\" + indexFormatted + ".json";
             parent.saveJSONObject(jsonKeyframe, tempPath);
@@ -138,7 +137,7 @@ public class Animation {
         String indexFormatted = formatter.format(currentIndex);
         String tempPath;
         if(System.getProperty("os.name").equals("Mac OS X"))
-            tempPath = "installations/CrystalNet/animations/" + idAnim + "/keyframes/"+ indexFormatted + ".json";
+            tempPath = System.getProperty("user.dir")+"/installations/CrystalNet/animations/" + idAnim + "/keyframes/"+ indexFormatted + ".json";
         else
             tempPath = "installations\\CrystalNet\\animations\\" + idAnim + "\\keyframes\\"+ indexFormatted + ".json";
         jsonKeyframe = parent.loadJSONObject(new File(tempPath));
@@ -167,7 +166,7 @@ public class Animation {
             DecimalFormat formatter = new DecimalFormat("0000");
             String tempPath;
             if(System.getProperty("os.name").equals("Mac OS X"))
-                tempPath = "installations/CrystalNet/animations/" + idAnim + "/keyframes/";
+                tempPath = System.getProperty("user.dir")+"/installations/CrystalNet/animations/" + idAnim + "/keyframes/";
             else
                 tempPath = "installations\\CrystalNet\\animations\\" + idAnim + "\\keyframes\\";
             int i = startIndex;
@@ -209,7 +208,7 @@ public class Animation {
 
         String tempPath;
         if(System.getProperty("os.name").equals("Mac OS X"))
-            tempPath = "installations/CrystalNet/animations/" + idAnim + "/keyframes/";
+            tempPath = System.getProperty("user.dir")+"/installations/CrystalNet/animations/" + idAnim + "/keyframes/";
         else
             tempPath = "installations\\CrystalNet\\animations\\" + idAnim +"\\keyframes";
         File folder = new File(tempPath);
@@ -249,5 +248,4 @@ public class Animation {
         if(playingThread instanceof Thread)
             playingThread.stop();
     }
-
 }

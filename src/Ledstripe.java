@@ -51,6 +51,7 @@ public class LedStripe {
         canvas.strokeWeight(5);
         canvas.stroke(255, 255, 255, opacity);
         canvas.line(coordinates.getInt(0), coordinates.getInt(1), coordinates.getInt(2), coordinates.getInt(3));
+        //canvas.text("word", 10,50);
         c.set(parent.mouseX - 200, parent.mouseY - 60);
         canvas.stroke(0, 255, 0);
         if(pc.editor && pc.animation) {
@@ -65,6 +66,10 @@ public class LedStripe {
         }
         canvas.strokeWeight(1);
         canvas.line(coordinates.getInt(0), coordinates.getInt(1), coordinates.getInt(2), coordinates.getInt(3));
+        if(pc.editor) {
+            canvas.fill(0);
+            canvas.text(id, (coordinates.getInt(2) + coordinates.getInt(0)) / 2, (coordinates.getInt(3) + coordinates.getInt(1)) / 2);
+        }
         canvas.popStyle();
     }
 
