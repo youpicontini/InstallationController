@@ -13,6 +13,7 @@ public class DMXInterface {
     int DMXPRO_BAUDRATE = 115000;
 
     int nbChannel;
+    float[] currentKeyframeValues;
 
     DMXInterface(PApplet _parent, AppController _appController) {
         parent = _parent;
@@ -23,11 +24,13 @@ public class DMXInterface {
         dmxOutput = new DmxP512(parent, universeSize, false);
         dmxOutput.setupDmxPro(DMXPRO_PORT, DMXPRO_BAUDRATE);
         nbChannel = appController.editor.animationsManager.nb_elements;
+
     }
 
     void draw() {
-        for(int i=1; i<nbChannel; i++){
-            dmxOutput.set(i,Math.round(parent.map(appController.editor.previewController.currentKeyframeValuesDisplayed[i], 0, 1, 0, 255)));
+        currentKeyframeValues = appController.player.getCurrentKeyframeValues();
+        for(int i=0; i<nbChannel-1; i++){
+            dmxOutput.set(i+1,Math.round(parent.map(currentKeyframeValues[i], 0, 1, 0, 255)));
         }
     }
 }

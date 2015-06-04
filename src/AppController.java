@@ -14,14 +14,16 @@ public class AppController {
     Tab tabPlayer;
     Group groupEditor;
     Group groupPlayer;
+    SoundSpectrum soundSpectrum;
 
-    AppController(ControlP5 _cp5, PApplet _parent) {
+    AppController(ControlP5 _cp5, SoundSpectrum _soundSpectrum, PApplet _parent) {
 
         parent = _parent;
         cp5 = _cp5;
+        soundSpectrum = _soundSpectrum;
 
         editor = new Editor(cp5, parent);
-        player = new Player(cp5, parent, editor);
+        player = new Player(cp5, parent, editor, soundSpectrum);
 
 
         /* [INTERFACE] TABS*/
@@ -68,6 +70,6 @@ public class AppController {
     public void draw(){
         framerateProject.setText(""+Math.round(parent.frameRate)).setColor(0xff000000);
         editor.draw();
-        //player.draw();
+        player.draw();
     }
 }

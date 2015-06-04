@@ -21,7 +21,6 @@ public class AnimationsManager {
     Textlabel labelNameAnimation;
     Textfield inputNewAnimName;
     Textfield inputNewAnimFPS;
-    Button buttonPlayAnim;
     Group groupAnimations;
 
     Button buttonNewKeyframe;
@@ -47,7 +46,6 @@ public class AnimationsManager {
 
         // INTERFACE
         listAnimations = cp5.addListBox("listAnimations");
-        buttonPlayAnim = cp5.addButton("buttonPlayAnim");
         buttonNewAnim = cp5.addButton("buttonNewAnim");
         buttonDeleteAnim = cp5.addButton("buttonDeleteAnim");
         labelNameAnimation = cp5.addTextlabel("labelNameAnimation");
@@ -79,12 +77,7 @@ public class AnimationsManager {
                              .setColorForeground(parent.color(150))
                               .hide();
 
-        buttonPlayAnim.setLabel("play")
-                        .setPosition(1260, 770)
-                         .moveTo("global")
-                          .setSize(170, 40)
-                            .setSwitch(true)
-                            .hide();
+
 
         buttonNewAnim.setLabel("       +")
                        .setPosition(150, 770)
@@ -165,7 +158,6 @@ public class AnimationsManager {
         }
 
         nb_elements = parent.loadJSONObject(tempPath).getInt("nb_elements");
-        previewController.setCurrentKeyframeValues(new float[nb_elements]);
         setNbElementsPreviewController(nb_elements);
         //createTemplateKeyframe(nb_elements);
     }
@@ -202,13 +194,6 @@ public class AnimationsManager {
         listAnimations.getItem(selectedIndex).setColorBackground(colorSelected);//and set the bg colour to be the active/'selected one'...until a new selection is made and resets this, like above
     }
 
-    void playAnimation(){
-        currentAnim.play();
-    }
-
-    void stopAnimation(){
-        currentAnim.stop();
-    }
     void displayAnimation(int index){
         ListBoxItem item = listAnimations.getItem(index);
         String animName = listAnimations.getItem(index).getName().replaceAll(" ", "_");
@@ -225,7 +210,6 @@ public class AnimationsManager {
         labelNameAnimation.setText(item.getText()+"                 "+configjson.getInt("fps")+" FPS");
         updateCurrentAnim(index);
         currentAnim.loadKeyframe(0);
-        currentAnim.sendCurrentValuesToPreviewController();
 
     }
 
@@ -237,6 +221,7 @@ public class AnimationsManager {
         newAnimNameinput(name);
         highlightSelectedAnim(getLengthListbox(listAnimations)-1);
     }
+
 
 
 

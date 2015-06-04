@@ -6,6 +6,7 @@ import processing.core.PApplet;
 public class SoundSpectrum {
 
     PApplet parent;
+    AppController appController;
 
     Minim minim;
     AudioInput in;
@@ -21,7 +22,7 @@ public class SoundSpectrum {
 
     public void setup(){
         minim = new Minim(this);
-        in = minim.getLineIn(Minim.STEREO,512);
+        in = minim.getLineIn();
         fft = new FFT(in.bufferSize(), in.sampleRate());
         fft.logAverages(60,7);
         //parent.stroke(255);
@@ -37,7 +38,7 @@ public class SoundSpectrum {
         parent.pushMatrix();
         parent.translate(1062,59);
         beat.detect(in.mix);
-        if (beat.isOnset()) {
+        if(beat.isOnset()) {
             parent.pushStyle();
             parent.stroke(255);
             parent.strokeWeight(10);

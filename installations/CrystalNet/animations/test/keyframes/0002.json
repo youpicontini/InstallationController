@@ -111,11 +111,11 @@
       },
       {
         "id": 27,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       },
       {
         "id": 28,
-        "params": {"opacity": 1}
+        "params": {"opacity": 0}
       },
       {
         "id": 29,

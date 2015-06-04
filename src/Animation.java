@@ -21,7 +21,6 @@ public class Animation {
     int keyframeNumber = 1;
     boolean kfHasChanged = false;
     boolean AnimPlaying;
-    Thread playingThread;
 
     ControlP5 cp5;
     PApplet parent;
@@ -79,6 +78,10 @@ public class Animation {
         saveKeyframe(0);
         currentKeyframeIndex = 0;
         keyframeNumber = 1;
+    }
+
+    int getFps(){
+        return fps;
     }
 
     void removeKeyframe(int currentIndex){
@@ -154,9 +157,10 @@ public class Animation {
 
     }
 
-    void sendCurrentValuesToPreviewController(){
+    float[] getCurrentValues(){
         currentValues[currentKeyframe.currentDevice] = currentKeyframe.currentOpacity;
-        previewController.setCurrentKeyframeValues(currentValues);
+        //previewController.setCurrentKeyframeValues(currentValues);
+        return currentValues;
     }
 
     void renameFollowingKeyframesFiles(int startIndex, int endIndex){
@@ -224,28 +228,48 @@ public class Animation {
     }
 
     void play(){
-        playingThread = new Thread(new Runnable() {
-            public void run()
-            {
-                while(true) {
-                    for (currentKeyframeIndex = 0; currentKeyframeIndex < keyframeNumber; currentKeyframeIndex++) {
-                        loadKeyframe(currentKeyframeIndex);
-                        sendCurrentValuesToPreviewController();
-                        try {
-                            Thread.sleep(1000 / fps);                 //1000 milliseconds is one second.
-                        } catch (InterruptedException ex) {
-                            Thread.currentThread().interrupt();
-                        }
-                    }
-                    currentKeyframeIndex = 0;
-                }
-            }
-        });
-        playingThread.start();
+        loadKeyframe(currentKeyframeIndex);
+        currentKeyframeIndex++;
+        if (currentKeyframeIndex >= keyframeNumber) {
+            currentKeyframeIndex = 0;
+        }
     }
 
-    void stop(){
-        if(playingThread instanceof Thread)
-            playingThread.stop();
-    }
+//    void play(){
+//        playingThread = new Thread(new Runnable() {
+//            public void run()
+//            {
+//                while(true) {
+//                    currentKeyframeIndex = 0;
+//                    while (currentKeyframeIndex < keyframeNumber) {
+//                        loadKeyframe(currentKeyframeIndex);
+//                        sendCurrentValuesToPreviewController();
+//                        if(!soundReactive) {
+//                            try {
+//                                Thread.sleep(1000 / fps);                 //1000 milliseconds is one second.
+//                            } catch (InterruptedException ex) {
+//                                Thread.currentThread().interrupt();
+//                            }
+//                            currentKeyframeIndex++;
+//                        }
+//                        else{
+//                            if(beat){
+//                                currentKeyframeIndex++;
+//                            }
+//
+//                        }
+//                    }
+//                    currentKeyframeIndex = 0;
+//                }
+//            }
+//        });
+//        playingThread.start();
+//    }
+//
+//    void stop(){
+//        if(playingThread instanceof Thread)
+//            playingThread.stop();
+//    }
+
+
 }
