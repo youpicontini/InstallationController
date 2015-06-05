@@ -11,6 +11,7 @@ public class Player {
     Slider sliderMasterOpacity;
     Button buttonNoise;
     Button buttonStrobe;
+    Button buttonGlow;
     Button buttonSoundReactive;
     Button buttonPlayAnim;
 
@@ -19,7 +20,7 @@ public class Player {
     int fps;
     boolean fpsTick;
 
-    boolean strobe,noise,soundReactive;
+    boolean strobe,glow,noise,soundReactive;
     boolean strobbing;
     long periodStrobe;
     Thread strobeThread;
@@ -35,6 +36,7 @@ public class Player {
         sliderMasterOpacity = cp5.addSlider("sliderMasterOpacity");
         buttonNoise = cp5.addButton("buttonNoise");
         buttonStrobe = cp5.addButton("buttonStrobe");
+        buttonGlow = cp5.addButton("buttonGlow");
         buttonSoundReactive = cp5.addButton("buttonSoundReactive");
         buttonPlayAnim = cp5.addButton("buttonPlayAnim");
 
@@ -65,8 +67,15 @@ public class Player {
                 .setSwitch(true)
                 .hide();
 
-        buttonSoundReactive.setLabel("Sound Reactive")
+        buttonGlow.setLabel("Glow")
                 .setPosition(1260, 230)
+                .setGroup("groupPlayer")
+                .setSize(100, 40)
+                .setSwitch(true)
+                .hide();
+
+        buttonSoundReactive.setLabel("Sound Reactive")
+                .setPosition(1260, 280)
                 .setGroup("groupPlayer")
                 .setSize(100, 40)
                 .setSwitch(true)
@@ -135,6 +144,11 @@ public class Player {
             if (editor.animationsManager.currentAnim instanceof Animation)
                 setCurrentKeyframeValues(editor.animationsManager.currentAnim.getCurrentValues());
         }
+        if(glow) {
+            for (int i = 0; i < currentKeyframeValues.length; i++) {
+                currentKeyframeValues[i] = currentKeyframeValues[i] * masterOpacity;
+            }
+        }
         editor.previewController.setCurrentKeyframeValuesDisplayed(currentKeyframeValues);
     }
 
@@ -176,7 +190,7 @@ public class Player {
                         try {
                             if(fpsTick) fpsTick = false;
                             else fpsTick = true;
-                            Thread.sleep(1000 / fps);
+                            Thread.sleep(fps);
                         } catch (InterruptedException ex) {
                             Thread.currentThread().interrupt();
                         }

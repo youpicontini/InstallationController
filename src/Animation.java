@@ -158,7 +158,8 @@ public class Animation {
     }
 
     float[] getCurrentValues(){
-        currentValues[currentKeyframe.currentDevice] = currentKeyframe.currentOpacity;
+        if(currentKeyframe instanceof Keyframe)
+            currentValues[currentKeyframe.currentDevice] = currentKeyframe.currentOpacity;
         //previewController.setCurrentKeyframeValues(currentValues);
         return currentValues;
     }
@@ -234,42 +235,4 @@ public class Animation {
             currentKeyframeIndex = 0;
         }
     }
-
-//    void play(){
-//        playingThread = new Thread(new Runnable() {
-//            public void run()
-//            {
-//                while(true) {
-//                    currentKeyframeIndex = 0;
-//                    while (currentKeyframeIndex < keyframeNumber) {
-//                        loadKeyframe(currentKeyframeIndex);
-//                        sendCurrentValuesToPreviewController();
-//                        if(!soundReactive) {
-//                            try {
-//                                Thread.sleep(1000 / fps);                 //1000 milliseconds is one second.
-//                            } catch (InterruptedException ex) {
-//                                Thread.currentThread().interrupt();
-//                            }
-//                            currentKeyframeIndex++;
-//                        }
-//                        else{
-//                            if(beat){
-//                                currentKeyframeIndex++;
-//                            }
-//
-//                        }
-//                    }
-//                    currentKeyframeIndex = 0;
-//                }
-//            }
-//        });
-//        playingThread.start();
-//    }
-//
-//    void stop(){
-//        if(playingThread instanceof Thread)
-//            playingThread.stop();
-//    }
-
-
 }

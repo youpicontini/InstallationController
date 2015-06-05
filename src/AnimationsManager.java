@@ -160,7 +160,9 @@ public class AnimationsManager {
         nb_elements = parent.loadJSONObject(tempPath).getInt("nb_elements");
         setNbElementsPreviewController(nb_elements);
         //createTemplateKeyframe(nb_elements);
+
     }
+
 
     public void toggleVisibilityInputNewAnimation() {
         if (labelNameAnimation.isVisible()){

@@ -158,9 +158,9 @@ public class InstallationController extends PApplet {
                 appController.editor.animationsManager.buttonNewAnim.show();
                 appController.editor.animationsManager.buttonDeleteAnim.show();
                 appController.editor.animationsManager.sliderDeviceOpacity.show();
+                appController.player.fps = 1000/appController.editor.animationsManager.currentAnim.getFps();
                 if (tempPlay) {
                     appController.player.buttonPlayAnim.setOn();
-                    appController.player.fps = appController.editor.animationsManager.currentAnim.getFps();
                 }
 
             }
@@ -223,6 +223,7 @@ public class InstallationController extends PApplet {
                 appController.player.sliderMasterOpacity.setValue(1);
                 appController.player.buttonNoise.setOff();
                 appController.player.buttonStrobe.setOff();
+                appController.player.buttonGlow.setOff();
                 appController.player.buttonSoundReactive.setOff();
             }
             if (e.name().equals("tabPlayer")) {
@@ -230,6 +231,7 @@ public class InstallationController extends PApplet {
                 appController.player.sliderMasterOpacity.show();
                 appController.player.buttonNoise.show();
                 appController.player.buttonStrobe.show();
+                appController.player.buttonGlow.show();
                 appController.player.buttonSoundReactive.show();
                 appController.editor.previewController.editor = false;
                 appController.player.sliderMasterOpacity.setValue(1);
@@ -254,6 +256,12 @@ public class InstallationController extends PApplet {
                 appController.player.soundReactive = appController.player.buttonSoundReactive.getBooleanValue();
             }
 
+            if (e.name().equals("buttonGlow")) {
+                appController.player.glow = appController.player.buttonGlow.getBooleanValue();
+            }
+
+
+
     }
 
 
@@ -275,6 +283,11 @@ public class InstallationController extends PApplet {
                     else
                         appController.player.buttonStrobe.setOn();
                 break;
+            case 37: if(appController.player.buttonGlow.isOn())
+                        appController.player.buttonGlow.setOff();
+                    else
+                        appController.player.buttonGlow.setOn();
+                break;
         }
     }
 
@@ -291,7 +304,7 @@ public class InstallationController extends PApplet {
                 break;
             case 24: appController.player.periodStrobe=(long)map(val, 0, 127, 1, 15);
                 break;
-            case 3: appController.player.fps= (int)map(val, 0, 127, 1, 20);
+            case 23: appController.player.fps= (int)map(val, 0, 127, 1000, 200);
                 break;
         }
     }
