@@ -3,7 +3,7 @@
     "objects": [
       {
         "id": 0,
-        "params": {"opacity": 0.9153845906257629}
+        "params": {"opacity": 0.992307722568512}
       },
       {
         "id": 1,
@@ -15,7 +15,7 @@
       },
       {
         "id": 3,
-        "params": {"opacity": 1}
+        "params": {"opacity": 0}
       },
       {
         "id": 4,
@@ -39,7 +39,7 @@
       },
       {
         "id": 9,
-        "params": {"opacity": 0}
+        "params": {"opacity": 0.8615384697914124}
       },
       {
         "id": 10,
@@ -95,7 +95,7 @@
       },
       {
         "id": 23,
-        "params": {"opacity": 1}
+        "params": {"opacity": 0}
       },
       {
         "id": 24,
@@ -123,7 +123,7 @@
       },
       {
         "id": 30,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       },
       {
         "id": 31,
@@ -155,7 +155,7 @@
       },
       {
         "id": 38,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       },
       {
         "id": 39,

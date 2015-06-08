@@ -4,8 +4,8 @@ import processing.core.PConstants;
 import processing.data.JSONObject;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.text.DecimalFormat;
-
 
 public class Animation {
 
@@ -21,7 +21,6 @@ public class Animation {
     int keyframeNumber = 1;
     boolean kfHasChanged = false;
     boolean AnimPlaying;
-    Thread playingThread;
 
     ControlP5 cp5;
     PApplet parent;
@@ -39,10 +38,9 @@ public class Animation {
         previewController = _previewController;
         AM = _AM;
 
-
         String tempPath;
         if(System.getProperty("os.name").equals("Mac OS X")) {
-            tempPath = "installations/CrystalNet/animations/" + idAnim + "/config.json";
+            tempPath = System.getProperty("user.dir")+"/installations/CrystalNet/animations/" + idAnim + "/config.json";
         }
         else {
             tempPath = "installations\\CrystalNet\\animations\\" + idAnim + "\\config.json";
@@ -82,12 +80,16 @@ public class Animation {
         keyframeNumber = 1;
     }
 
+    int getFps(){
+        return fps;
+    }
+
     void removeKeyframe(int currentIndex){
         DecimalFormat formatter = new DecimalFormat("0000");
         String indexFormatted = formatter.format(currentIndex);
         String tempPath;
         if(System.getProperty("os.name").equals("Mac OS X"))
-            tempPath = "installations/CrystalNet/animations/" + idAnim +"/keyframes/"+indexFormatted+".json";
+            tempPath = System.getProperty("user.dir")+"/installations/CrystalNet/animations/" + idAnim +"/keyframes/"+indexFormatted+".json";
         else
             tempPath = "installations\\CrystalNet\\animations\\" + idAnim +"\\keyframes\\"+indexFormatted+".json";
         File f = new File(tempPath);
@@ -114,7 +116,7 @@ public class Animation {
             JSONObject jsonKeyframe;
             String tempPath;
             if(System.getProperty("os.name").equals("Mac OS X"))
-                tempPath = "installations/CrystalNet/animations/TEMPLATE_keyframe.json";
+                tempPath = System.getProperty("user.dir")+"/installations/CrystalNet/animations/TEMPLATE_keyframe.json";
             else
                 tempPath = "installations\\CrystalNet\\animations\\TEMPLATE_keyframe.json";
             jsonKeyframe = parent.loadJSONObject(new File(tempPath));
@@ -124,7 +126,7 @@ public class Animation {
             DecimalFormat formatter = new DecimalFormat("0000");
             String indexFormatted = formatter.format(currentIndex);
             if(System.getProperty("os.name").equals("Mac OS X"))
-                tempPath = "installations/CrystalNet/animations/" + idAnim + "/keyframes/" + indexFormatted + ".json";
+                tempPath = System.getProperty("user.dir")+"/installations/CrystalNet/animations/" + idAnim + "/keyframes/" + indexFormatted + ".json";
             else
                 tempPath = "installations\\CrystalNet\\animations\\" + idAnim + "\\keyframes\\" + indexFormatted + ".json";
             parent.saveJSONObject(jsonKeyframe, tempPath);
@@ -138,7 +140,7 @@ public class Animation {
         String indexFormatted = formatter.format(currentIndex);
         String tempPath;
         if(System.getProperty("os.name").equals("Mac OS X"))
-            tempPath = "installations/CrystalNet/animations/" + idAnim + "/keyframes/"+ indexFormatted + ".json";
+            tempPath = System.getProperty("user.dir")+"/installations/CrystalNet/animations/" + idAnim + "/keyframes/"+ indexFormatted + ".json";
         else
             tempPath = "installations\\CrystalNet\\animations\\" + idAnim + "\\keyframes\\"+ indexFormatted + ".json";
         jsonKeyframe = parent.loadJSONObject(new File(tempPath));
@@ -155,9 +157,11 @@ public class Animation {
 
     }
 
-    void sendCurrentValuesToPreviewController(){
-        currentValues[currentKeyframe.currentDevice] = currentKeyframe.currentOpacity;
-        previewController.setCurrentKeyframeValues(currentValues);
+    float[] getCurrentValues(){
+        if(currentKeyframe instanceof Keyframe)
+            currentValues[currentKeyframe.currentDevice] = currentKeyframe.currentOpacity;
+        //previewController.setCurrentKeyframeValues(currentValues);
+        return currentValues;
     }
 
     void renameFollowingKeyframesFiles(int startIndex, int endIndex){
@@ -167,7 +171,7 @@ public class Animation {
             DecimalFormat formatter = new DecimalFormat("0000");
             String tempPath;
             if(System.getProperty("os.name").equals("Mac OS X"))
-                tempPath = "installations/CrystalNet/animations/" + idAnim + "/keyframes/";
+                tempPath = System.getProperty("user.dir")+"/installations/CrystalNet/animations/" + idAnim + "/keyframes/";
             else
                 tempPath = "installations\\CrystalNet\\animations\\" + idAnim + "\\keyframes\\";
             int i = startIndex;
@@ -209,40 +213,26 @@ public class Animation {
 
         String tempPath;
         if(System.getProperty("os.name").equals("Mac OS X"))
-            tempPath = "installations/CrystalNet/animations/" + idAnim + "/keyframes/";
+            tempPath = System.getProperty("user.dir")+"/installations/CrystalNet/animations/" + idAnim + "/keyframes/";
         else
             tempPath = "installations\\CrystalNet\\animations\\" + idAnim +"\\keyframes";
         File folder = new File(tempPath);
         if (folder.exists())
-            keyframeNumber = folder.listFiles().length;
+            keyframeNumber = folder.listFiles(new FileFilter() {
+                @Override
+                public boolean accept(File f) {
+                    return !f.isHidden();
+                }
+            }).length;
         else
             keyframeNumber = 1;
     }
 
     void play(){
-        playingThread = new Thread(new Runnable() {
-            public void run()
-            {
-                while(true) {
-                    for (currentKeyframeIndex = 0; currentKeyframeIndex < keyframeNumber; currentKeyframeIndex++) {
-                        loadKeyframe(currentKeyframeIndex);
-                        sendCurrentValuesToPreviewController();
-                        try {
-                            Thread.sleep(1000 / fps);                 //1000 milliseconds is one second.
-                        } catch (InterruptedException ex) {
-                            Thread.currentThread().interrupt();
-                        }
-                    }
-                    currentKeyframeIndex = 0;
-                }
-            }
-        });
-        playingThread.start();
+        loadKeyframe(currentKeyframeIndex);
+        currentKeyframeIndex++;
+        if (currentKeyframeIndex >= keyframeNumber) {
+            currentKeyframeIndex = 0;
+        }
     }
-
-    void stop(){
-        if(playingThread instanceof Thread)
-            playingThread.stop();
-    }
-
 }

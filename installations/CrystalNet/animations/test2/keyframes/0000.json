@@ -3,11 +3,11 @@
     "objects": [
       {
         "id": 0,
-        "params": {"opacity": 0.9153845906257629}
+        "params": {"opacity": 1}
       },
       {
         "id": 1,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       },
       {
         "id": 2,
@@ -27,7 +27,7 @@
       },
       {
         "id": 6,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       },
       {
         "id": 7,
@@ -95,11 +95,11 @@
       },
       {
         "id": 23,
-        "params": {"opacity": 1}
+        "params": {"opacity": 0}
       },
       {
         "id": 24,
-        "params": {"opacity": 1}
+        "params": {"opacity": 0}
       },
       {
         "id": 25,
@@ -115,7 +115,7 @@
       },
       {
         "id": 28,
-        "params": {"opacity": 0}
+        "params": {"opacity": 1}
       },
       {
         "id": 29,

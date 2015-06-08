@@ -19,30 +19,14 @@ public class PreviewController {
     boolean editor;
     boolean animation;
 
-    float offsetOpacity;
-    boolean noise;
-    boolean strobe;
-    boolean strobbing;
-    boolean flashing;
-    long periodStrobe;
-    int savedTime;
-    Thread strobeThread;
-
     PreviewController (ControlP5 _cp5, PApplet _parent) {
         parent = _parent;
         cp5 = _cp5;
 
         LedStripesArray = new ArrayList<LedStripe>();
-
-        editor = false;
+        editor=false;
         animation = false;
 
-        offsetOpacity=0;
-        noise=false;
-        strobe=false;
-        strobbing = false;
-        flashing = false;
-        periodStrobe = 1;
     }
 
     void setup(){
@@ -50,7 +34,7 @@ public class PreviewController {
         JSONArray currentCoordinates;
         String tempPath;
         if(System.getProperty("os.name").equals("Mac OS X"))
-            tempPath = "installations/CrystalNet/setup.json";
+            tempPath = System.getProperty("user.dir")+"/installations/CrystalNet/setup.json";
         else
             tempPath = "installations\\CrystalNet\\setup.json";
         for(int i = 0; i < nb_elements; i++){
@@ -58,11 +42,11 @@ public class PreviewController {
             LedStripesArray.add(new LedStripe(Integer.toString(i), of, currentCoordinates, cp5, parent, this));
         }
         currentLedStripe = LedStripesArray.get(0);
-        savedTime = parent.millis();
+        currentKeyframeValues = new float[50];
 
     }
 
-    void setCurrentKeyframeValues(float[] val){
+    void setCurrentKeyframeValuesDisplayed(float[] val){
         currentKeyframeValues = val;
     }
 
@@ -75,29 +59,8 @@ public class PreviewController {
     void draw() {
         of.beginDraw();
         of.background(parent.color(125));
-        if(noise){
-            for (int i = 0; i < currentKeyframeValues.length; i++) {
-                LedStripesArray.get(i).display(parent.noise(parent.random(0,parent.width),parent.random(0,parent.height))- parent.map(offsetOpacity, 1, 0, 0, 1));
-            }
-        }
-        if(strobe){
-            strobeTick();
-            if(strobbing){
-                for (int i = 0; i < currentKeyframeValues.length; i++) {
-                    LedStripesArray.get(i).display(1- parent.map(offsetOpacity, 1, 0, 0, 1));
-                }
-            }
-            else{
-                for (int i = 0; i < currentKeyframeValues.length; i++) {
-                    LedStripesArray.get(i).display(0);
-                }
-            }
-
-        }
-        else {
-            for (int i = 0; i < currentKeyframeValues.length; i++) {
-                LedStripesArray.get(i).display(currentKeyframeValues[i] - parent.map(offsetOpacity, 1, 0, 0, 1));
-            }
+        for (int i = 0; i < currentKeyframeValues.length; i++) {
+            LedStripesArray.get(i).display(currentKeyframeValues[i]);
         }
         of.endDraw();
         parent.image(of, 200, 60);
@@ -110,23 +73,5 @@ public class PreviewController {
         currentLedStripeHover = ls;
     }
 
-    void strobeTick(){
-        if(!(strobeThread instanceof Thread)) {
-            strobeThread = new Thread(new Runnable() {
-                public void run() {
-                    while (true) {
-                        try {
-                            if(strobbing) strobbing = false;
-                            else strobbing = true;
-                            Thread.sleep(1000 / periodStrobe);
-                        } catch (InterruptedException ex) {
-                            Thread.currentThread().interrupt();
-                        }
-                    }
-                }
-            });
-            strobeThread.start();
-        }
-    }
 
 }

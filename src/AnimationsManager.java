@@ -2,7 +2,6 @@ import controlP5.*;
 import controlP5.Button;
 import processing.core.PApplet;
 import processing.core.PConstants;
-import processing.data.JSONArray;
 import processing.data.JSONObject;
 import java.io.File;
 
@@ -11,6 +10,7 @@ public class AnimationsManager {
     PApplet parent;
     ControlP5 cp5;
     PreviewController previewController;
+
     Animation currentAnim;
     String currentAnimName ="";
 
@@ -21,7 +21,6 @@ public class AnimationsManager {
     Textlabel labelNameAnimation;
     Textfield inputNewAnimName;
     Textfield inputNewAnimFPS;
-    Button buttonPlayAnim;
     Group groupAnimations;
 
     Button buttonNewKeyframe;
@@ -45,10 +44,8 @@ public class AnimationsManager {
         cp5 = _cp5;
         previewController = _previewController;
 
-
         // INTERFACE
         listAnimations = cp5.addListBox("listAnimations");
-        buttonPlayAnim = cp5.addButton("buttonPlayAnim");
         buttonNewAnim = cp5.addButton("buttonNewAnim");
         buttonDeleteAnim = cp5.addButton("buttonDeleteAnim");
         labelNameAnimation = cp5.addTextlabel("labelNameAnimation");
@@ -80,12 +77,7 @@ public class AnimationsManager {
                              .setColorForeground(parent.color(150))
                               .hide();
 
-        buttonPlayAnim.setLabel("play")
-                        .setPosition(1260, 770)
-                         .moveTo("global")
-                          .setSize(170, 40)
-                            .setSwitch(true)
-                            .hide();
+
 
         buttonNewAnim.setLabel("       +")
                        .setPosition(150, 770)
@@ -159,17 +151,18 @@ public class AnimationsManager {
         loadAnimations();
         String tempPath;
         if(System.getProperty("os.name").equals("Mac OS X")) {
-            tempPath = "installations/CrystalNet/setup.json";
+            tempPath = System.getProperty("user.dir")+"/installations/CrystalNet/setup.json";
         }
         else {
             tempPath = "installations\\CrystalNet\\setup.json";
         }
 
         nb_elements = parent.loadJSONObject(tempPath).getInt("nb_elements");
-        previewController.setCurrentKeyframeValues(new float[nb_elements]);
         setNbElementsPreviewController(nb_elements);
         //createTemplateKeyframe(nb_elements);
+
     }
+
 
     public void toggleVisibilityInputNewAnimation() {
         if (labelNameAnimation.isVisible()){
@@ -203,13 +196,6 @@ public class AnimationsManager {
         listAnimations.getItem(selectedIndex).setColorBackground(colorSelected);//and set the bg colour to be the active/'selected one'...until a new selection is made and resets this, like above
     }
 
-    void playAnimation(){
-        currentAnim.play();
-    }
-
-    void stopAnimation(){
-        currentAnim.stop();
-    }
     void displayAnimation(int index){
         ListBoxItem item = listAnimations.getItem(index);
         String animName = listAnimations.getItem(index).getName().replaceAll(" ", "_");
@@ -217,7 +203,7 @@ public class AnimationsManager {
         JSONObject configjson;
 
         if(System.getProperty("os.name").equals("Mac OS X"))
-            configFilePath = "installations/CrystalNet/animations/"+animName+"/config.json";
+            configFilePath = System.getProperty("user.dir")+"/installations/CrystalNet/animations/"+animName+"/config.json";
 
         else
             configFilePath = "installations\\CrystalNet\\animations\\"+animName+"\\config.json";
@@ -226,17 +212,18 @@ public class AnimationsManager {
         labelNameAnimation.setText(item.getText()+"                 "+configjson.getInt("fps")+" FPS");
         updateCurrentAnim(index);
         currentAnim.loadKeyframe(0);
-        currentAnim.sendCurrentValuesToPreviewController();
 
     }
 
 
     public void newAnimation(String name, int fps){
-        currentAnim = new Animation(name, fps, nb_elements, cp5, parent, previewController,this);
+        parent.println(name,fps);
+        currentAnim = new Animation(name, fps, nb_elements, cp5, parent, previewController, this);
         currentAnim.addFirstKeyframe();
         newAnimNameinput(name);
         highlightSelectedAnim(getLengthListbox(listAnimations)-1);
     }
+
 
 
 
@@ -248,11 +235,11 @@ public class AnimationsManager {
 
         String configFilePath;
         if(System.getProperty("os.name").equals("Mac OS X"))
-            configFilePath = "installations/CrystalNet/animations/"+name.replaceAll(" ","_")+"/config.json";
+            configFilePath = System.getProperty("user.dir")+"/installations/CrystalNet/animations/"+name.replaceAll(" ","_")+"/config.json";
         else
             configFilePath = "installations\\CrystalNet\\animations\\"+name.replaceAll(" ","_")+"\\config.json";
         JSONObject configjson = parent.loadJSONObject(new File(configFilePath));
-        currentAnim = new Animation(name,configjson.getInt("fps"), nb_elements, cp5, parent, previewController,this);
+        currentAnim = new Animation(name,configjson.getInt("fps"), nb_elements, cp5, parent, previewController, this);
     }
 
     public int getLengthListbox(ListBox list) {
@@ -266,7 +253,7 @@ public class AnimationsManager {
             String id = name.replaceAll(" ","_");
             File animDirectory;
             if(System.getProperty("os.name").equals("Mac OS X")) {
-                animDirectory = new File("installations/CrystalNet/animations/" + id);
+                animDirectory = new File(System.getProperty("user.dir")+"/installations/CrystalNet/animations/" + id);
             }
             else{
                 animDirectory = new File("installations\\CrystalNet\\animations\\" + id);
@@ -315,7 +302,7 @@ public class AnimationsManager {
     void loadAnimations() {
         File[] files;
         if(System.getProperty("os.name").equals("Mac OS X")) {
-            files = new File("installations/CrystalNet/animations").listFiles();
+            files = new File(System.getProperty("user.dir")+"/installations/CrystalNet/animations").listFiles();
         }
         else {
             files = new File("installations\\CrystalNet\\animations").listFiles();
@@ -324,7 +311,7 @@ public class AnimationsManager {
             if (file.isDirectory()) {
                 String configFilePath;
                 if(System.getProperty("os.name").equals("Mac OS X")) {
-                    configFilePath = "installations/CrystalNet/animations/" + file.getName() + "/config.json";
+                    configFilePath = System.getProperty("user.dir")+"/installations/CrystalNet/animations/" + file.getName() + "/config.json";
                 }
                 else {
                     configFilePath= "installations\\CrystalNet\\animations\\" + file.getName() + "\\config.json";
