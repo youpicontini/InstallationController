@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="promidi">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../../../../Processing/libraries/promidi/library/promidi.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

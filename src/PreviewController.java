@@ -19,9 +19,10 @@ public class PreviewController {
     boolean editor;
     boolean animation;
 
-    PreviewController (ControlP5 _cp5, PApplet _parent) {
+    PreviewController (ControlP5 _cp5, PApplet _parent, int _nb_elements) {
         parent = _parent;
         cp5 = _cp5;
+        nb_elements = _nb_elements;
 
         LedStripesArray = new ArrayList<LedStripe>();
         editor=false;
@@ -42,7 +43,7 @@ public class PreviewController {
             LedStripesArray.add(new LedStripe(Integer.toString(i), of, currentCoordinates, cp5, parent, this));
         }
         currentLedStripe = LedStripesArray.get(0);
-        currentKeyframeValues = new float[50];
+        currentKeyframeValues = new float[nb_elements];
 
     }
 

@@ -7,7 +7,7 @@ public class DMXInterface {
     DmxP512 dmxOutput;
     AppController appController;
 
-    int universeSize = 50;
+    int universeSize;
 
     String DMXPRO_PORT = "/dev/tty.usbserial-EN168019";//case matters! on windows port must be upper cased.
     int DMXPRO_BAUDRATE = 115000;
@@ -15,9 +15,11 @@ public class DMXInterface {
     int nbChannel;
     float[] currentKeyframeValues;
 
-    DMXInterface(PApplet _parent, AppController _appController) {
+    DMXInterface(PApplet _parent, AppController _appController, int _universeSize) {
         parent = _parent;
         appController = _appController;
+        universeSize = _universeSize;
+
     }
 
     void setup() {

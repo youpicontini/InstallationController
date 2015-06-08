@@ -10,13 +10,16 @@ public class Editor {
     AnimationsManager animationsManager;
     PreviewController previewController;
 
-    Editor(ControlP5 _cp5, PApplet _parent) {
+    int nb_device;
+
+    Editor(ControlP5 _cp5, PApplet _parent, int _nb_device) {
         cp5 = _cp5;
         parent = _parent;
+        nb_device =_nb_device;
 
         //timeline = new Timeline(parent);
-        previewController = new PreviewController(cp5, parent);
-        animationsManager = new AnimationsManager(cp5, parent, previewController);
+        previewController = new PreviewController(cp5, parent, nb_device);
+        animationsManager = new AnimationsManager(cp5, parent, previewController, nb_device);
     }
 
     public void setup(){

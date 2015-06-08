@@ -17,6 +17,8 @@ public class InstallationController extends PApplet {
     //MIDIController midiController;
     SoundSpectrum soundSpectrum;
 
+    int nb_device;
+
     public static final String APPNAME="InstallationController";
     public static final String PROJECTNAME="Crystal Net";
 
@@ -31,9 +33,20 @@ public class InstallationController extends PApplet {
         cp5 = new ControlP5(this);
 
 
+        String tempPath;
+        if(System.getProperty("os.name").equals("Mac OS X")) {
+            tempPath = System.getProperty("user.dir")+"/installations/CrystalNet/setup.json";
+        }
+        else {
+            tempPath = "installations\\CrystalNet\\setup.json";
+        }
+
+        nb_device = loadJSONObject(tempPath).getInt("nb_elements");
+
+
         soundSpectrum = new SoundSpectrum(this);
-        appController = new AppController(cp5, soundSpectrum, this);
-        dmxInterface = new DMXInterface(this, appController);
+        appController = new AppController(cp5, soundSpectrum, nb_device, this);
+        dmxInterface = new DMXInterface(this, appController, nb_device);
 
         appController.setup();
         dmxInterface.setup();
@@ -49,6 +62,7 @@ public class InstallationController extends PApplet {
         midiIO.plug(this,"noteOff",0,0);
         midiIO.plug(this,"controllerIn",0,0);
         midiIO.plug(this,"programChange",0,0);
+
 	}
 
 	public void draw() {

@@ -39,10 +39,11 @@ public class AnimationsManager {
     int nb_elements;
 
 
-    AnimationsManager(ControlP5 _cp5, PApplet _parent, PreviewController _previewController) {
+    AnimationsManager(ControlP5 _cp5, PApplet _parent, PreviewController _previewController, int _nb_elements) {
         parent = _parent;
         cp5 = _cp5;
         previewController = _previewController;
+        nb_elements = _nb_elements;
 
         // INTERFACE
         listAnimations = cp5.addListBox("listAnimations");
@@ -149,16 +150,7 @@ public class AnimationsManager {
 
 
         loadAnimations();
-        String tempPath;
-        if(System.getProperty("os.name").equals("Mac OS X")) {
-            tempPath = System.getProperty("user.dir")+"/installations/CrystalNet/setup.json";
-        }
-        else {
-            tempPath = "installations\\CrystalNet\\setup.json";
-        }
-
-        nb_elements = parent.loadJSONObject(tempPath).getInt("nb_elements");
-        setNbElementsPreviewController(nb_elements);
+        //setNbElementsPreviewController(nb_elements);
         //createTemplateKeyframe(nb_elements);
 
     }

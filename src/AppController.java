@@ -16,14 +16,17 @@ public class AppController {
     Group groupPlayer;
     SoundSpectrum soundSpectrum;
 
-    AppController(ControlP5 _cp5, SoundSpectrum _soundSpectrum, PApplet _parent) {
+    int nb_device;
+
+    AppController(ControlP5 _cp5, SoundSpectrum _soundSpectrum, int _nb_device, PApplet _parent) {
 
         parent = _parent;
         cp5 = _cp5;
         soundSpectrum = _soundSpectrum;
+        nb_device = _nb_device;
 
-        editor = new Editor(cp5, parent);
-        player = new Player(cp5, parent, editor, soundSpectrum);
+        editor = new Editor(cp5, parent, nb_device);
+        player = new Player(cp5, parent, editor, soundSpectrum, nb_device);
 
 
         /* [INTERFACE] TABS*/

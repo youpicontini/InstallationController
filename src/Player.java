@@ -15,6 +15,7 @@ public class Player {
     Button buttonSoundReactive;
     Button buttonPlayAnim;
 
+    int nb_device;
     float[] currentKeyframeValues;
     boolean playing;
     int fps;
@@ -27,11 +28,12 @@ public class Player {
     Thread fpsThread;
     float masterOpacity;
 
-    Player(ControlP5 _cp5, PApplet _parent, Editor _editor, SoundSpectrum _soundSpectrum){
+    Player(ControlP5 _cp5, PApplet _parent, Editor _editor, SoundSpectrum _soundSpectrum, int _nb_device){
         cp5 = _cp5;
         parent = _parent;
         editor = _editor;
         soundSpectrum = _soundSpectrum;
+        nb_device = _nb_device;
 
         sliderMasterOpacity = cp5.addSlider("sliderMasterOpacity");
         buttonNoise = cp5.addButton("buttonNoise");
@@ -94,7 +96,7 @@ public class Player {
         strobbing = false;
         periodStrobe = 1;
         fps = 1;
-        currentKeyframeValues= new float[50];
+        currentKeyframeValues= new float[nb_device];
 
     }
 
