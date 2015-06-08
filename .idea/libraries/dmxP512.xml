@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="dmxP512">
     <CLASSES>
-      <root url="jar://$USER_HOME$/Documents/Processing/libraries/dmxP512/library/dmxP512.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../Processing/libraries/dmxP512/library/dmxP512.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
