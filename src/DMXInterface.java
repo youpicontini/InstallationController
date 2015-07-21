@@ -18,21 +18,29 @@ public class DMXInterface {
     DMXInterface(PApplet _parent, AppController _appController, int _universeSize) {
         parent = _parent;
         appController = _appController;
-        universeSize = _universeSize;
+        universeSize = _universeSize+1;
 
     }
 
     void setup() {
         dmxOutput = new DmxP512(parent, universeSize, false);
-        dmxOutput.setupDmxPro(DMXPRO_PORT, DMXPRO_BAUDRATE);
+        try {
+            dmxOutput.setupDmxPro(DMXPRO_PORT, DMXPRO_BAUDRATE);
+        }
+        catch(Exception e){
+            parent.println("NO DMX DEVICE CONNECTED");
+        }
+
         nbChannel = appController.editor.animationsManager.nb_elements;
 
     }
 
     void draw() {
         currentKeyframeValues = appController.player.getCurrentKeyframeValues();
-        for(int i=0; i<nbChannel-1; i++){
+        for(int i=0; i<nbChannel; i++){
             dmxOutput.set(i+1,Math.round(parent.map(currentKeyframeValues[i], 0, 1, 0, 255)));
         }
+        //fix douzette transistor cassé
+        dmxOutput.set(nbChannel+1,Math.round(parent.map(currentKeyframeValues[1], 0, 1, 0, 255)));
     }
 }

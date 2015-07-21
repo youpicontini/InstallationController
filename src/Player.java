@@ -13,6 +13,7 @@ public class Player {
     Button buttonStrobe;
     Button buttonGlow;
     Button buttonSoundReactive;
+    Button buttonLiveMode;
     Button buttonPlayAnim;
 
     int nb_device;
@@ -40,6 +41,7 @@ public class Player {
         buttonStrobe = cp5.addButton("buttonStrobe");
         buttonGlow = cp5.addButton("buttonGlow");
         buttonSoundReactive = cp5.addButton("buttonSoundReactive");
+        buttonLiveMode = cp5.addButton("buttonLiveMode");
         buttonPlayAnim = cp5.addButton("buttonPlayAnim");
 
         playing = false;
@@ -83,6 +85,13 @@ public class Player {
                 .setSwitch(true)
                 .hide();
 
+        buttonLiveMode.setLabel("Live mode")
+                .setPosition(1260, 330)
+                .setGroup("groupPlayer")
+                .setSize(100, 40)
+                .setSwitch(true)
+                .hide();
+
         buttonPlayAnim.setLabel("play")
                 .setPosition(1260, 770)
                 .moveTo("global")
@@ -97,27 +106,29 @@ public class Player {
         periodStrobe = 1;
         fps = 1;
         currentKeyframeValues= new float[nb_device];
+        strobeTick();
+        FPSTick();
 
     }
 
     void draw(){
         if(playing) {
-            strobeTick();
-            FPSTick();
-            if (strobe) {
-                if (strobbing) {
-                    for (int i = 0; i < currentKeyframeValues.length; i++) {
-                        currentKeyframeValues[i] = 1 * masterOpacity;
-                    }
-                } else {
-                    for (int i = 0; i < currentKeyframeValues.length; i++) {
-                        currentKeyframeValues[i] = 0;
+            if (strobe || noise) {
+                if (strobe) {
+                    if (strobbing) {
+                        for (int i = 0; i < currentKeyframeValues.length; i++) {
+                            currentKeyframeValues[i] = 1 * masterOpacity;
+                        }
+                    } else {
+                        for (int i = 0; i < currentKeyframeValues.length; i++) {
+                            currentKeyframeValues[i] = 0;
+                        }
                     }
                 }
-            }
-            if (noise) {
-                for (int i = 0; i < currentKeyframeValues.length; i++) {
-                    currentKeyframeValues[i] = parent.noise(parent.random(0, parent.width), parent.random(0, parent.height)) * masterOpacity;
+                if (noise) {
+                    for (int i = 0; i < currentKeyframeValues.length; i++) {
+                        currentKeyframeValues[i] = parent.noise(parent.random(0, parent.width), parent.random(0, parent.height)) * masterOpacity;
+                    }
                 }
             }
             else {

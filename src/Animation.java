@@ -64,10 +64,8 @@ public class Animation {
         int temp = currentIndex+1;
         currentKeyframeIndex = currentIndex;
         renameFollowingKeyframesFiles(keyframeNumber - 1, currentIndex);
-        //currentValues = new float[nb_elements];
         kfHasChanged = true;
         saveKeyframe(temp);
-        //currentKeyframe = new Keyframe(parent, currentValues);
         currentKeyframeIndex++;
         keyframeNumber++;
     }

@@ -2,7 +2,6 @@ import processing.core.*;
 import controlP5.*;
 import promidi.*;
 
-
 import java.awt.event.MouseWheelEvent;
 
 
@@ -58,11 +57,15 @@ public class InstallationController extends PApplet {
         midiIO.printDevices();
 
         //plug all methods to handle midievents
-        midiIO.plug(this,"noteOn",0,0);
-        midiIO.plug(this,"noteOff",0,0);
-        midiIO.plug(this,"controllerIn",0,0);
-        midiIO.plug(this,"programChange",0,0);
-
+        try {
+            midiIO.plug(this, "noteOn", 0, 0);
+            midiIO.plug(this, "noteOff", 0, 0);
+            midiIO.plug(this, "controllerIn", 0, 0);
+            midiIO.plug(this, "programChange", 0, 0);
+        }
+        catch (Exception e){
+            println("NO MIDI CONTROLLER IS PLUGGED");
+        }
 	}
 
 	public void draw() {
@@ -96,7 +99,7 @@ public class InstallationController extends PApplet {
                 appController.editor.previewController.currentLedStripe.severalSelected = true;
             }
         } else {
-            if (key == 'q') {
+            if (key == 'a') {
                 if (appController.editor.animationsManager.currentAnim.currentKeyframeIndex != 0) {
                     appController.editor.animationsManager.currentAnim.saveKeyframe(appController.editor.animationsManager.currentAnim.currentKeyframeIndex);
                     appController.editor.animationsManager.currentAnim.currentKeyframeIndex--;
@@ -113,6 +116,13 @@ public class InstallationController extends PApplet {
                     appController.player.setCurrentKeyframeValues(appController.editor.animationsManager.currentAnim.getCurrentValues());
                     appController.editor.previewController.unselectDevices();
                 }
+            }
+            if(key == 'x'){
+                if(appController.editor.animationsManager.currentAnim.currentKeyframe.currentOpacity == 0)appController.editor.animationsManager.currentAnim.currentKeyframe.currentOpacity = 1;
+                else appController.editor.animationsManager.currentAnim.currentKeyframe.currentOpacity = 0;
+                appController.player.setCurrentKeyframeValues(appController.editor.animationsManager.currentAnim.getCurrentValues());
+                appController.editor.animationsManager.currentAnim.kfHasChanged = true;
+
             }
         }
     }
@@ -172,7 +182,7 @@ public class InstallationController extends PApplet {
                 appController.editor.animationsManager.buttonNewAnim.show();
                 appController.editor.animationsManager.buttonDeleteAnim.show();
                 appController.editor.animationsManager.sliderDeviceOpacity.show();
-                appController.player.fps = 1000/appController.editor.animationsManager.currentAnim.getFps();
+                appController.player.fps = appController.editor.animationsManager.currentFps;
                 if (tempPlay) {
                     appController.player.buttonPlayAnim.setOn();
                 }
@@ -247,6 +257,7 @@ public class InstallationController extends PApplet {
                 appController.player.buttonStrobe.show();
                 appController.player.buttonGlow.show();
                 appController.player.buttonSoundReactive.show();
+                appController.player.buttonLiveMode.show();
                 appController.editor.previewController.editor = false;
                 appController.player.sliderMasterOpacity.setValue(1);
             }
@@ -268,6 +279,10 @@ public class InstallationController extends PApplet {
 
             if (e.name().equals("buttonSoundReactive")) {
                 appController.player.soundReactive = appController.player.buttonSoundReactive.getBooleanValue();
+            }
+
+            if (e.name().equals("buttonLiveMode")) {
+                appController.editor.animationsManager.liveMode = appController.player.buttonSoundReactive.getBooleanValue();
             }
 
             if (e.name().equals("buttonGlow")) {
@@ -318,7 +333,8 @@ public class InstallationController extends PApplet {
                 break;
             case 24: appController.player.periodStrobe=(long)map(val, 0, 127, 1, 15);
                 break;
-            case 23: appController.player.fps= (int)map(val, 0, 127, 1000, 200);
+            case 23: appController.player.fps = (int)map(val, 0, 127, 1000, 200);
+                     appController.editor.animationsManager.currentFps = (int)map(val, 0, 127, 1000, 200);
                 break;
         }
     }

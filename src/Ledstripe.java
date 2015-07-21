@@ -33,12 +33,10 @@ public class LedStripe {
         transparent = parent.color(0, 0, 0, 1);
         white = parent.color(255, 255, 255, 255);
 
-
         a = new PVector(coordinates.getInt(0), coordinates.getInt(1));
         b = new PVector(coordinates.getInt(2), coordinates.getInt(3));
         c = new PVector();
         pj = new PVector();
-
     }
 
     void display(float op){
@@ -51,7 +49,6 @@ public class LedStripe {
         canvas.strokeWeight(5);
         canvas.stroke(255, 255, 255, opacity);
         canvas.line(coordinates.getInt(0), coordinates.getInt(1), coordinates.getInt(2), coordinates.getInt(3));
-        //canvas.text("word", 10,50);
         c.set(parent.mouseX - 200, parent.mouseY - 60);
         canvas.stroke(0, 255, 0);
         if(pc.editor && pc.animation) {
