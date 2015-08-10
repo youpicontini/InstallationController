@@ -11,7 +11,7 @@ public class Animation {
 
     Keyframe currentKeyframe;
     int nb_elements;
-    float[] currentValues;
+    float[] currentValues,nextValues;
     int currentKeyframeIndex;
 
     String name;
@@ -152,14 +152,28 @@ public class Animation {
             currentValues[i] = jsonKeyframe.getJSONArray("outputs").getJSONObject(0).getJSONArray("objects").getJSONObject(i).getJSONObject("params").getFloat("opacity");
         }
         currentKeyframe = new Keyframe(parent, currentValues);
+        /*next keyframe
+        if(currentIndex != keyframeNumber-1)indexFormatted = formatter.format(currentIndex+1);
+        else indexFormatted = formatter.format(0);
 
+        if(System.getProperty("os.name").equals("Mac OS X"))
+            tempPath = System.getProperty("user.dir")+"/installations/CrystalNet/animations/" + idAnim + "/keyframes/"+ indexFormatted + ".json";
+        else
+            tempPath = "installations\\CrystalNet\\animations\\" + idAnim + "\\keyframes\\"+ indexFormatted + ".json";
+        jsonKeyframe = parent.loadJSONObject(new File(tempPath));
+        for (int i=0; i<currentValues.length;i++) {
+            nextValues[i] = jsonKeyframe.getJSONArray("outputs").getJSONObject(0).getJSONArray("objects").getJSONObject(i).getJSONObject("params").getFloat("opacity");
+        }*/
     }
 
-    float[] getCurrentValues(){
-        if(currentKeyframe instanceof Keyframe)
+    float[] getCurrentValues() {
+        if (currentKeyframe instanceof Keyframe)
             currentValues[currentKeyframe.currentDevice] = currentKeyframe.currentOpacity;
-        //previewController.setCurrentKeyframeValues(currentValues);
         return currentValues;
+    }
+
+    float[] getNextValues(){
+        return nextValues;
     }
 
     void renameFollowingKeyframesFiles(int startIndex, int endIndex){

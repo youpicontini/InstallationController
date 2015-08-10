@@ -3,7 +3,7 @@ import controlP5.*;
 import promidi.*;
 
 import java.awt.event.MouseWheelEvent;
-
+import javax.sound.midi.Sequencer.SyncMode;
 
 
 
@@ -46,6 +46,7 @@ public class InstallationController extends PApplet {
         soundSpectrum = new SoundSpectrum(this);
         appController = new AppController(cp5, soundSpectrum, nb_device, this);
         dmxInterface = new DMXInterface(this, appController, nb_device);
+
 
         appController.setup();
         dmxInterface.setup();
@@ -124,6 +125,18 @@ public class InstallationController extends PApplet {
                 appController.editor.animationsManager.currentAnim.kfHasChanged = true;
 
             }
+            if(key == 'p'){
+                int tempDiv = appController.player.fpsDivider;
+                switch (tempDiv){
+                    case 1:appController.player.fpsDivider = 2;
+                        break;
+                    case 2:appController.player.fpsDivider = 4;
+                        break;
+                    case 4:appController.player.fpsDivider = 1;
+                        break;
+                }
+                println(appController.player.fpsDivider);
+            }
         }
     }
 
@@ -182,7 +195,7 @@ public class InstallationController extends PApplet {
                 appController.editor.animationsManager.buttonNewAnim.show();
                 appController.editor.animationsManager.buttonDeleteAnim.show();
                 appController.editor.animationsManager.sliderDeviceOpacity.show();
-                appController.player.fps = appController.editor.animationsManager.currentFps;
+                if(!appController.player.liveMode)appController.player.fps = appController.editor.animationsManager.currentAnim.getFps();
                 if (tempPlay) {
                     appController.player.buttonPlayAnim.setOn();
                 }
@@ -217,7 +230,6 @@ public class InstallationController extends PApplet {
                 appController.editor.animationsManager.sliderDeviceOpacity.setValue(0);
                 appController.editor.animationsManager.currentAnim.kfHasChanged = true;
             }
-
             if (e.name().equals("buttonPlayAnim")) {
                 if (appController.editor.animationsManager instanceof AnimationsManager) {
                     if (appController.player.buttonPlayAnim.isOn()) {
@@ -244,6 +256,7 @@ public class InstallationController extends PApplet {
                 appController.editor.animationsManager.listAnimations.show();
                 appController.editor.previewController.editor = true;
                 appController.player.masterOpacity = 0;
+                appController.player.buttonPlayAnim.show();
                 appController.player.sliderMasterOpacity.setValue(1);
                 appController.player.buttonNoise.setOff();
                 appController.player.buttonStrobe.setOff();
@@ -258,6 +271,9 @@ public class InstallationController extends PApplet {
                 appController.player.buttonGlow.show();
                 appController.player.buttonSoundReactive.show();
                 appController.player.buttonLiveMode.show();
+                appController.player.buttonInvert.show();
+                appController.player.buttonBongoMode.show();
+                appController.player.buttonPlayAnim.show();
                 appController.editor.previewController.editor = false;
                 appController.player.sliderMasterOpacity.setValue(1);
             }
@@ -282,46 +298,229 @@ public class InstallationController extends PApplet {
             }
 
             if (e.name().equals("buttonLiveMode")) {
-                appController.editor.animationsManager.liveMode = appController.player.buttonSoundReactive.getBooleanValue();
+                appController.player.liveMode = appController.player.buttonLiveMode.getBooleanValue();
+                appController.player.fps=2;
+            }
+            if (e.name().equals("buttonBongoMode")) {
+                appController.player.bongoMode = appController.player.buttonBongoMode.getBooleanValue();
+            }
+
+            if (e.name().equals("buttonInvert")) {
+                appController.player.invert = appController.player.buttonInvert.getBooleanValue();
             }
 
             if (e.name().equals("buttonGlow")) {
                 appController.player.glow = appController.player.buttonGlow.getBooleanValue();
             }
-
-
-
     }
-
 
     public void noteOn(Note note){
         int pit = note.getPitch();
-        switch (pit){
-            case 39: if(appController.player.noise)
-                        appController.player.buttonNoise.setOff();
-                    else
-                        appController.player.buttonNoise.setOn();
+        float tempKfValues[] = new float[nb_device];
+        println(pit);
+        switch (pit) {
+            case 48:
+                if (appController.player.buttonPlayAnim.isOn())
+                    appController.player.buttonPlayAnim.setOff();
+                else
+                    appController.player.buttonPlayAnim.setOn();
                 break;
-            case 48: if(appController.player.buttonPlayAnim.isOn())
-                        appController.player.buttonPlayAnim.setOff();
-                    else
-                        appController.player.buttonPlayAnim.setOn();
+            case 36:
+                if (appController.player.noise)
+                    appController.player.buttonNoise.setOff();
+                else {
+                    appController.player.buttonInvert.setOff();
+                    appController.player.buttonStrobe.setOff();
+                    appController.player.buttonGlow.setOff();
+                    appController.player.buttonNoise.setOn();
+                }
                 break;
-            case 38: if(appController.player.buttonStrobe.isOn())
-                        appController.player.buttonStrobe.setOff();
-                    else
-                        appController.player.buttonStrobe.setOn();
+            case 37:
+                if (appController.player.buttonStrobe.isOn())
+                    appController.player.buttonStrobe.setOff();
+                else {
+                    appController.player.buttonInvert.setOff();
+                    appController.player.buttonNoise.setOff();
+                    appController.player.buttonGlow.setOff();
+                    appController.player.buttonStrobe.setOn();
+                }
                 break;
-            case 37: if(appController.player.buttonGlow.isOn())
-                        appController.player.buttonGlow.setOff();
-                    else
-                        appController.player.buttonGlow.setOn();
+            case 38:
+                if (appController.player.buttonGlow.isOn())
+                    appController.player.buttonGlow.setOff();
+                else {
+                    appController.player.buttonInvert.setOff();
+                    appController.player.buttonNoise.setOff();
+                    appController.player.buttonStrobe.setOff();
+                    appController.player.buttonGlow.setOn();
+                }
                 break;
+            case 39:
+                if (appController.player.buttonInvert.isOn())
+                    appController.player.buttonInvert.setOff();
+                else {
+                    appController.player.buttonStrobe.setOff();
+                    appController.player.buttonNoise.setOff();
+                    appController.player.buttonGlow.setOff();
+                    appController.player.buttonInvert.setOn();
+                }
+                break;
+
+            case 49:
+                if(appController.player.bongoMode){
+                    for(int i=10; i<16;i++) {
+                        tempKfValues[i] = 1;
+                    }
+                    appController.player.setCurrentKeyframeValues(tempKfValues);
+                }
+                break;
+            case 50:
+                if(appController.player.bongoMode){
+                    for(int i=15; i<21;i++) {
+                        tempKfValues[i] = 1;
+                    }
+                    appController.player.setCurrentKeyframeValues(tempKfValues);
+                }
+                break;
+            case 44:
+                if(appController.player.bongoMode) {
+                    for (int i = 0; i < 6; i++) {
+                        tempKfValues[i] = 1;
+                    }
+                    appController.player.setCurrentKeyframeValues(tempKfValues);
+                }
+                break;
+            case 45:
+                if(appController.player.bongoMode) {
+                    for (int i = 5; i < 11; i++) {
+                        tempKfValues[i] = 1;
+                    }
+                    appController.player.setCurrentKeyframeValues(tempKfValues);
+                }
+                break;
+            case 46:
+                if(appController.player.bongoMode) {
+                    for (int i = 20; i < 26; i++) {
+                        tempKfValues[i] = 1;
+                    }
+                    appController.player.setCurrentKeyframeValues(tempKfValues);
+                }
+                break;
+            case 47:
+                if(appController.player.bongoMode) {
+                    for (int i = 25; i < 31; i++) {
+                        tempKfValues[i] = 1;
+                    }
+                    appController.player.setCurrentKeyframeValues(tempKfValues);
+                }
+                break;
+            case 40:
+                if(appController.player.bongoMode) {
+                    for (int i = 44; i < 49; i++) {
+                        tempKfValues[i] = 1;
+                    }
+                    tempKfValues[7] = 1;
+                    appController.player.setCurrentKeyframeValues(tempKfValues);
+                }
+                break;
+            case 41:
+                if(appController.player.bongoMode) {
+                    for (int i = 40; i < 45; i++) {
+                        tempKfValues[i] = 1;
+                    }
+
+                    tempKfValues[22] = 1;
+                    appController.player.setCurrentKeyframeValues(tempKfValues);
+                }
+                break;
+            case 42:
+                if(appController.player.bongoMode) {
+                    for (int i = 35; i < 41; i++) {
+                        tempKfValues[i] = 1;
+                    }
+                    appController.player.setCurrentKeyframeValues(tempKfValues);
+                }
+                break;
+            case 43:
+                if(appController.player.bongoMode) {
+                    for (int i = 30; i < 36; i++) {
+                        tempKfValues[i] = 1;
+                    }
+                    appController.player.setCurrentKeyframeValues(tempKfValues);
+                }
+                break;
+            case 51:
+                int tempDiv = appController.player.fpsDivider;
+                switch (tempDiv){
+                    case 1:appController.player.fpsDivider = 2;
+                        break;
+                    case 2:appController.player.fpsDivider = 4;
+                        break;
+                    case 4:appController.player.fpsDivider = 1;
+                        break;
+                }
+                println(appController.player.fpsDivider);
         }
     }
 
     public void noteOff(Note note){
+
+            /*
         int pit = note.getPitch();
+        float tempKfValues[] = new float[nb_device];
+        switch (pit){
+            case 49:
+                if(appController.player.bongoMode) {
+                    appController.player.setCurrentKeyframeValues(tempKfValues);
+                }
+                break;
+            case 50:
+                if(appController.player.bongoMode) {
+                    appController.player.setCurrentKeyframeValues(tempKfValues);
+                }
+                break;
+            case 44:
+                if(appController.player.bongoMode) {
+                    appController.player.setCurrentKeyframeValues(tempKfValues);
+                }
+                break;
+            case 45:
+                if(appController.player.bongoMode) {
+                    appController.player.setCurrentKeyframeValues(tempKfValues);
+                }
+                break;
+            case 46:
+                if(appController.player.bongoMode) {
+                    appController.player.setCurrentKeyframeValues(tempKfValues);
+                }
+                break;
+            case 47:
+                if(appController.player.bongoMode) {
+                    appController.player.setCurrentKeyframeValues(tempKfValues);
+                }
+                break;
+            case 40:
+                if(appController.player.bongoMode) {
+                    appController.player.setCurrentKeyframeValues(tempKfValues);
+                }
+                break;
+            case 41:
+                if(appController.player.bongoMode) {
+                    appController.player.setCurrentKeyframeValues(tempKfValues);
+                }
+                break;
+            case 42:
+                if(appController.player.bongoMode) {
+                    appController.player.setCurrentKeyframeValues(tempKfValues);
+                }
+                break;
+            case 43:
+                if(appController.player.bongoMode) {
+                    appController.player.setCurrentKeyframeValues(tempKfValues);
+                }
+                break;
+        }
+                */
     }
 
     public void controllerIn(promidi.Controller controller){
@@ -331,10 +530,9 @@ public class InstallationController extends PApplet {
         switch (num){
             case 25: appController.player.sliderMasterOpacity.setValue(map(val, 0, 127, 0, 1));
                 break;
-            case 24: appController.player.periodStrobe=(long)map(val, 0, 127, 1, 15);
+            case 21: appController.player.periodStrobe=(long)map(val, 0, 127, 1, 15);
                 break;
-            case 23: appController.player.fps = (int)map(val, 0, 127, 1000, 200);
-                     appController.editor.animationsManager.currentFps = (int)map(val, 0, 127, 1000, 200);
+            case 20:if(appController.player.liveMode) appController.player.fps = (int)map(val, 0, 127, 1000, 200);
                 break;
         }
     }

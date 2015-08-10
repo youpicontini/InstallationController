@@ -34,11 +34,9 @@ public class AnimationsManager {
     int selectedIndex;//no selection initially
 
     boolean animations_loaded=false;
-    boolean liveMode;
 
     int currentAnimIndex;
     int nb_elements;
-    int currentFps;
 
 
     AnimationsManager(ControlP5 _cp5, PApplet _parent, PreviewController _previewController, int _nb_elements) {
@@ -62,7 +60,6 @@ public class AnimationsManager {
         buttonResetKeyframe = cp5.addButton("buttonResetKeyframe");
 
         sliderDeviceOpacity = cp5.addSlider("sliderDeviceOpacity");
-        currentFps = 1;
 
     }
 
@@ -199,9 +196,8 @@ public class AnimationsManager {
 
         if(System.getProperty("os.name").equals("Mac OS X"))
             configFilePath = System.getProperty("user.dir")+"/installations/CrystalNet/animations/"+animName+"/config.json";
-
         else
-            configFilePath = "installations\\CrystalNet\\animations\\"+animName+"\\config.json";
+            configFilePath = "installations\\CrystalNet\\animations\\" + animName + "\\config.json";
 
         configjson = parent.loadJSONObject(new File(configFilePath));
         labelNameAnimation.setText(item.getText()+"                 "+configjson.getInt("fps")+" FPS");
@@ -231,11 +227,8 @@ public class AnimationsManager {
             configFilePath = System.getProperty("user.dir")+"/installations/CrystalNet/animations/"+name.replaceAll(" ","_")+"/config.json";
         else
             configFilePath = "installations\\CrystalNet\\animations\\"+name.replaceAll(" ","_")+"\\config.json";
-        if(!liveMode){
-            JSONObject configjson = parent.loadJSONObject(new File(configFilePath));
-            currentFps = configjson.getInt("fps");
-        }
-        currentAnim = new Animation(name,currentFps, nb_elements, cp5, parent, previewController, this);
+
+        currentAnim = new Animation(name,parent.loadJSONObject(new File(configFilePath)).getInt("fps"), nb_elements, cp5, parent, previewController, this);
     }
 
     public int getLengthListbox(ListBox list) {
