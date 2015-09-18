@@ -12,6 +12,7 @@ public class Animation {
     Keyframe currentKeyframe;
     int nb_elements;
     float[] currentValues,nextValues;
+    float[][] currentKeyframesValues;
     int currentKeyframeIndex;
 
     String name;
@@ -55,7 +56,10 @@ public class Animation {
         currentKeyframeIndex=0;
         AnimPlaying = false;
         currentValues = new float[nb_elements];
+        nextValues = new float[nb_elements];
         setInitialKeyframeNumber();
+        currentKeyframesValues = new float[keyframeNumber][nb_elements];
+        setKeyframes();
     }
 
     void addKeyframe(int currentIndex){
@@ -148,22 +152,10 @@ public class Animation {
                 AM.labelKeyframeName.setText("LAST");
             else
                 AM.labelKeyframeName.setText("keyframe n°" +Integer.toString(currentIndex));
-        for (int i=0; i<currentValues.length;i++) {
+        for (int i = 0; i<currentValues.length;i++) {
             currentValues[i] = jsonKeyframe.getJSONArray("outputs").getJSONObject(0).getJSONArray("objects").getJSONObject(i).getJSONObject("params").getFloat("opacity");
         }
         currentKeyframe = new Keyframe(parent, currentValues);
-        /*next keyframe
-        if(currentIndex != keyframeNumber-1)indexFormatted = formatter.format(currentIndex+1);
-        else indexFormatted = formatter.format(0);
-
-        if(System.getProperty("os.name").equals("Mac OS X"))
-            tempPath = System.getProperty("user.dir")+"/installations/CrystalNet/animations/" + idAnim + "/keyframes/"+ indexFormatted + ".json";
-        else
-            tempPath = "installations\\CrystalNet\\animations\\" + idAnim + "\\keyframes\\"+ indexFormatted + ".json";
-        jsonKeyframe = parent.loadJSONObject(new File(tempPath));
-        for (int i=0; i<currentValues.length;i++) {
-            nextValues[i] = jsonKeyframe.getJSONArray("outputs").getJSONObject(0).getJSONArray("objects").getJSONObject(i).getJSONObject("params").getFloat("opacity");
-        }*/
     }
 
     float[] getCurrentValues() {
@@ -175,6 +167,19 @@ public class Animation {
     float[] getNextValues(){
         return nextValues;
     }
+
+    void setCurrentValues(float[] val){
+        for(int i = 0; i < val.length; i++) {
+            currentValues[i] = val[i];
+        }
+    }
+    void setNextValues(float[] val){
+        for(int i = 0; i < val.length; i++) {
+            nextValues[i] = val[i];
+        }
+    }
+
+
 
     void renameFollowingKeyframesFiles(int startIndex, int endIndex){
         if(startIndex != endIndex) {
@@ -240,11 +245,28 @@ public class Animation {
             keyframeNumber = 1;
     }
 
-    void play(){
-        loadKeyframe(currentKeyframeIndex);
-        currentKeyframeIndex++;
-        if (currentKeyframeIndex >= keyframeNumber) {
-            currentKeyframeIndex = 0;
+    void setKeyframes(){
+        for (int i = 0; i < keyframeNumber; i++) {
+            loadKeyframe(i);
+            for (int j = 0; j < nb_elements; j++) {
+                currentKeyframesValues[i][j] = currentValues[j];
+            }
         }
+    }
+
+    void play(){
+        setCurrentValues(currentKeyframesValues[currentKeyframeIndex]);
+        /*for (int j = 0; j < nb_elements; j++) {
+            System.out.print("[" + j + "]" + currentValues[j] + "\t");
+        }
+        System.out.println("ok");
+        System.out.println("ok");*/
+        if(currentKeyframeIndex != (keyframeNumber-1)) {
+            setNextValues(currentKeyframesValues[currentKeyframeIndex+1]);
+        }
+        else {
+            setNextValues(currentKeyframesValues[0]);
+        }
+        currentKeyframeIndex = (currentKeyframeIndex+1) % (keyframeNumber);
     }
 }

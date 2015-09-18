@@ -14,5 +14,6 @@
     <orderEntry type="library" name="jssc" level="application" />
     <orderEntry type="library" name="minim" level="application" />
     <orderEntry type="library" name="dmxP512" level="application" />
+    <orderEntry type="library" name="themidibus" level="application" />
   </component>
 </module>

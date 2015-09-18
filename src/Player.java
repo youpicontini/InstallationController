@@ -11,20 +11,20 @@ public class Player {
     Slider sliderMasterOpacity;
     Button buttonNoise;
     Button buttonStrobe;
-    Button buttonGlow;
+    Button buttonRandom;
+    Button buttonMorph;
     Button buttonBongoMode;
     Button buttonInvert;
-    Button buttonSoundReactive;
     Button buttonLiveMode;
     Button buttonPlayAnim;
 
-    int nb_device;
-    float[] currentKeyframeValues, nextKeyframeValues;
+    int nb_device,morphStep;
+    float[] currentKeyframeValues, nextKeyframeValues, tempKf, tempKfstep;
     boolean playing;
     int fps, fpsDivider;
     boolean fpsTick,morphTick;
 
-    boolean strobe,glow,noise,soundReactive,invert, liveMode, bongoMode;
+    boolean strobe, noise, invert, liveMode, bongoMode, random;
     boolean strobbing, morpho;
     long periodStrobe;
     Thread strobeThread;
@@ -42,10 +42,10 @@ public class Player {
         sliderMasterOpacity = cp5.addSlider("sliderMasterOpacity");
         buttonNoise = cp5.addButton("buttonNoise");
         buttonStrobe = cp5.addButton("buttonStrobe");
+        buttonRandom = cp5.addButton("buttonRandom");
         buttonInvert = cp5.addButton("buttonInvert");
-        buttonGlow = cp5.addButton("buttonGlow");
+        buttonMorph = cp5.addButton("buttonMorph");
         buttonBongoMode = cp5.addButton("buttonBongoMode");
-        buttonSoundReactive = cp5.addButton("buttonSoundReactive");
         buttonLiveMode = cp5.addButton("buttonLiveMode");
         buttonPlayAnim = cp5.addButton("buttonPlayAnim");
 
@@ -76,7 +76,7 @@ public class Player {
                 .setSwitch(true)
                 .hide();
 
-        buttonGlow.setLabel("Glow")
+        buttonMorph.setLabel("Morph")
                 .setPosition(1260, 150)
                 .setGroup("groupPlayer")
                 .setSize(50, 50)
@@ -90,14 +90,12 @@ public class Player {
                 .setSwitch(true)
                 .hide();
 
-        buttonSoundReactive.setLabel("Sound Reactive")
+        buttonRandom.setLabel("Random")
                 .setPosition(1260, 210)
                 .setGroup("groupPlayer")
-                .setSize(110, 50)
+                .setSize(50, 50)
                 .setSwitch(true)
                 .hide();
-
-
 
         buttonLiveMode.setLabel("Live mode")
                 .setPosition(1260, 720)
@@ -125,20 +123,25 @@ public class Player {
 
         playing=false;
         noise=false;
+        random=false;
         strobe=false;
         strobbing = false;
         liveMode = false;
         periodStrobe = 1;
         fps = fpsDivider = 1;
         currentKeyframeValues= new float[nb_device];
+        nextKeyframeValues= new float[nb_device];
+        tempKf= new float[nb_device];
+        tempKfstep= new float[nb_device];
         strobeTick();
         FPSTick();
+        MorphTick();
     }
 
     void draw(){
         if(playing) {
             if(!bongoMode) {
-                if (strobe || noise || glow) {
+                if (strobe || noise || random) {
                     if (strobe) {
                         if (strobbing) {
                             for (int i = 0; i < currentKeyframeValues.length; i++) {
@@ -153,44 +156,40 @@ public class Player {
                         for (int i = 0; i < currentKeyframeValues.length; i++) {
                             currentKeyframeValues[i] = parent.noise(parent.random(0, parent.width), parent.random(0, parent.height)) * masterOpacity;
                         }
-                    } else if (glow) {
-                        for (int i = 0; i < currentKeyframeValues.length; i++) {
-                            currentKeyframeValues[i] = currentKeyframeValues[i] * masterOpacity;
+                    } else if (random){
+                        if (fpsTick) {
+                            for (int i = 0; i < currentKeyframeValues.length; i++) {
+                                currentKeyframeValues[i] = (int) parent.random(0, 2);
+                            }
+                            fpsTick = false;
                         }
                     }
                 } else {
-                    if (soundReactive) {
-                        if (soundSpectrum.beat.isOnset()) {
+                    if (!morpho) {
+                        if (fpsTick) {
                             editor.animationsManager.currentAnim.play();
-                            setCurrentKeyframeValues(editor.animationsManager.currentAnim.getCurrentValues());
-                            for (int i = 0; i < currentKeyframeValues.length; i++) {
-                                currentKeyframeValues[i] = currentKeyframeValues[i] * masterOpacity;
-                            }
+                            setCurrentKeyframeValues(editor.animationsManager.currentAnim.currentValues);
+                            fpsTick = false;
                         }
                     } else {
-                        if (!morpho) {
-                            if (fpsTick) {
-                                editor.animationsManager.currentAnim.play();
-                                setCurrentKeyframeValues(editor.animationsManager.currentAnim.getCurrentValues());
-                                for (int i = 0; i < currentKeyframeValues.length; i++) {
-                                    if (invert)
-                                        currentKeyframeValues[i] = (1 - currentKeyframeValues[i]) * masterOpacity;
-                                    else currentKeyframeValues[i] = currentKeyframeValues[i] * masterOpacity;
-                                }
-                                fpsTick = false;
+                        if (fpsTick) {
+                            editor.animationsManager.currentAnim.play();
+                            setCurrentKeyframeValues(editor.animationsManager.currentAnim.currentValues);
+                            setNextKeyframeValues(editor.animationsManager.currentAnim.getNextValues());
+                            for (int i = 0; i < currentKeyframeValues.length; i++) {
+                                tempKfstep[i] = (nextKeyframeValues[i] - currentKeyframeValues[i]) / 6;
                             }
-                        } else {
-                            if (morphTick) {
-                                editor.animationsManager.currentAnim.play();
-                                setCurrentKeyframeValues(editor.animationsManager.currentAnim.getCurrentValues());
-                                setNextKeyframeValues(editor.animationsManager.currentAnim.getNextValues());
-                                for (int i = 0; i < currentKeyframeValues.length; i++) {
-                                    if (invert)
-                                        currentKeyframeValues[i] = (1 - currentKeyframeValues[i]) * masterOpacity;
-                                    else currentKeyframeValues[i] = currentKeyframeValues[i] * masterOpacity;
-                                }
-                                fpsTick = false;
+                            fpsTick = false;
+                            morphStep = 0;
+                        }
+                        if (morphTick) {
+                            for (int i = 0; i < currentKeyframeValues.length; i++) {
+                                if (invert) tempKf[i] = (1-(currentKeyframeValues[i]+(morphStep+1)*tempKfstep[i])) * masterOpacity;
+                                else tempKf[i] = (currentKeyframeValues[i]+((morphStep+1)*tempKfstep[i])) * masterOpacity;
                             }
+                            morphTick = false;
+                            morphStep=(morphStep+1)%6;
+                            editor.previewController.setCurrentKeyframeValuesDisplayed(tempKf);
                         }
                     }
                 }
@@ -198,18 +197,28 @@ public class Player {
         }
         else{
             if (editor.animationsManager.currentAnim instanceof Animation)
-                setCurrentKeyframeValues(editor.animationsManager.currentAnim.getCurrentValues());
-
+                setCurrentKeyframeValues(editor.animationsManager.currentAnim.currentValues);
         }
-        editor.previewController.setCurrentKeyframeValuesDisplayed(currentKeyframeValues);
+        if (!morpho){
+            for (int i = 0; i < currentKeyframeValues.length; i++) {
+                if (invert)
+                    currentKeyframeValues[i] = (1 - currentKeyframeValues[i]) * masterOpacity;
+                else currentKeyframeValues[i] = currentKeyframeValues[i] * masterOpacity;
+                editor.previewController.setCurrentKeyframeValuesDisplayed(currentKeyframeValues);
+            }
+        }
     }
 
     void setCurrentKeyframeValues(float[] val){
-        currentKeyframeValues = val;
+        for(int i = 0; i < val.length; i++) {
+            currentKeyframeValues[i] = val[i];
+        }
     }
 
     void setNextKeyframeValues(float[] val){
-        nextKeyframeValues = val;
+        for(int i = 0; i < val.length; i++) {
+            nextKeyframeValues[i] = val[i];
+        }
     }
 
     float[] getCurrentKeyframeValues(){
@@ -238,17 +247,18 @@ public class Player {
             strobeThread.start();
         }
     }
+
     void FPSTick(){
         if(!(fpsThread instanceof Thread)) {
             fpsThread = new Thread(new Runnable() {
                 public void run() {
-                    while (true) {
+                    while (!liveMode) {
                         try {
                             if (fpsTick) fpsTick = false;
                             else fpsTick = true;
-                            if (liveMode) Thread.sleep(fps/fpsDivider);
-                            else Thread.sleep(1000 / fps);
-                        } catch (InterruptedException ex) {
+                            Thread.sleep(1000 / fps);
+                        }
+                        catch (InterruptedException ex) {
                             Thread.currentThread().interrupt();
                         }
                     }
@@ -257,23 +267,23 @@ public class Player {
             fpsThread.start();
         }
     }
+
     void MorphTick(){
         if(!(morphThread instanceof Thread)) {
             morphThread = new Thread(new Runnable() {
                 public void run() {
-                    while (true) {
+                    while (!liveMode) {
                         try {
                             if (morphTick) morphTick = false;
                             else morphTick = true;
-                            if (liveMode) Thread.sleep(fps/10);
-                            else Thread.sleep(100 / fps);
+                            Thread.sleep((1000 / fps)/6);
                         } catch (InterruptedException ex) {
                             Thread.currentThread().interrupt();
                         }
                     }
                 }
             });
-            fpsThread.start();
+            morphThread.start();
         }
     }
 }

@@ -18,6 +18,7 @@ public class DMXInterface {
     DMXInterface(PApplet _parent, AppController _appController, int _universeSize) {
         parent = _parent;
         appController = _appController;
+        //fix douzette transistor cassé "+1"
         universeSize = _universeSize+1;
 
     }
@@ -30,9 +31,7 @@ public class DMXInterface {
         catch(Exception e){
             parent.println("NO DMX DEVICE CONNECTED");
         }
-
         nbChannel = appController.editor.animationsManager.nb_elements;
-
     }
 
     void draw() {
@@ -42,5 +41,6 @@ public class DMXInterface {
         }
         //fix douzette transistor cassé
         dmxOutput.set(nbChannel+1,Math.round(parent.map(currentKeyframeValues[1], 0, 1, 0, 255)));
+        // fin fix
     }
 }

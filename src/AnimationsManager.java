@@ -229,6 +229,7 @@ public class AnimationsManager {
             configFilePath = "installations\\CrystalNet\\animations\\"+name.replaceAll(" ","_")+"\\config.json";
 
         currentAnim = new Animation(name,parent.loadJSONObject(new File(configFilePath)).getInt("fps"), nb_elements, cp5, parent, previewController, this);
+
     }
 
     public int getLengthListbox(ListBox list) {
