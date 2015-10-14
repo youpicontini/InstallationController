@@ -1,9 +1,11 @@
 import processing.core.PApplet;
+import processing.core.PConstants;
 import processing.core.PGraphics;
 
 import java.util.ArrayList;
 
 import controlP5.*;
+import processing.core.PShape;
 import processing.data.JSONArray;
 
 public class PreviewController {
@@ -44,7 +46,6 @@ public class PreviewController {
         }
         currentLedStripe = LedStripesArray.get(0);
         currentKeyframeValues = new float[nb_elements];
-
     }
 
     void setCurrentKeyframeValuesDisplayed(float[] val){
@@ -63,6 +64,7 @@ public class PreviewController {
         for (int i = 0; i < currentKeyframeValues.length; i++) {
             LedStripesArray.get(i).display(currentKeyframeValues[i]);
         }
+        of.endShape();
         of.endDraw();
         parent.image(of, 200, 60);
     }

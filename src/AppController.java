@@ -1,5 +1,8 @@
 import controlP5.*;
 import processing.core.PApplet;
+import processing.data.JSONObject;
+
+import java.io.File;
 
 public class AppController {
     PApplet parent;
@@ -14,6 +17,8 @@ public class AppController {
     Tab tabPlayer;
     Group groupEditor;
     Group groupPlayer;
+    ListBox listInstallations;
+
     SoundSpectrum soundSpectrum;
 
     int nb_device;
@@ -37,9 +42,13 @@ public class AppController {
         groupEditor = cp5.addGroup("groupEditor");
         groupPlayer = cp5.addGroup("groupPlayer");
 
+
+        listInstallations = cp5.addListBox("listInstallations");
         projectName = cp5.addTextlabel("projectName");
         framerateProject = cp5.addTextlabel("framerateProject");
+        //loadInstallations();
     }
+
     public void setup(){
 
         editor.setup();
@@ -68,11 +77,49 @@ public class AppController {
         framerateProject.moveTo(tabPlayer)
                         .setPosition(800, 20)
                         .setFont(parent.createFont("", 30));
+
+        /*listInstallations.setPosition(735, 80)
+                .setSize(170, 710)
+                .setItemHeight(20)
+                .setBarHeight(20)
+                .moveTo("global")
+                .setColorBackground(parent.color(50))
+                .setColorActive(parent.color(150))
+                .setColorForeground(parent.color(150));*/
     }
 
     public void draw(){
         framerateProject.setText(""+Math.round(parent.frameRate)).setColor(0xff000000);
         editor.draw();
         player.draw();
+    }
+
+    void loadInstallations() {
+        File[] files;
+        if(System.getProperty("os.name").equals("Mac OS X")) {
+            files = new File(System.getProperty("user.dir")+"/installations").listFiles();
+        }
+        else {
+            files = new File("installations").listFiles();
+        }
+        for (File file : files) {
+            if (file.isDirectory()) {
+                String configFilePath;
+                if(System.getProperty("os.name").equals("Mac OS X")) {
+                    configFilePath = System.getProperty("user.dir")+"/installations/" + file.getName() + "/setup.json";
+                }
+                else {
+                    configFilePath= "installations\\" + file.getName() + "\\setup.json";
+                }
+                JSONObject configjson = parent.loadJSONObject(new File(configFilePath));
+                listInstallations.addItem(configjson.getString("name"), getLengthListbox(listInstallations));
+            }
+        }
+    }
+
+
+    public int getLengthListbox(ListBox list) {
+        String[][] tempString = list.getListBoxItems();
+        return tempString.length;
     }
 }
