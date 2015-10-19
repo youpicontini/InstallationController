@@ -44,7 +44,7 @@ public class Animation {
             tempPath = System.getProperty("user.dir")+"/installations/CrystalNet/animations/" + idAnim + "/config.json";
         }
         else {
-            tempPath = "installations\\CrystalNet\\animations\\" + idAnim + "\\config.json";
+            tempPath = System.getProperty("user.dir")+"\\installations\\CrystalNet\\animations\\" + idAnim + "\\config.json";
         }
         if(!(new File(tempPath).exists())) {
             jsonAnimation = new JSONObject();
@@ -93,7 +93,7 @@ public class Animation {
         if(System.getProperty("os.name").equals("Mac OS X"))
             tempPath = System.getProperty("user.dir")+"/installations/CrystalNet/animations/" + idAnim +"/keyframes/"+indexFormatted+".json";
         else
-            tempPath = "installations\\CrystalNet\\animations\\" + idAnim +"\\keyframes\\"+indexFormatted+".json";
+            tempPath = System.getProperty("user.dir")+"\\installations\\CrystalNet\\animations\\" + idAnim +"\\keyframes\\"+indexFormatted+".json";
         File f = new File(tempPath);
         boolean deleted = false;
         int i=0;
@@ -120,7 +120,7 @@ public class Animation {
             if(System.getProperty("os.name").equals("Mac OS X"))
                 tempPath = System.getProperty("user.dir")+"/installations/CrystalNet/animations/TEMPLATE_keyframe.json";
             else
-                tempPath = "installations\\CrystalNet\\animations\\TEMPLATE_keyframe.json";
+                tempPath = System.getProperty("user.dir")+"\\installations\\CrystalNet\\animations\\TEMPLATE_keyframe.json";
             jsonKeyframe = parent.loadJSONObject(new File(tempPath));
             for (int i = 0; i < currentValues.length; i++) {
                 jsonKeyframe.getJSONArray("outputs").getJSONObject(0).getJSONArray("objects").getJSONObject(i).getJSONObject("params").setFloat("opacity", currentValues[i]);
@@ -130,7 +130,7 @@ public class Animation {
             if(System.getProperty("os.name").equals("Mac OS X"))
                 tempPath = System.getProperty("user.dir")+"/installations/CrystalNet/animations/" + idAnim + "/keyframes/" + indexFormatted + ".json";
             else
-                tempPath = "installations\\CrystalNet\\animations\\" + idAnim + "\\keyframes\\" + indexFormatted + ".json";
+                tempPath = System.getProperty("user.dir")+"\\installations\\CrystalNet\\animations\\" + idAnim + "\\keyframes\\" + indexFormatted + ".json";
             parent.saveJSONObject(jsonKeyframe, tempPath);
             kfHasChanged = false;
         }
@@ -144,7 +144,7 @@ public class Animation {
         if(System.getProperty("os.name").equals("Mac OS X"))
             tempPath = System.getProperty("user.dir")+"/installations/CrystalNet/animations/" + idAnim + "/keyframes/"+ indexFormatted + ".json";
         else
-            tempPath = "installations\\CrystalNet\\animations\\" + idAnim + "\\keyframes\\"+ indexFormatted + ".json";
+            tempPath = System.getProperty("user.dir")+"\\installations\\CrystalNet\\animations\\" + idAnim + "\\keyframes\\"+ indexFormatted + ".json";
         jsonKeyframe = parent.loadJSONObject(new File(tempPath));
         if (currentIndex == 0)
             AM.labelKeyframeName.setText("FIRST");
@@ -190,7 +190,7 @@ public class Animation {
             if(System.getProperty("os.name").equals("Mac OS X"))
                 tempPath = System.getProperty("user.dir")+"/installations/CrystalNet/animations/" + idAnim + "/keyframes/";
             else
-                tempPath = "installations\\CrystalNet\\animations\\" + idAnim + "\\keyframes\\";
+                tempPath = System.getProperty("user.dir")+"\\installations\\CrystalNet\\animations\\" + idAnim + "\\keyframes\\";
             int i = startIndex;
             if(startIndex>endIndex) { //add
                 while (i > endIndex ) {
@@ -232,7 +232,7 @@ public class Animation {
         if(System.getProperty("os.name").equals("Mac OS X"))
             tempPath = System.getProperty("user.dir")+"/installations/CrystalNet/animations/" + idAnim + "/keyframes/";
         else
-            tempPath = "installations\\CrystalNet\\animations\\" + idAnim +"\\keyframes";
+            tempPath = System.getProperty("user.dir")+"\\installations\\CrystalNet\\animations\\" + idAnim +"\\keyframes";
         File folder = new File(tempPath);
         if (folder.exists())
             keyframeNumber = folder.listFiles(new FileFilter() {

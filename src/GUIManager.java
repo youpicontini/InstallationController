@@ -179,6 +179,7 @@ public class GUIManager {
             appController.player.sliderMasterOpacity.setValue(1);
             appController.player.buttonNoise.setOff();
             appController.player.buttonStrobe.setOff();
+            appController.player.buttonGlow.setOff();
             appController.player.buttonMorph.setOff();
             appController.player.buttonRandom.setOff();
         }
@@ -189,6 +190,7 @@ public class GUIManager {
             appController.player.buttonStrobe.show();
             appController.player.buttonRandom.show();
             appController.player.buttonMorph.show();
+            appController.player.buttonGlow.show();
             appController.player.buttonLiveMode.show();
             appController.player.buttonInvert.show();
             appController.player.buttonBongoMode.show();
@@ -206,7 +208,7 @@ public class GUIManager {
         }
         if (e.name().equals("buttonNoise")) {
             appController.player.noise = appController.player.buttonNoise.getBooleanValue();
-            System.out.println("OK");
+            //System.out.println("OK");
         }
 
         if (e.name().equals("buttonStrobe")) {
@@ -216,6 +218,7 @@ public class GUIManager {
         if (e.name().equals("buttonLiveMode")) {
             if(appController.player.liveMode) {
                 appController.player.FPSTick();
+                appController.player.MorphTick();
             }
             appController.player.liveMode = appController.player.buttonLiveMode.getBooleanValue();
 
@@ -233,6 +236,10 @@ public class GUIManager {
 
         if (e.name().equals("buttonMorph")) {
             appController.player.morpho = appController.player.buttonMorph.getBooleanValue();
+        }
+
+        if (e.name().equals("buttonGlow")) {
+            appController.player.glow = appController.player.buttonGlow.getBooleanValue();
         }
 
     }

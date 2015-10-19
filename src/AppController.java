@@ -17,7 +17,7 @@ public class AppController {
     Tab tabPlayer;
     Group groupEditor;
     Group groupPlayer;
-    ListBox listInstallations;
+    //ListBox listInstallations;
 
     SoundSpectrum soundSpectrum;
 
@@ -43,7 +43,7 @@ public class AppController {
         groupPlayer = cp5.addGroup("groupPlayer");
 
 
-        listInstallations = cp5.addListBox("listInstallations");
+        //listInstallations = cp5.addListBox("listInstallations");
         projectName = cp5.addTextlabel("projectName");
         framerateProject = cp5.addTextlabel("framerateProject");
         //loadInstallations();
@@ -109,10 +109,11 @@ public class AppController {
                     configFilePath = System.getProperty("user.dir")+"/installations/" + file.getName() + "/setup.json";
                 }
                 else {
-                    configFilePath= "installations\\" + file.getName() + "\\setup.json";
+                    System.out.println(System.getProperty("user.dir"));
+                    configFilePath= System.getProperty("user.dir")+"\\installations\\" + file.getName() + "\\setup.json";
                 }
                 JSONObject configjson = parent.loadJSONObject(new File(configFilePath));
-                listInstallations.addItem(configjson.getString("name"), getLengthListbox(listInstallations));
+                //listInstallations.addItem(configjson.getString("name"), getLengthListbox(listInstallations));
             }
         }
     }

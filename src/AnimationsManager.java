@@ -197,7 +197,7 @@ public class AnimationsManager {
         if(System.getProperty("os.name").equals("Mac OS X"))
             configFilePath = System.getProperty("user.dir")+"/installations/CrystalNet/animations/"+animName+"/config.json";
         else
-            configFilePath = "installations\\CrystalNet\\animations\\" + animName + "\\config.json";
+            configFilePath = System.getProperty("user.dir")+"\\installations\\CrystalNet\\animations\\" + animName + "\\config.json";
 
         configjson = parent.loadJSONObject(new File(configFilePath));
         labelNameAnimation.setText(item.getText()+"                 "+configjson.getInt("fps")+" FPS");
@@ -226,7 +226,7 @@ public class AnimationsManager {
         if(System.getProperty("os.name").equals("Mac OS X"))
             configFilePath = System.getProperty("user.dir")+"/installations/CrystalNet/animations/"+name.replaceAll(" ","_")+"/config.json";
         else
-            configFilePath = "installations\\CrystalNet\\animations\\"+name.replaceAll(" ","_")+"\\config.json";
+            configFilePath = System.getProperty("user.dir")+"\\installations\\CrystalNet\\animations\\"+name.replaceAll(" ","_")+"\\config.json";
 
         currentAnim = new Animation(name,parent.loadJSONObject(new File(configFilePath)).getInt("fps"), nb_elements, cp5, parent, previewController, this);
 
@@ -246,7 +246,7 @@ public class AnimationsManager {
                 animDirectory = new File(System.getProperty("user.dir")+"/installations/CrystalNet/animations/" + id);
             }
             else{
-                animDirectory = new File("installations\\CrystalNet\\animations\\" + id);
+                animDirectory = new File(System.getProperty("user.dir")+"\\installations\\CrystalNet\\animations\\" + id);
             }
             listAnimations.removeItem(name);
             deleteFolder(animDirectory);
@@ -295,7 +295,7 @@ public class AnimationsManager {
             files = new File(System.getProperty("user.dir")+"/installations/CrystalNet/animations").listFiles();
         }
         else {
-            files = new File("installations\\CrystalNet\\animations").listFiles();
+            files = new File(System.getProperty("user.dir")+"\\installations\\CrystalNet\\animations").listFiles();
         }
         for (File file : files) {
             if (file.isDirectory()) {
@@ -304,7 +304,7 @@ public class AnimationsManager {
                     configFilePath = System.getProperty("user.dir")+"/installations/CrystalNet/animations/" + file.getName() + "/config.json";
                 }
                 else {
-                    configFilePath= "installations\\CrystalNet\\animations\\" + file.getName() + "\\config.json";
+                    configFilePath= System.getProperty("user.dir")+"\\installations\\CrystalNet\\animations\\" + file.getName() + "\\config.json";
                 }
                 JSONObject configjson = parent.loadJSONObject(new File(configFilePath));
                 listAnimations.addItem(configjson.getString("name"), getLengthListbox(listAnimations));

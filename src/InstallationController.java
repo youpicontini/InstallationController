@@ -9,7 +9,7 @@ public class InstallationController extends PApplet {
 
     ControlP5 cp5;
     AppController appController;
-    DMXInterface dmxInterface;
+    //DMXInterface dmxInterface;
     MIDIController midiController;
     GUIManager guiManager;
     SoundSpectrum soundSpectrum;
@@ -18,8 +18,6 @@ public class InstallationController extends PApplet {
 
     public static final String APPNAME="InstallationController";
     public static final String PROJECTNAME="Crystal Net";
-
-
 
     public static void main(String args[]) {
         PApplet.main(/*new String[] {"--present",*/"InstallationController"/*}*/);
@@ -31,25 +29,25 @@ public class InstallationController extends PApplet {
 
         cp5 = new ControlP5(this);
 
-
         String tempPath;
         if(System.getProperty("os.name").equals("Mac OS X")) {
             tempPath = System.getProperty("user.dir")+"/installations/CrystalNet/setup.json";
         }
         else {
-            tempPath = "installations\\CrystalNet\\setup.json";
+            tempPath = System.getProperty("user.dir")+"\\installations\\CrystalNet\\setup.json";
+            //System.out.println("tempPath");
         }
 
         nb_device = loadJSONObject(tempPath).getInt("nb_elements");
 
         soundSpectrum = new SoundSpectrum(this);
         appController = new AppController(cp5, soundSpectrum, nb_device, this);
-        dmxInterface = new DMXInterface(this, appController, nb_device);
+        //dmxInterface = new DMXInterface(this, appController, nb_device);
         midiController = new MIDIController(this, appController, nb_device);
         guiManager = new GUIManager(this, appController);
 
         appController.setup();
-        dmxInterface.setup();
+        //dmxInterface.setup();
         midiController.setup();
         soundSpectrum.setup();
 	}
@@ -57,7 +55,7 @@ public class InstallationController extends PApplet {
 	public void draw() {
         background(100);
         appController.draw();
-        dmxInterface.draw();
+        //dmxInterface.draw();
         soundSpectrum.draw();
 	}
 

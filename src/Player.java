@@ -13,6 +13,7 @@ public class Player {
     Button buttonStrobe;
     Button buttonRandom;
     Button buttonMorph;
+    Button buttonGlow;
     Button buttonBongoMode;
     Button buttonInvert;
     Button buttonLiveMode;
@@ -24,7 +25,7 @@ public class Player {
     int fps, fpsDivider;
     boolean fpsTick,morphTick;
 
-    boolean strobe, noise, invert, liveMode, bongoMode, random;
+    boolean strobe, noise, invert, liveMode, bongoMode, random, glow;
     boolean strobbing, morpho;
     long periodStrobe;
     Thread strobeThread;
@@ -48,6 +49,7 @@ public class Player {
         buttonBongoMode = cp5.addButton("buttonBongoMode");
         buttonLiveMode = cp5.addButton("buttonLiveMode");
         buttonPlayAnim = cp5.addButton("buttonPlayAnim");
+        buttonGlow = cp5.addButton("buttonGlow");
 
         playing = false;
     }
@@ -97,6 +99,14 @@ public class Player {
                 .setSwitch(true)
                 .hide();
 
+
+        buttonGlow.setLabel("glow")
+                .setPosition(1320, 210)
+                .setGroup("groupPlayer")
+                .setSize(50, 50)
+                .setSwitch(true)
+                .hide();
+
         buttonLiveMode.setLabel("Live mode")
                 .setPosition(1260, 720)
                 .setGroup("groupPlayer")
@@ -125,9 +135,10 @@ public class Player {
         noise=false;
         random=false;
         strobe=false;
+        glow = false;
         strobbing = false;
         liveMode = false;
-        periodStrobe = 1;
+        periodStrobe = 15;
         fps = fpsDivider = 1;
         currentKeyframeValues= new float[nb_device];
         nextKeyframeValues= new float[nb_device];
@@ -169,6 +180,11 @@ public class Player {
                         if (fpsTick) {
                             editor.animationsManager.currentAnim.play();
                             setCurrentKeyframeValues(editor.animationsManager.currentAnim.currentValues);
+                            if (invert){
+                                for (int i = 0; i < currentKeyframeValues.length; i++) {
+                                     currentKeyframeValues[i] = (1-currentKeyframeValues[i]);
+                                }
+                            }
                             fpsTick = false;
                         }
                     } else {
@@ -177,18 +193,33 @@ public class Player {
                             setCurrentKeyframeValues(editor.animationsManager.currentAnim.currentValues);
                             setNextKeyframeValues(editor.animationsManager.currentAnim.getNextValues());
                             for (int i = 0; i < currentKeyframeValues.length; i++) {
-                                tempKfstep[i] = (nextKeyframeValues[i] - currentKeyframeValues[i]) / 6;
+
+                                tempKfstep[i] =(nextKeyframeValues[i] - currentKeyframeValues[i]) / 6;
                             }
                             fpsTick = false;
                             morphStep = 0;
                         }
                         if (morphTick) {
-                            for (int i = 0; i < currentKeyframeValues.length; i++) {
-                                if (invert) tempKf[i] = (1-(currentKeyframeValues[i]+(morphStep+1)*tempKfstep[i])) * masterOpacity;
-                                else tempKf[i] = (currentKeyframeValues[i]+((morphStep+1)*tempKfstep[i])) * masterOpacity;
+                            if(!glow) {
+                                for (int i = 0; i < currentKeyframeValues.length; i++) {
+                                    if (invert)
+                                        tempKf[i] = (1 - (currentKeyframeValues[i] + (morphStep + 1) * tempKfstep[i])) * masterOpacity;
+                                    else
+                                        tempKf[i] = (currentKeyframeValues[i] + ((morphStep + 1) * tempKfstep[i])) * masterOpacity;
+                                }
+                                morphTick = false;
+                                morphStep = (morphStep + 1) % 6;
                             }
-                            morphTick = false;
-                            morphStep=(morphStep+1)%6;
+                            else{
+                                for (int i = 0; i < currentKeyframeValues.length; i++) {
+                                    if (invert)
+                                        tempKf[i] = (1 - ((currentKeyframeValues[i]) - ((currentKeyframeValues[i])/6)*(morphStep + 1))) * masterOpacity;
+                                    else
+                                        tempKf[i] = (currentKeyframeValues[i] - ((currentKeyframeValues[i])/6)*(morphStep + 1)) * masterOpacity;
+                                }
+                                morphTick = false;
+                                morphStep = (morphStep + 1) % 6;
+                            }
                             editor.previewController.setCurrentKeyframeValuesDisplayed(tempKf);
                         }
                     }
@@ -201,11 +232,9 @@ public class Player {
         }
         if (!morpho){
             for (int i = 0; i < currentKeyframeValues.length; i++) {
-                if (invert)
-                    currentKeyframeValues[i] = (1 - currentKeyframeValues[i]) * masterOpacity;
-                else currentKeyframeValues[i] = currentKeyframeValues[i] * masterOpacity;
-                editor.previewController.setCurrentKeyframeValuesDisplayed(currentKeyframeValues);
+                currentKeyframeValues[i] = currentKeyframeValues[i] * masterOpacity;
             }
+            editor.previewController.setCurrentKeyframeValuesDisplayed(currentKeyframeValues);
         }
     }
 

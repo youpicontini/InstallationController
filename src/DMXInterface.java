@@ -9,7 +9,8 @@ public class DMXInterface {
 
     int universeSize;
 
-    String DMXPRO_PORT = "/dev/tty.usbserial-EN168019";//case matters! on windows port must be upper cased.
+    String DMXPRO_PORT;
+
     int DMXPRO_BAUDRATE = 115000;
 
     int nbChannel;
@@ -24,13 +25,23 @@ public class DMXInterface {
     }
 
     void setup() {
+
+        if(System.getProperty("os.name").equals("Mac OS X")) {
+            DMXPRO_PORT = "/dev/tty.usbserial-EN168019";//case matters! on windows port must be upper cased.
+        }
+        else{
+            DMXPRO_PORT = "COM3";
+        }
+
         dmxOutput = new DmxP512(parent, universeSize, false);
+
         try {
             dmxOutput.setupDmxPro(DMXPRO_PORT, DMXPRO_BAUDRATE);
         }
         catch(Exception e){
             parent.println("NO DMX DEVICE CONNECTED");
         }
+
         nbChannel = appController.editor.animationsManager.nb_elements;
     }
 

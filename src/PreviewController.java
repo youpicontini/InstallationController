@@ -2,6 +2,7 @@ import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PGraphics;
 
+import java.lang.System;
 import java.util.ArrayList;
 
 import controlP5.*;
@@ -38,8 +39,10 @@ public class PreviewController {
         String tempPath;
         if(System.getProperty("os.name").equals("Mac OS X"))
             tempPath = System.getProperty("user.dir")+"/installations/CrystalNet/setup.json";
-        else
-            tempPath = "installations\\CrystalNet\\setup.json";
+        else {
+            System.out.println(System.getProperty("user.dir"));
+            tempPath = System.getProperty("user.dir") + "\\installations\\CrystalNet\\setup.json";
+            }
         for(int i = 0; i < nb_elements; i++){
             currentCoordinates =  parent.loadJSONObject(tempPath).getJSONArray("coordinates").getJSONArray(i).getJSONObject(0).getJSONArray("line");
             LedStripesArray.add(new LedStripe(Integer.toString(i), of, currentCoordinates, cp5, parent, this));
@@ -75,6 +78,4 @@ public class PreviewController {
     void setCurrentLedStripeHover(LedStripe ls) {
         currentLedStripeHover = ls;
     }
-
-
 }

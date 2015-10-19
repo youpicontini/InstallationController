@@ -10,10 +10,10 @@
     <orderEntry type="library" name="core" level="application" />
     <orderEntry type="library" name="controlP5" level="application" />
     <orderEntry type="library" name="promidi" level="application" />
-    <orderEntry type="library" name="serial" level="project" />
     <orderEntry type="library" name="jssc" level="application" />
     <orderEntry type="library" name="minim" level="application" />
     <orderEntry type="library" name="dmxP512" level="application" />
     <orderEntry type="library" name="themidibus" level="application" />
+    <orderEntry type="library" name="serial" level="application" />
   </component>
 </module>
