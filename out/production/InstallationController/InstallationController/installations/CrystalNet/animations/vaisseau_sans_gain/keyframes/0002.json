@@ -1,0 +1,208 @@
+{
+  "outputs": [{
+    "objects": [
+      {
+        "id": 0,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 1,
+        "params": {"opacity": 1}
+      },
+      {
+        "id": 2,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 3,
+        "params": {"opacity": 1}
+      },
+      {
+        "id": 4,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 5,
+        "params": {"opacity": 1}
+      },
+      {
+        "id": 6,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 7,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 8,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 9,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 10,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 11,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 12,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 13,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 14,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 15,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 16,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 17,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 18,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 19,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 20,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 21,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 22,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 23,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 24,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 25,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 26,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 27,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 28,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 29,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 30,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 31,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 32,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 33,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 34,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 35,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 36,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 37,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 38,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 39,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 40,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 41,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 42,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 43,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 44,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 45,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 46,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 47,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 48,
+        "params": {"opacity": 0}
+      },
+      {
+        "id": 49,
+        "params": {"opacity": 0}
+      }
+    ],
+    "type": "OBJECT_TYPE led etc.."
+  }],
+  "id": "ID_ANIM"
+}

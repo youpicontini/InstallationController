@@ -21,6 +21,7 @@ public class SoundSpectrum {
     }
 
     public void setup(){
+        /*
         minim = new Minim(this);
         in = minim.getLineIn();
         fft = new FFT(in.bufferSize(), in.sampleRate());
@@ -31,9 +32,10 @@ public class SoundSpectrum {
         parent.strokeCap(parent.SQUARE);
 
         beat = new BeatDetect();
+        */
     }
 
-    public void draw() {
+    public void draw() {/*
         fft.forward(in.mix);
         parent.pushMatrix();
         parent.translate(1062,59);
@@ -48,6 +50,6 @@ public class SoundSpectrum {
         for(int i = 0; i < fft.avgSize(); i++){
             parent.line((i*w), 0, (i*w), 0-fft.getAvg(i)*4);
         }
-        parent.popMatrix();
+        parent.popMatrix();*/
     }
 }

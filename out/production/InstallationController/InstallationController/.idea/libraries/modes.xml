@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="modes">
+    <CLASSES>
+      <root url="file://C:/Program Files (x86)/processing-2.2.1/modes" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://C:/Program Files (x86)/processing-2.2.1/modes/java/examples/Books/Visualizing Data/ch05-salaryper/step_08b_web" />
+      <root url="file://C:/Program Files (x86)/processing-2.2.1/modes/java/examples/Books/Visualizing Data/ch06-zipdecode/round_09c_focus_handling" />
+      <root url="file://C:/Program Files (x86)/processing-2.2.1/modes/java/examples/Books/Visualizing Data/ch07-hierarchies/filetreemap_06b" />
+      <root url="file://C:/Program Files (x86)/processing-2.2.1/modes/java/libraries/dxf/src" />
+      <root url="file://C:/Program Files (x86)/processing-2.2.1/modes/java/libraries/glw/src" />
+      <root url="file://C:/Program Files (x86)/processing-2.2.1/modes/java/libraries/net/src" />
+      <root url="file://C:/Program Files (x86)/processing-2.2.1/modes/java/libraries/pdf/src" />
+      <root url="file://C:/Program Files (x86)/processing-2.2.1/modes/java/libraries/serial/src" />
+      <root url="file://C:/Program Files (x86)/processing-2.2.1/modes/java/libraries/video/src" />
+    </SOURCES>
+  </library>
+</component>

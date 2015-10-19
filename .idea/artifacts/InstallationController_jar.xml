@@ -1,0 +1,20 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="InstallationController:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/InstallationController_jar</output-path>
+    <root id="archive" name="InstallationController.jar">
+      <element id="module-output" name="InstallationController" />
+      <element id="extracted-dir" path="$USER_HOME$/System/Users/Kontini/Documents/Processing/libraries/promidi/library/promidi.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/System/Applications/Processing.app/Contents/Java/core/library/core.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="/Applications/Processing.app/Contents/Java/modes/java/libraries/serial/library/jssc.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/System/Users/Kontini/Documents/Processing/libraries/controlP5/library/controlP5.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="/Applications/Processing.app/Contents/Java/modes/java/libraries/minim/library/jl1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="/Applications/Processing.app/Contents/Java/modes/java/libraries/minim/library/jsminim.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="/Applications/Processing.app/Contents/Java/modes/java/libraries/minim/library/minim.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="/Applications/Processing.app/Contents/Java/modes/java/libraries/minim/library/mp3spi1.9.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="/Applications/Processing.app/Contents/Java/modes/java/libraries/minim/library/tritonus_aos.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="/Applications/Processing.app/Contents/Java/modes/java/libraries/minim/library/tritonus_share.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/System/Users/Kontini/Documents/Processing/libraries/dmxP512/library/dmxP512.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="/Applications/Processing.app/Contents/Java/modes/java/libraries/serial/library/serial.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
